@@ -9,9 +9,9 @@ namespace OnlinerNotifier.DAL.Repositories
     {
         private Context db;
 
-        public ProductRepository()
+        public ProductRepository(Context context)
         {
-            this.db = new Context();
+            this.db = context;
         }
 
         public IEnumerable<Product> GetList()

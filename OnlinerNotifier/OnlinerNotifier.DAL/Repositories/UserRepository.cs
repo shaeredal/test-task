@@ -9,9 +9,9 @@ namespace OnlinerNotifier.DAL.Repositories
     {
         private Context db;
 
-        public UserRepository()
+        public UserRepository(Context context)
         {
-            this.db = new Context();
+            this.db = context;
         }
 
         public IEnumerable<User> GetList()
