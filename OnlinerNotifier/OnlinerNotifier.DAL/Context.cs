@@ -3,7 +3,7 @@ using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.DAL
 {
-    class Context : DbContext
+    public class Context : DbContext
     {
         public DbSet<User> Users { get; set; }
         

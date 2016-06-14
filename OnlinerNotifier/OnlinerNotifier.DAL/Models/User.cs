@@ -2,7 +2,7 @@
 
 namespace OnlinerNotifier.DAL.Models
 {
-    class User
+    public class User
     {
         public int Id { get; set; }
         

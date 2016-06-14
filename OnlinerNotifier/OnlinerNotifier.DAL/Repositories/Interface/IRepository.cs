@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OnlinerNotifier.DAL
 {
-    interface IRepository<T> : IDisposable where T : class
+    public interface IRepository<T> : IDisposable where T : class
     {
         IEnumerable<T> GetList();
         T Get(int id);

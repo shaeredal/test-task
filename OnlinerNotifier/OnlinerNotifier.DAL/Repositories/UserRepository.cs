@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.DAL.Repositories
 {
-    class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<User>
     {
         private Context db;
 
@@ -41,7 +38,9 @@ namespace OnlinerNotifier.DAL.Repositories
         {
             User book = db.Users.Find(id);
             if (book != null)
+            {
                 db.Users.Remove(book);
+            }
         }
 
         public void Save()
