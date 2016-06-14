@@ -9,12 +9,12 @@ namespace OnlinerNotifier.DAL.Repositories
     {
         private Context db;
 
-        public ProductRepository()
+        public ProductRepository(Context context)
         {
-            this.db = new Context();
+            this.db = context;
         }
 
-        public IEnumerable<Product> GetList()
+        public IEnumerable<Product> GetAll()
         {
             return db.Products;
         }
@@ -41,31 +41,6 @@ namespace OnlinerNotifier.DAL.Repositories
             {
                 db.Products.Remove(book);
             }
-        }
-
-        public void Save()
-        {
-            db.SaveChanges();
-        }
-
-        private bool disposed = false;
-
-        public virtual void Dispose(bool disposing)
-        {
-            if (!this.disposed)
-            {
-                if (disposing)
-                {
-                    db.Dispose();
-                }
-            }
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }
