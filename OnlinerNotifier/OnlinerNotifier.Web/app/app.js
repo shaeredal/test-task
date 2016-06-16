@@ -1,6 +1,7 @@
 ﻿var app = angular.module('onlinerNotifier',
 [
     'ngRoute',
+    'ngCookies',
     'onlinerNotifier.auth',
     'onlinerNotifier.account',
     'onlinerNotifier.home'

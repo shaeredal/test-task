@@ -8,7 +8,8 @@ namespace OnlinerNotifier
         {
             bundles.Add(new ScriptBundle("~/bundles/angular")
                 .Include("~/scripts/angular.js")
-                .Include("~/scripts/angular-route.js"));
+                .Include("~/scripts/angular-route.js")
+                .Include("~/scripts/angular-cookies.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                 .Include("~/scripts/jquery-{version}.js"));
