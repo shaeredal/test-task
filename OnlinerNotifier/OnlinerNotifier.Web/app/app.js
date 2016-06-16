@@ -1,13 +1,13 @@
-﻿var app = angular.module('OnlinerNotifier',
+﻿var app = angular.module('onlinerNotifier',
 [
     'ngRoute',
-    'OnlinerNotifier.Auth'
+    'onlinerNotifier.auth'
 ]);
 
 app.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.when('/auth', {
             templateUrl: '/app/views/auth.html',
-            controller: 'AuthCtrl'
+            controller: 'authCtrl'
         });
 }] )
