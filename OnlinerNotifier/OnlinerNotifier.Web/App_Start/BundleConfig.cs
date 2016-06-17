@@ -28,6 +28,9 @@ namespace OnlinerNotifier
 
             bundles.Add(new StyleBundle("~/Content/font-awesome")
                 .Include("~/Content/font-awesome.css"));
+
+            bundles.Add(new StyleBundle("~/Content/site")
+                .Include("~/Content/site.css"));
         }
     }
 }
