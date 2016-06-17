@@ -1,28 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using OAuth2;
 using OAuth2.Client;
-using OnlinerNotifier.Models;
+using OnlinerNotifier.BLL.Services;
 
 namespace OnlinerNotifier.Controllers
 {
     public class AuthorizationController : Controller
     {
-        private readonly AuthorizationRoot _authorizationRoot;
+        private readonly IUserService userService;
 
-        public AuthorizationController(AuthorizationRoot authorizationRoot)
-        {
-            _authorizationRoot = authorizationRoot;
-        }
+        private readonly AuthorizationRoot authorizationRoot;
 
-        public IEnumerable<LoginInfoModel> Index()
+        public AuthorizationController(AuthorizationRoot authorizationRoot, IUserService userService)
         {
-            var model = _authorizationRoot.Clients.Select(client => new LoginInfoModel
-            {
-                ProviderName = client.Name
-            });
-            return model;
+            this.authorizationRoot = authorizationRoot;
+            this.userService = userService;
         }
 
         public ActionResult GetAuthUrl(string providerName)
@@ -32,12 +26,24 @@ namespace OnlinerNotifier.Controllers
 
         public ActionResult Auth(string providerName)
         {
-            return View(GetClient(providerName).GetUserInfo(Request.QueryString));
+            var userInfo = GetClient(providerName).GetUserInfo(Request.QueryString);
+            var userId = userService.AddOrUpdate(userInfo);
+
+            SetCookies(userId.ToString());
+
+            return Redirect("/#/home");
+        }
+
+        private void SetCookies(string id)
+        {
+            HttpCookie cookie = new HttpCookie("User");
+            cookie["Id"] = id;
+            Response.Cookies.Add(cookie);
         }
 
         private IClient GetClient(string providerName)
         {
-            return _authorizationRoot.Clients.First(c => c.Name == providerName);
+            return authorizationRoot.Clients.First(c => c.Name == providerName);
         }
     }
 }

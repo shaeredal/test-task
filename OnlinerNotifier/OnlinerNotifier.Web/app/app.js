@@ -1,6 +1,7 @@
 ﻿var app = angular.module('onlinerNotifier',
 [
     'ngRoute',
+    'ngCookies',
     'onlinerNotifier.auth',
     'onlinerNotifier.account',
     'onlinerNotifier.home'
@@ -19,5 +20,8 @@ app.config(['$routeProvider',
         .when('/home', {
             templateUrl: '/app/views/home.html',
             controller: 'homeController'
+        })
+        .otherwise({
+            redirectTo: '/auth'    
         });
 }] )
