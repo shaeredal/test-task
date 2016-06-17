@@ -170,8 +170,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginInfoModel.cs" />
-    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -184,8 +182,8 @@
     <Content Include="scripts\angular-resource.min.js.map" />
     <Content Include="scripts\angular-cookies.min.js.map" />
     <Content Include="scripts\angular-animate.min.js.map" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="scripts\jquery-2.0.0.min.map" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

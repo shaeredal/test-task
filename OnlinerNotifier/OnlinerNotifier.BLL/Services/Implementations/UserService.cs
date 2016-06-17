@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using OnlinerNotifier.BLL.Mappers;
+using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
 
@@ -7,10 +9,22 @@ namespace OnlinerNotifier.BLL.Services.Implementations
     public class UserService : IUserService
     {
         private UnitOfWork unitOfWork;
+        private UserMapper userMapper;
 
-        public UserService(UnitOfWork unitOfWork)
+        public UserService(UnitOfWork unitOfWork, UserMapper userMapper)
         {
             this.unitOfWork = unitOfWork;
+            this.userMapper = userMapper;
+        }
+
+        public UserViewModel Get(int id)
+        {
+            var user = unitOfWork.Users.Get(id);
+            if (user == null)
+            {
+                return null;
+            }
+            return userMapper.ToUserViewModel(user);
         }
 
         public int AddOrUpdate(OAuth2.Models.UserInfo userInfo)
@@ -20,15 +34,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 .FirstOrDefault(usr => usr.SocialId == userInfo.Id);
             if (user == null)
             {
-                user = new User()
-                {
-                    FirstName = userInfo.FirstName,
-                    LastName = userInfo.LastName,
-                    AvatarUri = userInfo.AvatarUri.Normal,
-                    Email = userInfo.Email,
-                    SocialId = userInfo.Id,
-                    ProviderName = userInfo.ProviderName
-                };
+                user = userMapper.GetFormUserInfo(userInfo);
                 users.Create(user);
                 unitOfWork.Save();
             }

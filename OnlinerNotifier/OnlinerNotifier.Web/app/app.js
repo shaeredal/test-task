@@ -20,5 +20,8 @@ app.config(['$routeProvider',
         .when('/home', {
             templateUrl: '/app/views/home.html',
             controller: 'homeController'
+        })
+        .otherwise({
+            redirectTo: '/auth'    
         });
 }] )

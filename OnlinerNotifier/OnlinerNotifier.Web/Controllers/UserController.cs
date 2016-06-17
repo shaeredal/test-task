@@ -1,33 +1,21 @@
 ﻿using System.Web.Http;
-using OnlinerNotifier.DAL;
-using OnlinerNotifier.Models;
+using OnlinerNotifier.BLL.Models;
+using OnlinerNotifier.BLL.Services;
 
 namespace OnlinerNotifier.Controllers
 {
     public class UserController : ApiController
     {
-        private UnitOfWork unitOfWork;
+        private IUserService userService;
 
-        public UserController(UnitOfWork unitOfWork)
+        public UserController(IUserService userService)
         {
-            this.unitOfWork = unitOfWork;
+            this.userService = userService;
         }
 
         public UserViewModel Get(int id)
         {
-            var user = unitOfWork.Users.Get(id);
-
-            if (user == null)
-            {
-                return null;
-            }
-
-            return new UserViewModel()
-            {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                AvatarUri = user.AvatarUri
-            };
+            return userService.Get(id);
         } 
     }
 }
