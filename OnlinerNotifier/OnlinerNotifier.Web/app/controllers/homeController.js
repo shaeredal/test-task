@@ -8,4 +8,11 @@ angular.module('onlinerNotifier.home', ['ngRoute'])
                 $scope.name = user.FirstName + ' ' + user.LastName;
                 $scope.avatarUri = user.AvatarUri;
             });
+
+        $scope.search = function() {
+            $http.get('https://catalog.api.onliner.by/search/products?query=' + $scope.searchQuery)
+                .then(function(response) {
+                    $scope.searchResult = response.data;
+                });
+        }
     });

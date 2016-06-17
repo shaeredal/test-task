@@ -1,4 +1,43 @@
-﻿<nav class="navbar navbar-light bg-faded">
-    <b class="navbar-brand">{{name}}</b>
-    <img ng-src={{avatarUri}}>
+﻿<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/#/account">
+                <img ng-src={{avatarUri}}>
+            </a>
+        </div>
+        <b class="navbar-brand">{{name}}</b>
+    </div>
 </nav>
+
+
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" ng-model="searchQuery">
+        </div>
+        <div class="col-md-1">
+            <button ng-click="search()">Search</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Results</div>
+                <div class="panel-body">
+                    <div class="row" ng-repeat="n in searchResult.products track by $index">
+                        <div class="col-md-6">
+                            <a ng-href={{n.html_url}}>{{n.full_name}}</a>
+                        </div>
+                        <div class="col-md-2">
+                            {{n.prices.min}}
+                        </div>
+                        <div class="col-md-2">
+                            {{n.prices.max}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
