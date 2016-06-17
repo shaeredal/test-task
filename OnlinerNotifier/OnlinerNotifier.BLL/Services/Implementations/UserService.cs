@@ -24,7 +24,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             {
                 return null;
             }
-            return userMapper.ToUserViewModel(user);
+            return userMapper.ToModel(user);
         }
 
         public int AddOrUpdate(OAuth2.Models.UserInfo userInfo)
@@ -34,7 +34,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 .FirstOrDefault(usr => usr.SocialId == userInfo.Id);
             if (user == null)
             {
-                user = userMapper.GetFormUserInfo(userInfo);
+                user = userMapper.ToDomain(userInfo);
                 users.Create(user);
                 unitOfWork.Save();
             }

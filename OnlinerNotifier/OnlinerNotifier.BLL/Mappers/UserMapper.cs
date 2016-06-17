@@ -6,7 +6,7 @@ namespace OnlinerNotifier.BLL.Mappers
 {
     public class UserMapper
     {
-        public User GetFormUserInfo(UserInfo userInfo)
+        public User ToDomain(UserInfo userInfo)
         {
             return new User()
             {
@@ -19,7 +19,7 @@ namespace OnlinerNotifier.BLL.Mappers
             };
         }
 
-        public UserViewModel ToUserViewModel(User user)
+        public UserViewModel ToModel(User user)
         {
             return new UserViewModel()
             {
