@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Services;
 
 namespace OnlinerNotifier.Controllers

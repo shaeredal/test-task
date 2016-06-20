@@ -9,8 +9,7 @@ namespace OnlinerNotifier.DAL.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            ContextKey = "OnlinerNotifier.DAL.Context";
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(OnlinerNotifier.DAL.Context context)
