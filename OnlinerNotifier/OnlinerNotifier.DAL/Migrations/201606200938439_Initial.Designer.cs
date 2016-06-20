@@ -7,13 +7,13 @@ namespace OnlinerNotifier.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddProductParameters : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddProductParameters));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201606171501384_AddProductParameters"; }
+            get { return "201606200938439_Initial"; }
         }
         
         string IMigrationMetadata.Source

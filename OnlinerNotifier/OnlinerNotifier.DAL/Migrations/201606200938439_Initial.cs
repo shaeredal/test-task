@@ -3,7 +3,7 @@ namespace OnlinerNotifier.DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -12,8 +12,10 @@ namespace OnlinerNotifier.DAL.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.Int(nullable: false),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        OnlinerId = c.Int(nullable: false),
+                        Name = c.String(),
+                        MaxPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        MinPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
                         User_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)

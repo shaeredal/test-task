@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.DAL.Repositories
@@ -21,7 +22,7 @@ namespace OnlinerNotifier.DAL.Repositories
 
         public User Get(int id)
         {
-            return db.Users.Find(id);
+            return db.Users.Include(usr => usr.Products).SingleOrDefault(x => x.Id == id);
         }
 
         public void Create(User item)

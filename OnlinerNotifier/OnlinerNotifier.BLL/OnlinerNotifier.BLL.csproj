@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Mappers\ProductMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="Models\ProductUserViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

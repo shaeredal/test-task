@@ -36,8 +36,7 @@ namespace OnlinerNotifier.Controllers
 
         private void SetCookies(string id)
         {
-            HttpCookie cookie = new HttpCookie("User");
-            cookie["Id"] = id;
+            HttpCookie cookie = new HttpCookie("User", id);
             Response.Cookies.Add(cookie);
         }
 

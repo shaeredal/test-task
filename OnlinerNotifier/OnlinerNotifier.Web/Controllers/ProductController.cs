@@ -13,9 +13,9 @@ namespace OnlinerNotifier.Controllers
             this.productService = productService;
         }
 
-        public void Post(ProductViewModel product, int userId)
+        public void Post(ProductUserViewModel product)
         {
-            
+            productService.Add(product.Product, product.UserId);
         }
     }
 }
