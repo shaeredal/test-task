@@ -50,6 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Migrations\201606170639082_InitialCreate.cs" />
+    <Compile Include="Migrations\201606170639082_InitialCreate.Designer.cs">
+      <DependentUpon>201606170639082_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606171501384_AddProductParameters.cs" />
+    <Compile Include="Migrations\201606171501384_AddProductParameters.Designer.cs">
+      <DependentUpon>201606171501384_AddProductParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repositories\Interface\IRepository.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
@@ -61,6 +70,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606170639082_InitialCreate.resx">
+      <DependentUpon>201606170639082_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606171501384_AddProductParameters.resx">
+      <DependentUpon>201606171501384_AddProductParameters.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
