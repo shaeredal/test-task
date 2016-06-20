@@ -33,6 +33,6 @@ angular.module('onlinerNotifier.home', ['ngRoute'])
                 productData["MaxPrice"] = product.prices.max;
                 productData["MinPrice"] = product.prices.min;
             }
-            $http.post("api/Product", { "product": productData, "userId": userId });
+            $http.post("api/Product", productData);
         }
     });
