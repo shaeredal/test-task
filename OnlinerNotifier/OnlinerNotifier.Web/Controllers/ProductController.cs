@@ -1,4 +1,4 @@
-﻿using System.Web.Http;
+﻿using System.Collections.Generic;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.Filters;
@@ -13,6 +13,11 @@ namespace OnlinerNotifier.Controllers
         public ProductController(IProductService productService)
         {
             this.productService = productService;
+        }
+
+        public List<ProductViewModel> Get()
+        {
+            return productService.GetUserProducts(Principal.Id);
         }
 
         public void Post(ProductViewModel product)
