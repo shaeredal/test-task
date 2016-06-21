@@ -58,7 +58,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             {
                 user.Products.Remove(product);
                 unitOfWork.Save();
-                if (product.Users.Count == 0)
+                if (!product.Users.Any())
                 {
                     unitOfWork.Products.Delete(productId);
                     unitOfWork.Save();
