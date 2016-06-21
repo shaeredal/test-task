@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.DAL;
@@ -41,6 +42,12 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 user.Products.Add(product);
                 unitOfWork.Save();
             }
+        }
+
+        public List<ProductViewModel> GetUserProducts(int userId)
+        {
+            var user = unitOfWork.Users.Get(userId);
+            return user.Products.Select(prod => productMapper.ToModel(prod)).ToList();
         }
     }
 }

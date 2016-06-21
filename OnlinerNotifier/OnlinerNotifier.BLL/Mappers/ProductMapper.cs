@@ -15,5 +15,16 @@ namespace OnlinerNotifier.BLL.Mappers
                 MinPrice = model.MinPrice
             };
         }
+
+        public ProductViewModel ToModel(Product product)
+        {
+            return new ProductViewModel()
+            {
+                OnlinerId = product.OnlinerId,
+                Name = product.Name,
+                MaxPrice = product.MaxPrice,
+                MinPrice = product.MinPrice
+            };
+        }
     }
 }
