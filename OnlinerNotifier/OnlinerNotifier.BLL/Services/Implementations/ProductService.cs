@@ -49,5 +49,23 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             var user = unitOfWork.Users.Get(userId);
             return user.Products.Select(prod => productMapper.ToModel(prod)).ToList();
         }
+
+        public bool Delete(int userId, int productId)
+        {
+            var user = unitOfWork.Users.Get(userId);
+            var product = unitOfWork.Products.Get(productId);
+            if (user.Products.Contains(product))
+            {
+                user.Products.Remove(product);
+                unitOfWork.Save();
+                if (!product.Users.Any())
+                {
+                    unitOfWork.Products.Delete(productId);
+                    unitOfWork.Save();
+                }
+                return true;
+            }
+            return false;
+        }
     }
 }

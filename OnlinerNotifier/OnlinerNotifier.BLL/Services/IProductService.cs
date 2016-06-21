@@ -7,5 +7,6 @@ namespace OnlinerNotifier.BLL.Services
     {
         void Add(ProductViewModel product, int userId);
         List<ProductViewModel> GetUserProducts(int userId);
+        bool Delete(int userId, int productId);
     }
 }

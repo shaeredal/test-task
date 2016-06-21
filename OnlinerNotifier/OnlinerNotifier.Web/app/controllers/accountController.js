@@ -10,9 +10,11 @@ angular.module('onlinerNotifier.account', ['ngRoute'])
                 $scope.products = user.Products;
             });
 
-        $scope.delProduct = function (id) {
-            //temporary
-            console.log("id: " + id);
+        $scope.delProduct = function (id, index) {
+            $http.delete('api/Account/' + id)
+                .then(function(response) {
+                    $scope.products.splice(index, 1);
+                });
         };
 
         $scope.setTime = function () {
