@@ -6,9 +6,9 @@ using OnlinerNotifier.Filters;
 namespace OnlinerNotifier.Controllers
 {
     [Authentication]
-    public class ProductController : ApiController
+    public class ProductController : ApiControllerBase
     {
-        private IProductService productService;
+        private readonly IProductService productService;
 
         public ProductController(IProductService productService)
         {
@@ -17,7 +17,7 @@ namespace OnlinerNotifier.Controllers
 
         public void Post(ProductViewModel product)
         {
-            var userId = ((Principal) RequestContext.Principal).Id;
+            var userId = Principal.Id;
             productService.Add(product, userId);
         }
     }
