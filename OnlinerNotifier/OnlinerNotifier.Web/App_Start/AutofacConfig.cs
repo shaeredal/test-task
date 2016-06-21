@@ -68,7 +68,9 @@ namespace OnlinerNotifier
             builder.RegisterType<AuthorizationRoot>().AsSelf().SingleInstance();
             builder.RegisterType<UnitOfWork>().AsSelf().SingleInstance();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerDependency();
+            builder.RegisterType<ProductService>().As<IProductService>().InstancePerDependency();
             builder.RegisterType<UserMapper>().AsSelf().InstancePerDependency();
+            builder.RegisterType<ProductMapper>().AsSelf().InstancePerDependency();
         }
     }
 }

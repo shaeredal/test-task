@@ -6,7 +6,7 @@ namespace OnlinerNotifier.Controllers
 {
     public class UserController : ApiController
     {
-        private IUserService userService;
+        private readonly IUserService userService;
 
         public UserController(IUserService userService)
         {
