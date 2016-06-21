@@ -40,5 +40,15 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             }
             return user.Id;
         }
+
+        public UserDataViewModel GetUserData(int id)
+        {
+            var user = unitOfWork.Users.Get(id);
+            if (user == null)
+            {
+                return null;
+            }
+            return userMapper.ToDataModel(user);
+        }
     }
 }

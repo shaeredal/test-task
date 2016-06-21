@@ -6,5 +6,6 @@ namespace OnlinerNotifier.BLL.Services
     {
         UserViewModel Get(int id);
         int AddOrUpdate(OAuth2.Models.UserInfo userInfo);
+        UserDataViewModel GetUserData(int id);
     }
 }
