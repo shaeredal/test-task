@@ -4,6 +4,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
 using System.Web.Optimization;
+using FluentScheduler;
+using OnlinerNotifier.Scheduler;
 
 namespace OnlinerNotifier
 {
@@ -17,6 +19,8 @@ namespace OnlinerNotifier
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.RegisterDependencies();
+
+            JobManager.Initialize(new MyRegistry());
         }
     }
 }
