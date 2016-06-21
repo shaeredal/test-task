@@ -1,1 +1,46 @@
-﻿account
+﻿<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/#/account">
+                <img ng-src={{avatarUri}}>
+            </a>
+        </div>
+        <b class="navbar-brand">{{name}}</b>
+    </div>
+</nav>
+
+
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-2">
+            <input type="time" ng-model="time">
+        </div>
+        <div class="col-md-1">
+            <button ng-click="setTime()">Set</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tracking products</div>
+                <div class="panel-body">
+                    <div class="row" ng-repeat="n in products track by $index">
+                        <div class="col-md-6">
+                            {{n.Name}}
+                        </div>
+                        <div class="col-md-2">
+                            {{n.MinPrice}}
+                        </div>
+                        <div class="col-md-2">
+                            {{n.MaxPrice}}
+                        </div>
+                        <div>
+                            <button ng-click="delProduct(n.Id)">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

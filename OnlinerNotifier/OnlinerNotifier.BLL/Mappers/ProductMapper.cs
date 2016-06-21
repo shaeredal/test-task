@@ -20,6 +20,7 @@ namespace OnlinerNotifier.BLL.Mappers
         {
             return new ProductViewModel()
             {
+                Id = product.Id,
                 OnlinerId = product.OnlinerId,
                 Name = product.Name,
                 MaxPrice = product.MaxPrice,
