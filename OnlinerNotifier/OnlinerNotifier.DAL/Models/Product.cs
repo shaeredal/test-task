@@ -17,9 +17,12 @@ namespace OnlinerNotifier.DAL.Models
 
         public ICollection<User> Users { get; set; }
 
+        public ICollection<ProductPriceChange> PriceChanges { get; set; }
+
         public Product()
         {
             Users = new List<User>();
+            PriceChanges = new List<ProductPriceChange>();
         }
     }
 }
