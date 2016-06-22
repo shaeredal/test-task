@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Linq;
-using System.Net;
+﻿using System.Linq;
 using Newtonsoft.Json;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
@@ -15,10 +13,13 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         private PriceChangesMapper priceChangesMapper;
 
-        public PricesCheckingService(UnitOfWork unitOfWork, PriceChangesMapper priceChangesMapper)
+        private IOnlinerSearchService onlinerSearchService;
+
+        public PricesCheckingService(UnitOfWork unitOfWork, PriceChangesMapper priceChangesMapper, IOnlinerSearchService onlinerSearchService)
         {
             this.unitOfWork = unitOfWork;
             this.priceChangesMapper = priceChangesMapper;
+            this.onlinerSearchService = onlinerSearchService;
         }
 
         public void Check()
@@ -26,25 +27,12 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             var products = unitOfWork.Products.GetAll().ToList();
             foreach (var product in products)
             {
-                string searchResultString = OnlinerSearch(product);
+                string searchResultString = onlinerSearchService.Search(product.Name);
                 var newProduct = ParseProduct(searchResultString, product.OnlinerId);
                 if (newProduct != null)
                 {
                     CompareAndUpdate(product, newProduct);
                 }               
-            }
-        }
-
-        private string OnlinerSearch(Product product)
-        {
-            var requestString = $"https://catalog.api.onliner.by/search/products?query={product.Name}";
-            var request = (HttpWebRequest)WebRequest.Create(requestString);
-            request.Method = "GET";
-            request.Accept = "application/json";
-            var response = (HttpWebResponse)request.GetResponse();
-            using (var reader = new StreamReader(response.GetResponseStream()))
-            {
-                return reader.ReadToEnd();
             }
         }
 

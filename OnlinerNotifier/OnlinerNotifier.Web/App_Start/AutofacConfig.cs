@@ -67,12 +67,23 @@ namespace OnlinerNotifier
         {
             builder.RegisterType<AuthorizationRoot>().AsSelf().SingleInstance();
             builder.RegisterType<UnitOfWork>().AsSelf().SingleInstance();
+            RegisterServices(builder);
+            RegisterMappers(builder);
+        }
+
+        private static void RegisterServices(ContainerBuilder builder)
+        {
             builder.RegisterType<UserService>().As<IUserService>().InstancePerDependency();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerDependency();
+            builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
+            builder.RegisterType<IOnlinerSearchService>().As<IOnlinerSearchService>().InstancePerDependency();
+        }
+
+        private static void RegisterMappers(ContainerBuilder builder)
+        {
             builder.RegisterType<UserMapper>().AsSelf().InstancePerDependency();
             builder.RegisterType<ProductMapper>().AsSelf().InstancePerDependency();
             builder.RegisterType<PriceChangesMapper>().AsSelf().InstancePerDependency();
-            builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
         }
     }
 }
