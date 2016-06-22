@@ -1,7 +1,9 @@
-﻿namespace OnlinerNotifier.BLL.Services
+﻿using OnlinerNotifier.BLL.Models.OnlinerDataModels;
+
+namespace OnlinerNotifier.BLL.Services
 {
     public interface IOnlinerSearchService
     {
-        string Search(string productName);
+        SearchResultOnliner Search(string productName);
     }
 }

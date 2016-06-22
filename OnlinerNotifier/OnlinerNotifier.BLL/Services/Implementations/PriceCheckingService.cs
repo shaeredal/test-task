@@ -27,8 +27,8 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             var products = unitOfWork.Products.GetAll().ToList();
             foreach (var product in products)
             {
-                string searchResultString = onlinerSearchService.Search(product.Name);
-                var newProduct = ParseProduct(searchResultString, product.OnlinerId);
+                var searchResult = onlinerSearchService.Search(product.Name);
+                var newProduct = FindProduct(searchResult, product.OnlinerId);
                 if (newProduct != null)
                 {
                     CompareAndUpdate(product, newProduct);
@@ -36,9 +36,8 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             }
         }
 
-        private ProductOnliner ParseProduct(string searchResultString, int id)
+        private ProductOnliner FindProduct(SearchResultOnliner searchResult, int id)
         {
-            var searchResult = JsonConvert.DeserializeObject<SearchResultOnliner>(searchResultString);
             return searchResult.Products.FirstOrDefault(prod => prod.Id == id);
         }
 
