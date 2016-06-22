@@ -29,18 +29,25 @@ namespace OnlinerNotifier.DAL.Repositories
             db.Products.Add(item);
         }
 
-        public void Update(Product item)
+        public bool Update(Product item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            if (db.Products.Contains(item))
+            {
+                db.Entry(item).State = EntityState.Modified;
+                return true;
+            }
+            return false;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             Product product = db.Products.Find(id);
             if (product != null)
             {
                 db.Products.Remove(product);
+                return true;
             }
+            return false;
         }
     }
 }

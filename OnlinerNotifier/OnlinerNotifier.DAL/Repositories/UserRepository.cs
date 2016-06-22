@@ -30,18 +30,25 @@ namespace OnlinerNotifier.DAL.Repositories
             db.Users.Add(item);
         }
 
-        public void Update(User item)
+        public bool Update(User item)
         {
-            db.Entry(item).State = EntityState.Modified;
+            if (db.Users.Contains(item))
+            {
+                db.Entry(item).State = EntityState.Modified;
+                return true;
+            }
+            return false;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             User user = db.Users.Find(id);
             if (user != null)
             {
                 db.Users.Remove(user);
+                return true;
             }
+            return false;
         }
     }
 }
