@@ -10,6 +10,16 @@ namespace OnlinerNotifier.DAL
             
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .HasMany(x => x.PriceChanges)
+                .WithRequired(x => x.Product)
+                .WillCascadeOnDelete(true);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<User> Users { get; set; }
         
         public DbSet<Product> Products { get; set; }
