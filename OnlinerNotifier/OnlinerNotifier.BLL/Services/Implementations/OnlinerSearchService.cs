@@ -10,7 +10,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
         public SearchResultOnliner Search(string productName)
         {
             var searchResultString = MakeRequest(productName);
-            return GetData(searchResultString);
+            return ParseResponse(searchResultString);
         }
 
         private string MakeRequest(string productName)
@@ -20,14 +20,13 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             request.Method = "GET";
             request.Accept = "application/json";
             var response = (HttpWebResponse)request.GetResponse();
-            string searchResultString;
             using (var reader = new StreamReader(response.GetResponseStream()))
             {
                 return reader.ReadToEnd();
             }
         }
 
-        private SearchResultOnliner GetData(string searchResultString)
+        private SearchResultOnliner ParseResponse(string searchResultString)
         {
             return JsonConvert.DeserializeObject<SearchResultOnliner>(searchResultString);
         }
