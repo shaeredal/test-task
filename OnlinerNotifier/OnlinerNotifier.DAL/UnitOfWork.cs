@@ -8,6 +8,7 @@ namespace OnlinerNotifier.DAL
         private Context db = new Context();
         private UserRepository userRepository;
         private ProductRepository productRepository;
+        private ProductPriceChangeRepository productPriceChangeRepository;
 
         public UserRepository Users
         {
@@ -30,6 +31,18 @@ namespace OnlinerNotifier.DAL
                     productRepository = new ProductRepository(db);
                 }
                 return productRepository;
+            }
+        }
+
+        public ProductPriceChangeRepository PriceCanges
+        {
+            get
+            {
+                if (productPriceChangeRepository == null)
+                {
+                    productPriceChangeRepository = new ProductPriceChangeRepository(db);
+                }
+                return productPriceChangeRepository;
             }
         }
 

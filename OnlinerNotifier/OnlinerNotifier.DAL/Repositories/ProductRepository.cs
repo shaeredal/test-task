@@ -36,10 +36,10 @@ namespace OnlinerNotifier.DAL.Repositories
 
         public void Delete(int id)
         {
-            Product book = db.Products.Find(id);
-            if (book != null)
+            Product product = db.Products.Find(id);
+            if (product != null)
             {
-                db.Products.Remove(book);
+                db.Products.Remove(product);
             }
         }
     }

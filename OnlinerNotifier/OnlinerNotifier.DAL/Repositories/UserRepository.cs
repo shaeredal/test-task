@@ -37,10 +37,10 @@ namespace OnlinerNotifier.DAL.Repositories
 
         public void Delete(int id)
         {
-            User book = db.Users.Find(id);
-            if (book != null)
+            User user = db.Users.Find(id);
+            if (user != null)
             {
-                db.Users.Remove(book);
+                db.Users.Remove(user);
             }
         }
     }
