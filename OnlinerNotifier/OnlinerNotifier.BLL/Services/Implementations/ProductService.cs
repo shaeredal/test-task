@@ -60,6 +60,10 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 unitOfWork.Save();
                 if (!product.Users.Any())
                 {
+                    if (unitOfWork.Products.Get(productId) == null)
+                    {
+                        return false;
+                    }
                     unitOfWork.Products.Delete(productId);
                     unitOfWork.Save();
                 }
