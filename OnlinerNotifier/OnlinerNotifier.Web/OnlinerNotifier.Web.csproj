@@ -208,8 +208,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scheduler\CheckPricesJob.cs" />
+    <Compile Include="Scheduler\Jobs\CheckPricesJob.cs" />
     <Compile Include="Scheduler\JobFactory.cs" />
+    <Compile Include="Scheduler\Jobs\SetNotifiersJob.cs" />
     <Compile Include="Scheduler\MyRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
