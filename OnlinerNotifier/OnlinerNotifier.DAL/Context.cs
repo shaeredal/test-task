@@ -25,5 +25,7 @@ namespace OnlinerNotifier.DAL
         public DbSet<Product> Products { get; set; }
 
         public DbSet<ProductPriceChange> PriceChanges { get; set; }
+
+        public DbSet<UserProduct> UserProducts { get; set; }
     }
 }

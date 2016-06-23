@@ -9,6 +9,7 @@ namespace OnlinerNotifier.DAL
         private UserRepository userRepository;
         private ProductRepository productRepository;
         private ProductPriceChangeRepository productPriceChangeRepository;
+        private UserProductRepository userProductRepository;
 
         public UserRepository Users
         {
@@ -43,6 +44,18 @@ namespace OnlinerNotifier.DAL
                     productPriceChangeRepository = new ProductPriceChangeRepository(db);
                 }
                 return productPriceChangeRepository;
+            }
+        }
+
+        public UserProductRepository UserProducts
+        {
+            get
+            {
+                if (userProductRepository == null)
+                {
+                    userProductRepository = new UserProductRepository(db);
+                }
+                return userProductRepository;
             }
         }
 

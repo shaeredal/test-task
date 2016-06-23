@@ -11,11 +11,13 @@ namespace OnlinerNotifier.BLL.Services.Implementations
     {
         private UnitOfWork unitOfWork;
         private ProductMapper productMapper;
+        private UserProductsMapper userProductsMapper;
 
-        public ProductService(UnitOfWork unitOfWork, ProductMapper productMapper)
+        public ProductService(UnitOfWork unitOfWork, ProductMapper productMapper, UserProductsMapper userProductsMapper)
         {
             this.unitOfWork = unitOfWork;
             this.productMapper = productMapper;
+            this.userProductsMapper = userProductsMapper;
         }
 
         public void Add(ProductViewModel productModel, int userId)
@@ -37,9 +39,10 @@ namespace OnlinerNotifier.BLL.Services.Implementations
         private void AddToUser(Product product, int userId)
         {
             var user = unitOfWork.Users.Get(userId);
-            if (!user.Products.Contains(product))
+            if (!user.UserProducts.Select(up => up.Product).Contains(product))
             {
-                user.Products.Add(product);
+                var userProduct = userProductsMapper.ToDomain(user, product);
+                user.UserProducts.Add(userProduct);
                 unitOfWork.Save();
             }
         }
@@ -47,18 +50,19 @@ namespace OnlinerNotifier.BLL.Services.Implementations
         public List<ProductViewModel> GetUserProducts(int userId)
         {
             var user = unitOfWork.Users.Get(userId);
-            return user.Products.Select(prod => productMapper.ToModel(prod)).ToList();
+            return user.UserProducts.Select(up => up.Product).Select(prod => productMapper.ToModel(prod)).ToList();
         }
 
         public bool Delete(int userId, int productId)
         {
             var user = unitOfWork.Users.Get(userId);
             var product = unitOfWork.Products.Get(productId);
-            if (user.Products.Contains(product))
+            if (user.UserProducts.Select(up => up.Product).Contains(product))
             {
-                user.Products.Remove(product);
+                var userProduct = unitOfWork.UserProducts.GetAll().First(x => x.User == user && x.Product == product);
+                unitOfWork.UserProducts.Delete(userProduct.Id);
                 unitOfWork.Save();
-                if (!product.Users.Any())
+                if (!product.UserProducts.Any())
                 {
                     if (!unitOfWork.Products.Delete(productId))
                     {

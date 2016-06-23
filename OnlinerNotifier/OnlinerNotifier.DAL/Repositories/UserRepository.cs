@@ -22,7 +22,7 @@ namespace OnlinerNotifier.DAL.Repositories
 
         public User Get(int id)
         {
-            return db.Users.Include(usr => usr.Products).SingleOrDefault(x => x.Id == id);
+            return db.Users.Include(usr => usr.UserProducts.Select(up => up.User)).SingleOrDefault(x => x.Id == id);
         }
 
         public void Create(User item)
