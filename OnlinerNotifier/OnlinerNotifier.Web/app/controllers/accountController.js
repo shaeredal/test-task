@@ -18,7 +18,8 @@ angular.module('onlinerNotifier.account', ['ngRoute'])
         };
 
         $scope.setTime = function () {
-            //temporary
-            console.log("time: " + $scope.time);
+            if ($scope.time) {
+                $http.post('api/Notification/', $scope.time);
+            }
         }
     });
