@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace OnlinerNotifier.DAL.Models
 {
@@ -17,6 +18,8 @@ namespace OnlinerNotifier.DAL.Models
         public string SocialId { get; set; }
 
         public string ProviderName { get; set; }
+
+        public DateTime NotificationTime { get; set; }
 
         public ICollection<UserProduct> UserProducts { get; set; }
 

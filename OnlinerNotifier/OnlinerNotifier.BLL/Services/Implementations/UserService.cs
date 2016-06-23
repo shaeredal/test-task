@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.DAL;
@@ -48,6 +49,18 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 return null;
             }
             return userMapper.ToDataModel(user);
+        }
+
+        public bool SetNotificationTime(int userId, DateTime time)
+        {
+            var user = unitOfWork.Users.Get(userId);
+            if (user != null)
+            {
+                user.NotificationTime = time;
+                unitOfWork.Save();
+                return true;
+            }
+            return false;
         }
     }
 }
