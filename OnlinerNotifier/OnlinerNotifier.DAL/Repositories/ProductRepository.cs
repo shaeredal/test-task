@@ -21,7 +21,7 @@ namespace OnlinerNotifier.DAL.Repositories
 
         public Product Get(int id)
         {
-            return db.Products.Include(prod => prod.Users).SingleOrDefault(x => x.Id == id);
+            return db.Products.Include(prod => prod.UserProducts.Select(up => up.Product)).SingleOrDefault(x => x.Id == id);
         }
 
         public void Create(Product item)

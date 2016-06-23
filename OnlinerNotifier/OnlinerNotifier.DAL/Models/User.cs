@@ -18,11 +18,11 @@ namespace OnlinerNotifier.DAL.Models
 
         public string ProviderName { get; set; }
 
-        public ICollection<Product> Products { get; set; }
+        public ICollection<UserProduct> UserProducts { get; set; }
 
         public User()
         {
-            Products = new List<Product>();
+            UserProducts = new List<UserProduct>();
         }
     }
 }

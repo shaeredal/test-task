@@ -15,13 +15,13 @@ namespace OnlinerNotifier.DAL.Models
 
         public decimal MinPrice { get; set; }
 
-        public ICollection<User> Users { get; set; }
+        public ICollection<UserProduct> UserProducts { get; set; }
 
         public ICollection<ProductPriceChange> PriceChanges { get; set; }
 
         public Product()
         {
-            Users = new List<User>();
+            UserProducts = new List<UserProduct>();
             PriceChanges = new List<ProductPriceChange>();
         }
     }

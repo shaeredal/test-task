@@ -86,6 +86,7 @@ namespace OnlinerNotifier
             builder.RegisterType<UserMapper>().AsSelf().InstancePerDependency();
             builder.RegisterType<ProductMapper>().AsSelf().InstancePerDependency();
             builder.RegisterType<PriceChangesMapper>().AsSelf().InstancePerDependency();
+            builder.RegisterType<UserProductsMapper>().AsSelf().InstancePerDependency();
         }
     }
 }

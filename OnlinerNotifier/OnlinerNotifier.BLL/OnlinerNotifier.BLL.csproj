@@ -64,6 +64,7 @@
     <Compile Include="Mappers\PriceChangesMapper.cs" />
     <Compile Include="Mappers\ProductMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
+    <Compile Include="Mappers\UserProductsMapper.cs" />
     <Compile Include="Models\OnlinerDataModels\PriceOnliner.cs" />
     <Compile Include="Models\OnlinerDataModels\ProductOnliner.cs" />
     <Compile Include="Models\OnlinerDataModels\SearchResultOnliner.cs" />
