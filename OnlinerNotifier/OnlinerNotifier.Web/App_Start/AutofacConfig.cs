@@ -10,6 +10,7 @@ using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.Scheduler;
+using OnlinerNotifier.Scheduler.Jobs;
 
 namespace OnlinerNotifier
 {
@@ -70,7 +71,7 @@ namespace OnlinerNotifier
             builder.RegisterType<UnitOfWork>().AsSelf().SingleInstance();
             RegisterServices(builder);
             RegisterMappers(builder);
-            builder.RegisterType<CheckPricesJob>().AsSelf().InstancePerDependency();
+            RegisterJobs(builder);
         }
 
         private static void RegisterServices(ContainerBuilder builder)
@@ -79,6 +80,7 @@ namespace OnlinerNotifier
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerDependency();
             builder.RegisterType<OnlinerSearchService>().As<IOnlinerSearchService>().InstancePerDependency();
             builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
+            builder.RegisterType<NotificationService>().As<INotificationService>().InstancePerDependency();
         }
 
         private static void RegisterMappers(ContainerBuilder builder)
@@ -87,6 +89,12 @@ namespace OnlinerNotifier
             builder.RegisterType<ProductMapper>().AsSelf().InstancePerDependency();
             builder.RegisterType<PriceChangesMapper>().AsSelf().InstancePerDependency();
             builder.RegisterType<UserProductsMapper>().AsSelf().InstancePerDependency();
+        }
+
+        private static void RegisterJobs(ContainerBuilder builder)
+        {
+            builder.RegisterType<CheckPricesJob>().AsSelf().InstancePerDependency();
+            builder.RegisterType<SetNotifiersJob>().AsSelf().InstancePerDependency();
         }
     }
 }

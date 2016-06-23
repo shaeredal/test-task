@@ -2,7 +2,7 @@
 using FluentScheduler;
 using OnlinerNotifier.BLL.Services;
 
-namespace OnlinerNotifier.Scheduler
+namespace OnlinerNotifier.Scheduler.Jobs
 {
     public class CheckPricesJob : IJob, IRegisteredObject
     {

@@ -1,4 +1,5 @@
 ﻿using FluentScheduler;
+using OnlinerNotifier.Scheduler.Jobs;
 
 namespace OnlinerNotifier.Scheduler
 {
@@ -6,7 +7,8 @@ namespace OnlinerNotifier.Scheduler
     {
         public MyRegistry()
         {
-            Schedule<CheckPricesJob>().ToRunNow().AndEvery(1).Days();
+            //Schedule<CheckPricesJob>().ToRunNow().AndEvery(1).Days();
+            Schedule<SetNotifiersJob>().ToRunNow().AndEvery(1).Days();
         }
     }
 }

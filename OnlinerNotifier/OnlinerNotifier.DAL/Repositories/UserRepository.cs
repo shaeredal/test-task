@@ -20,9 +20,14 @@ namespace OnlinerNotifier.DAL.Repositories
             return db.Users;
         }
 
+        public IEnumerable<User> GetAllDeep()
+        {
+            return db.Users.Include(usr => usr.UserProducts.Select(up => up.Product).Select(prod => prod.PriceChanges));
+        }
+
         public User Get(int id)
         {
-            return db.Users.Include(usr => usr.UserProducts.Select(up => up.User)).SingleOrDefault(x => x.Id == id);
+            return db.Users.Include(usr => usr.UserProducts.Select(up => up.Product)).SingleOrDefault(x => x.Id == id);
         }
 
         public void Create(User item)
