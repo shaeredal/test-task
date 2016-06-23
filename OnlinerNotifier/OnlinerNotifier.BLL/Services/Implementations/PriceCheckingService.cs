@@ -43,6 +43,15 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         private void CompareAndUpdate(Product product, ProductOnliner newProduct)
         {
+            if (newProduct.Prices == null)
+            {
+                newProduct.Prices = new PriceOnliner()
+                {
+                    Min = 0,
+                    Max = 0
+                };
+            }
+
             if (newProduct.Prices.Min != product.MinPrice || newProduct.Prices.Max != product.MaxPrice)
             {
                 AddPriceChange(product, newProduct);

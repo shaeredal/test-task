@@ -17,9 +17,9 @@ namespace OnlinerNotifier
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);           
             AutofacConfig.RegisterDependencies();
-
+            JobManager.JobFactory = new JobFactory(GlobalConfiguration.Configuration);
             JobManager.Initialize(new MyRegistry());
         }
     }

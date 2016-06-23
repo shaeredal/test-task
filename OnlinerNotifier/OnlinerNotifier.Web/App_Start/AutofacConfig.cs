@@ -9,6 +9,7 @@ using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.DAL;
+using OnlinerNotifier.Scheduler;
 
 namespace OnlinerNotifier
 {
@@ -69,14 +70,15 @@ namespace OnlinerNotifier
             builder.RegisterType<UnitOfWork>().AsSelf().SingleInstance();
             RegisterServices(builder);
             RegisterMappers(builder);
+            builder.RegisterType<CheckPricesJob>().AsSelf().InstancePerDependency();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<UserService>().As<IUserService>().InstancePerDependency();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerDependency();
+            builder.RegisterType<OnlinerSearchService>().As<IOnlinerSearchService>().InstancePerDependency();
             builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
-            builder.RegisterType<IOnlinerSearchService>().As<IOnlinerSearchService>().InstancePerDependency();
         }
 
         private static void RegisterMappers(ContainerBuilder builder)
