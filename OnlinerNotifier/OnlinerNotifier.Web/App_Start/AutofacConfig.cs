@@ -8,6 +8,7 @@ using OAuth2;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
+using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.Scheduler;
 using OnlinerNotifier.Scheduler.Jobs;
@@ -68,10 +69,11 @@ namespace OnlinerNotifier
         private static void RegisterTypes(ContainerBuilder builder)
         {
             builder.RegisterType<AuthorizationRoot>().AsSelf().SingleInstance();
-            builder.RegisterType<UnitOfWork>().AsSelf().SingleInstance();
+            builder.RegisterType<UnitOfWork>().AsSelf().InstancePerDependency();
             RegisterServices(builder);
             RegisterMappers(builder);
             RegisterJobs(builder);
+            builder.RegisterType<EmailValidator>().AsSelf();
         }
 
         private static void RegisterServices(ContainerBuilder builder)

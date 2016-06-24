@@ -87,6 +87,7 @@
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Services\Implementations\PriceCheckingService.cs" />
+    <Compile Include="Validators\EmailValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
