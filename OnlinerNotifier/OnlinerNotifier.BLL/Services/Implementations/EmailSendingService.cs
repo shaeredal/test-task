@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using OnlinerNotifier.BLL.Models.NotificationModels;
@@ -27,7 +28,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             var email = user.Email;
             if (!emailValidator.IsValid(email))
             { 
-                return;
+                throw new Exception("Email is invalid.");
             }
             var fromAddress = new MailAddress(address, senderName);
             var toAddress = new MailAddress(email, $"{user.FirstName} {user.LastName}");
