@@ -9,12 +9,13 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 {
     public class EmailSendingService : IEmailSendingService
     {
+        private string emailRegexString =
+            @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";
+
         public void SendChanges(User user, List<NotificationProductChangesModel> priceChanges)
         {
             var email = user.Email;
-            if(!Regex.IsMatch(email,
-                @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
-                RegexOptions.IgnoreCase))
+            if (!Regex.IsMatch(email, emailRegexString, RegexOptions.IgnoreCase))
             { 
                 return;
             }
