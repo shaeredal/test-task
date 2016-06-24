@@ -29,18 +29,21 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Tracking products</div>
                 <div class="panel-body">
-                    <div class="row" ng-repeat="n in products track by $index">
+                    <div class="row" ng-repeat="n in userProducts track by $index">
                         <div class="col-md-6">
-                            {{n.Name}}
+                            {{n.Product.Name}}
                         </div>
                         <div class="col-md-2">
-                            {{n.MinPrice}}
+                            {{n.Product.MinPrice}}
                         </div>
                         <div class="col-md-2">
-                            {{n.MaxPrice}}
+                            {{n.Product.MaxPrice}}
                         </div>
-                        <div>
-                            <a ng-click="delProduct(n.Id, $index)">Delete</a>
+                        <div class="col-md-1">
+                            <a ng-click="changeTrackingStatus(n.Id, $index)">{{n.IsTracked}}</a>
+                        </div>
+                        <div class="col-md-1">
+                            <a ng-click="delProduct(n.Product.Id, $index)">Delete</a>
                         </div>
                     </div>
                 </div>

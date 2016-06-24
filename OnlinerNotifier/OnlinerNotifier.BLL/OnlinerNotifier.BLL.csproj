@@ -80,6 +80,8 @@
     <Compile Include="Models\OnlinerDataModels\PriceOnliner.cs" />
     <Compile Include="Models\OnlinerDataModels\ProductOnliner.cs" />
     <Compile Include="Models\OnlinerDataModels\SearchResultOnliner.cs" />
+    <Compile Include="Models\TrackingModels\TrackingModel.cs" />
+    <Compile Include="Models\UserProductViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\UserDataViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -89,10 +91,12 @@
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\OnlinerSearchService.cs" />
     <Compile Include="Services\Implementations\ProductService.cs" />
+    <Compile Include="Services\Implementations\TrackingService.cs" />
     <Compile Include="Services\INotificationService.cs" />
     <Compile Include="Services\IOnlinerSearchService.cs" />
     <Compile Include="Services\IPricesCheckingService.cs" />
     <Compile Include="Services\IProductService.cs" />
+    <Compile Include="Services\ITrackingService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Services\Implementations\PriceCheckingService.cs" />
