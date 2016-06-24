@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.DAL.Models;
 
@@ -11,8 +12,10 @@ namespace OnlinerNotifier.BLL.Services.Implementations
         public void SendChanges(User user, List<NotificationProductChangesModel> priceChanges)
         {
             var email = user.Email;
-            if (email == null)
-            {
+            if(!Regex.IsMatch(email,
+                @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z",
+                RegexOptions.IgnoreCase))
+            { 
                 return;
             }
             var fromAddress = new MailAddress("OnlinerNotifier@gmail.com", "Onliner Notifier");
