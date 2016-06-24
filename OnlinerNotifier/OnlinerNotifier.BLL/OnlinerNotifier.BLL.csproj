@@ -66,6 +66,7 @@
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Mappers\UserProductsMapper.cs" />
     <Compile Include="Models\NotificationModels\NotificationDataModel.cs" />
+    <Compile Include="Models\NotificationModels\NotificationParametersModel.cs" />
     <Compile Include="Models\NotificationModels\NotificationProductChangesModel.cs" />
     <Compile Include="Models\OnlinerDataModels\PriceOnliner.cs" />
     <Compile Include="Models\OnlinerDataModels\ProductOnliner.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Services\Implementations\PriceCheckingService.cs" />
+    <Compile Include="Validators\EmailValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

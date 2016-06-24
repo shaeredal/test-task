@@ -2,6 +2,7 @@
 using System.Linq;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models;
+using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.DAL;
 
 namespace OnlinerNotifier.BLL.Services.Implementations
@@ -51,12 +52,13 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             return userMapper.ToDataModel(user);
         }
 
-        public bool SetNotificationTime(int userId, DateTime time)
+        public bool SetNotificationParameters(int userId, NotificationParametersModel parameters)
         {
             var user = unitOfWork.Users.Get(userId);
             if (user != null)
             {
-                user.NotificationTime = time;
+                user.NotificationTime = parameters.Time;
+                user.Email = parameters.Email;
                 unitOfWork.Save();
                 return true;
             }
