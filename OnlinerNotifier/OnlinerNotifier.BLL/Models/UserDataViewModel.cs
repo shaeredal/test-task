@@ -10,6 +10,8 @@ namespace OnlinerNotifier.BLL.Models
 
         public string AvatarUri { get; set; }
 
+        public string Email { get; set; }
+
         public List<ProductViewModel> Products { get; set; }
     }
 }

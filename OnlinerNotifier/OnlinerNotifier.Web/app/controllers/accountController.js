@@ -8,6 +8,7 @@ angular.module('onlinerNotifier.account', ['ngRoute'])
                 $scope.name = user.FirstName + ' ' + user.LastName;
                 $scope.avatarUri = user.AvatarUri;
                 $scope.products = user.Products;
+                $scope.email = user.Email;
             });
 
         $scope.delProduct = function (id, index) {
@@ -18,8 +19,8 @@ angular.module('onlinerNotifier.account', ['ngRoute'])
         };
 
         $scope.setTime = function () {
-            if ($scope.time) {
-                $http.post('api/Notification/', $scope.time);
+            if ($scope.NotificationForm.$valid) {
+                $http.post('api/Notification/', { 'Time': $scope.time, Email: $scope.email });
             }
         }
     });

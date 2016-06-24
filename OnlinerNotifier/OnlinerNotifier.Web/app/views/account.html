@@ -12,12 +12,17 @@
 
 <div class="container body-content">
     <div class="row">
-        <div class="col-md-2">
-            <input type="time" ng-model="time">
-        </div>
-        <div class="col-md-1">
-            <button ng-click="setTime()">Set</button>
-        </div>
+        <form name="NotificationForm">
+            <div class="col-md-2">
+                <input type="time" ng-model="time" required>
+            </div>
+            <div class="col-md-3">
+                <input type="email" ng-model="email" required>
+            </div>
+            <div class="col-md-1">
+                <button ng-click="setTime()">Set</button>
+            </div>
+        </form>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -35,7 +40,7 @@
                             {{n.MaxPrice}}
                         </div>
                         <div>
-                            <button ng-click="delProduct(n.Id, $index)">Delete</button>
+                            <a ng-click="delProduct(n.Id, $index)">Delete</a>
                         </div>
                     </div>
                 </div>

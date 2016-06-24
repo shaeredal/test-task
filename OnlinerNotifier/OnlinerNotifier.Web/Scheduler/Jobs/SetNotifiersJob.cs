@@ -12,11 +12,14 @@ namespace OnlinerNotifier.Scheduler.Jobs
 
         private readonly INotificationService notificationService;
 
-        public SetNotifiersJob(INotificationService notificationService)
+        private readonly IEmailSendingService emailSendingService;
+
+        public SetNotifiersJob(INotificationService notificationService, IEmailSendingService emailSendingService)
         {
             HostingEnvironment.RegisterObject(this);
 
             this.notificationService = notificationService;
+            this.emailSendingService = emailSendingService;
         }
 
         public void Execute()
@@ -27,7 +30,10 @@ namespace OnlinerNotifier.Scheduler.Jobs
                     return;
 
                 var data = notificationService.GetNotificationData();
-                //TODO: Start jobs that send emails
+                foreach (var user in data)
+                {
+                    JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products), (s) => s.ToRunNow());//OnceAt(user.User.NotificationTime));
+                }
             }
         }
 

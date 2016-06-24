@@ -81,6 +81,7 @@ namespace OnlinerNotifier
             builder.RegisterType<OnlinerSearchService>().As<IOnlinerSearchService>().InstancePerDependency();
             builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
             builder.RegisterType<NotificationService>().As<INotificationService>().InstancePerDependency();
+            builder.RegisterType<EmailSendingService>().As<IEmailSendingService>().InstancePerDependency();
         }
 
         private static void RegisterMappers(ContainerBuilder builder)

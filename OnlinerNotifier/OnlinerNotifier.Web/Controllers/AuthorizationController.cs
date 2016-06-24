@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OAuth2;
 using OAuth2.Client;
+using OAuth2.Models;
 using OnlinerNotifier.BLL.Services;
 
 namespace OnlinerNotifier.Controllers
@@ -26,7 +28,15 @@ namespace OnlinerNotifier.Controllers
 
         public ActionResult Auth(string providerName)
         {
-            var userInfo = GetClient(providerName).GetUserInfo(Request.QueryString);
+            UserInfo userInfo;
+            try
+            {
+                userInfo = GetClient(providerName).GetUserInfo(Request.QueryString);
+            }
+            catch (Exception e)
+            {
+                return Redirect("/#/auth");
+            }
             var userId = userService.AddOrUpdate(userInfo);
 
             SetCookies(userId.ToString());
