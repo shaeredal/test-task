@@ -10,12 +10,13 @@ namespace OnlinerNotifier.BLL_Tests.Services
         [Test]
         public void CalculateNotificationTime_TimeOfDay_IsThreeHoursMore()
         {
-            var userNotificationTime = new DateTime(1970, 1, 1, 11, 30, 0);
             var timeCalculationService = new TimeCalculationService();
-            var result = timeCalculationService.CalculateNotificationTime(userNotificationTime);
-            var expectedResult = userNotificationTime + TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
+            var expectedResult = new TimeSpan(14, 30, 0);
+            var userNotificationTime = new DateTime(1970, 1, 1, 11, 30, 0);
 
-            Assert.AreEqual(expectedResult.TimeOfDay, result.TimeOfDay);
+            var result = timeCalculationService.CalculateNotificationTime(userNotificationTime);
+
+            Assert.AreEqual(expectedResult, result.TimeOfDay);
         }
 
         [Test]
