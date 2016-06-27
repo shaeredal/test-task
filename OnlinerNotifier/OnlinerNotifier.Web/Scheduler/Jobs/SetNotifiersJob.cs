@@ -1,6 +1,8 @@
-﻿using System.Web.Hosting;
+﻿using System;
+using System.Web.Hosting;
 using FluentScheduler;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Models.NotificationModels;
 
 namespace OnlinerNotifier.Scheduler.Jobs
 {
@@ -28,14 +30,36 @@ namespace OnlinerNotifier.Scheduler.Jobs
             {
                 if (shuttingDown)
                     return;
-
-                var data = notificationService.GetNotificationData();
-                foreach (var user in data)
-                {
-                    var notificationTime = user.User.NotificationTime;
-                    JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products), (s) => s.ToRunOnceAt(notificationTime.Hour, notificationTime.Minute));
-                }
+                StartNotificationJobs();    
             }
+        }
+
+        private void StartNotificationJobs()
+        {
+            var data = notificationService.GetNotificationData();
+            foreach (var user in data)
+            {
+                AddNotificationJob(user);
+            }
+        }
+
+        private void AddNotificationJob(NotificationDataModel user)
+        {
+            var notificationTime = GetNotificationTime(user.User.NotificationTime);
+            JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products),
+                (s) => s.ToRunOnceAt(notificationTime));
+        }
+
+        private DateTime GetNotificationTime(DateTime userNotificationTimeUtc)
+        {
+            var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
+            var userNotificationTime = userNotificationTimeUtc + offset;
+            var notificationTime = DateTime.Today + userNotificationTime.TimeOfDay;
+            if (notificationTime.TimeOfDay < DateTime.Now.TimeOfDay)
+            {
+                notificationTime += TimeSpan.FromDays(1);
+            }
+            return notificationTime;
         }
 
         public void Stop(bool immediate)
