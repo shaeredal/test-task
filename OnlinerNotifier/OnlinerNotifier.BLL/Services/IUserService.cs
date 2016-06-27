@@ -1,4 +1,3 @@
-using System;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 
