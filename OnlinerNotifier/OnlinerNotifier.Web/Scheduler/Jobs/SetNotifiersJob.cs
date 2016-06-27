@@ -16,10 +16,10 @@ namespace OnlinerNotifier.Scheduler.Jobs
 
         private readonly IEmailSendingService emailSendingService;
 
-        private readonly INotificationTimeCalculationService notificationTimeCalculationService;
+        private readonly ITimeCalculationService notificationTimeCalculationService;
 
         public SetNotifiersJob(INotificationService notificationService, IEmailSendingService emailSendingService,
-            INotificationTimeCalculationService notificationTimeCalculationService)
+            ITimeCalculationService notificationTimeCalculationService)
         {
             HostingEnvironment.RegisterObject(this);
 
@@ -49,7 +49,7 @@ namespace OnlinerNotifier.Scheduler.Jobs
 
         private void AddNotificationJob(NotificationDataModel user)
         {
-            var notificationTime = notificationTimeCalculationService.Calculate(user.User.NotificationTime);
+            var notificationTime = notificationTimeCalculationService.CalculateNotificationTime(user.User.NotificationTime);
             JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products),
                 (s) => s.ToRunOnceAt(notificationTime));
         }

@@ -2,9 +2,9 @@
 
 namespace OnlinerNotifier.BLL.Services.Implementations
 {
-    public class NotificationTimeCalculationService : INotificationTimeCalculationService
+    public class TimeCalculationService : ITimeCalculationService
     {
-        public DateTime Calculate(DateTime userNotificationTimeUtc)
+        public DateTime CalculateNotificationTime(DateTime userNotificationTimeUtc)
         {
             var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
             var userNotificationTime = userNotificationTimeUtc + offset;
