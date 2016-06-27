@@ -16,12 +16,16 @@ namespace OnlinerNotifier.Scheduler.Jobs
 
         private readonly IEmailSendingService emailSendingService;
 
-        public SetNotifiersJob(INotificationService notificationService, IEmailSendingService emailSendingService)
+        private readonly INotificationTimeCalculationService notificationTimeCalculationService;
+
+        public SetNotifiersJob(INotificationService notificationService, IEmailSendingService emailSendingService,
+            INotificationTimeCalculationService notificationTimeCalculationService)
         {
             HostingEnvironment.RegisterObject(this);
 
             this.notificationService = notificationService;
             this.emailSendingService = emailSendingService;
+            this.notificationTimeCalculationService = notificationTimeCalculationService;
         }
 
         public void Execute()
@@ -45,21 +49,9 @@ namespace OnlinerNotifier.Scheduler.Jobs
 
         private void AddNotificationJob(NotificationDataModel user)
         {
-            var notificationTime = GetNotificationTime(user.User.NotificationTime);
+            var notificationTime = notificationTimeCalculationService.Calculate(user.User.NotificationTime);
             JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products),
                 (s) => s.ToRunOnceAt(notificationTime));
-        }
-
-        private DateTime GetNotificationTime(DateTime userNotificationTimeUtc)
-        {
-            var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
-            var userNotificationTime = userNotificationTimeUtc + offset;
-            var notificationTime = DateTime.Today + userNotificationTime.TimeOfDay;
-            if (notificationTime.TimeOfDay < DateTime.Now.TimeOfDay)
-            {
-                notificationTime += TimeSpan.FromDays(1);
-            }
-            return notificationTime;
         }
 
         public void Stop(bool immediate)

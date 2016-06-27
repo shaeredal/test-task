@@ -89,10 +89,12 @@
     <Compile Include="Services\IEmailSendingService.cs" />
     <Compile Include="Services\Implementations\EmailSendingService.cs" />
     <Compile Include="Services\Implementations\NotificationService.cs" />
+    <Compile Include="Services\Implementations\NotificationTimeCalculationService.cs" />
     <Compile Include="Services\Implementations\OnlinerSearchService.cs" />
     <Compile Include="Services\Implementations\ProductService.cs" />
     <Compile Include="Services\Implementations\TrackingService.cs" />
     <Compile Include="Services\INotificationService.cs" />
+    <Compile Include="Services\INotificationTimeCalculationService.cs" />
     <Compile Include="Services\IOnlinerSearchService.cs" />
     <Compile Include="Services\IPricesCheckingService.cs" />
     <Compile Include="Services\IProductService.cs" />
