@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinerNotifier.BLL", "Onli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinerNotifier.DAL", "OnlinerNotifier.DAL\OnlinerNotifier.DAL.csproj", "{4C2D2887-D490-47F9-B0DB-8AB601DF217E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlinerNotifier.BLL Tests", "OnlinerNotifier.BLL Tests\OnlinerNotifier.BLL Tests.csproj", "{E0A13E23-418A-4C6D-AFD9-701E44649763}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4C2D2887-D490-47F9-B0DB-8AB601DF217E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C2D2887-D490-47F9-B0DB-8AB601DF217E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C2D2887-D490-47F9-B0DB-8AB601DF217E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0A13E23-418A-4C6D-AFD9-701E44649763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0A13E23-418A-4C6D-AFD9-701E44649763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0A13E23-418A-4C6D-AFD9-701E44649763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0A13E23-418A-4C6D-AFD9-701E44649763}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
