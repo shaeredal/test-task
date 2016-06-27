@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using System.Web;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL.Models;
@@ -50,7 +51,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         private string GetMailBody(List<NotificationProductChangesModel> priceChanges)
         {
-            var templatePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+            var templatePath = Path.Combine(HttpRuntime.AppDomainAppPath,
                 "..\\OnlinerNotifier.BLL\\Templates\\EmailTemplate.cshtml");
             var template = File.ReadAllText(templatePath);
             return Razor.Parse(template, priceChanges);

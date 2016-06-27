@@ -152,6 +152,8 @@
     <Content Include="app\controllers\accountController.js" />
     <Content Include="app\controllers\authController.js" />
     <Content Include="app\controllers\homeController.js" />
+    <Content Include="app\filters\currencyFilter.js" />
+    <Content Include="app\filters\trackingFormatFilter.js" />
     <Content Include="app\views\account.html" />
     <Content Include="app\views\auth.html" />
     <Content Include="app\views\home.html" />

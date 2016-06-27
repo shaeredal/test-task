@@ -22,6 +22,11 @@
             <div class="col-md-1">
                 <button ng-click="setTime()">Set</button>
             </div>
+            <div class="col-md-1">
+                <select ng-model="currentRate" ng-init="currentRate = currencies[0].rate">
+                    <option ng-repeat="x in currencies" value="{{x.rate}}">{{x.name}}</option>
+                </select>
+            </div>
         </form>
     </div>
     <div class="row">
@@ -33,14 +38,14 @@
                         <div class="col-md-6">
                             {{n.Product.Name}}
                         </div>
-                        <div class="col-md-2">
-                            {{n.Product.MinPrice}}
-                        </div>
-                        <div class="col-md-2">
-                            {{n.Product.MaxPrice}}
+                        <div class="col-md-1">
+                            {{n.Product.MinPrice | currencyFilter:currentRate}}
                         </div>
                         <div class="col-md-1">
-                            <a ng-click="changeTrackingStatus(n.Id, $index)">{{n.IsTracked}}</a>
+                            {{n.Product.MaxPrice | currencyFilter:currentRate}}
+                        </div>
+                        <div class="col-md-2">
+                            <a ng-click="changeTrackingStatus(n.Id, $index)">{{n.IsTracked | trackingFormat}}</a>
                         </div>
                         <div class="col-md-1">
                             <a ng-click="delProduct(n.Product.Id, $index)">Delete</a>

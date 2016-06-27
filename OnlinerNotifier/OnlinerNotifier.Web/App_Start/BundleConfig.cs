@@ -21,7 +21,9 @@ namespace OnlinerNotifier
                 .Include("~/app/app.js")
                 .Include("~/app/controllers/authController.js")
                 .Include("~/app/controllers/accountController.js")
-                .Include("~/app/controllers/homeController.js"));
+                .Include("~/app/controllers/homeController.js")
+                .Include("~/app/filters/trackingFormatFilter.js")
+                .Include("~/app/filters/currencyFilter.js"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap")
                 .Include("~/Content/bootstrap.css"));
