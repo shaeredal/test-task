@@ -1,4 +1,5 @@
-﻿using System.Web.Hosting;
+﻿using System;
+using System.Web.Hosting;
 using FluentScheduler;
 using OnlinerNotifier.BLL.Services;
 
@@ -32,8 +33,15 @@ namespace OnlinerNotifier.Scheduler.Jobs
                 var data = notificationService.GetNotificationData();
                 foreach (var user in data)
                 {
-                    var notificationTime = user.User.NotificationTime;
-                    JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products), (s) => s.ToRunOnceAt(notificationTime.Hour, notificationTime.Minute));
+                    var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow);
+                    var userNotificationTime = user.User.NotificationTime + offset;
+                    var notificationTime = DateTime.Today + userNotificationTime.TimeOfDay;
+                    if (notificationTime.TimeOfDay < DateTime.Now.TimeOfDay)
+                    {
+                        notificationTime += TimeSpan.FromDays(1);
+                    }
+                    JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products),
+                        (s) => s.ToRunOnceAt(notificationTime));
                 }
             }
         }
