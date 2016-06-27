@@ -30,16 +30,20 @@ namespace OnlinerNotifier.Scheduler.Jobs
             {
                 if (shuttingDown)
                     return;
-
-                var data = notificationService.GetNotificationData();
-                foreach (var user in data)
-                {
-                    SetNotification(user);
-                }
+                StartNotificationJobs();    
             }
         }
 
-        private void SetNotification(NotificationDataModel user)
+        private void StartNotificationJobs()
+        {
+            var data = notificationService.GetNotificationData();
+            foreach (var user in data)
+            {
+                AddNotificationJob(user);
+            }
+        }
+
+        private void AddNotificationJob(NotificationDataModel user)
         {
             var notificationTime = GetNotificationTime(user.User.NotificationTime);
             JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products),
