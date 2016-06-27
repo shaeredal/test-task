@@ -20,10 +20,11 @@ namespace OnlinerNotifier.BLL_Tests.Services
         }
 
         [Test]
-        public void CalculateNotificationTimeTest_TimeToNotification_LessThanADay()
+        public void CalculateNotificationTime_TimeToNotification_LessThanADay()
         {
             var userNotificationTime = new DateTime(1970, 1, 1, 11, 30, 0);
             var timeCalculationService = new TimeCalculationService();
+
             var result = timeCalculationService.CalculateNotificationTime(userNotificationTime);
 
             Assert.IsTrue(result - DateTime.Now <= TimeSpan.FromDays(1));
