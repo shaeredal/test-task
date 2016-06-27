@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using Newtonsoft.Json;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 using OnlinerNotifier.DAL;
