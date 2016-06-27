@@ -7,11 +7,11 @@ namespace OnlinerNotifier.BLL.Mappers
 {
     public class UserMapper
     {
-        private ProductMapper productMapper;
+        private UserProductsMapper userProductsMapper;
 
-        public UserMapper(ProductMapper productMapper)
+        public UserMapper(UserProductsMapper userProductsMapper)
         {
-            this.productMapper = productMapper;
+            this.userProductsMapper = userProductsMapper;
         }
 
         public User ToDomain(UserInfo userInfo)
@@ -45,7 +45,7 @@ namespace OnlinerNotifier.BLL.Mappers
                 LastName = user.LastName,
                 AvatarUri = user.AvatarUri,
                 Email = user.Email,
-                Products = user.UserProducts.Select(up => up.Product).Select(prod => productMapper.ToModel(prod)).ToList()
+                UserProducts = user.UserProducts.Select(up => userProductsMapper.ToModel(up)).ToList()
             };
         }
     }

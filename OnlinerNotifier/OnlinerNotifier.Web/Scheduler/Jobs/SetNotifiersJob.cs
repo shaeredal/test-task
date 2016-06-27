@@ -32,7 +32,8 @@ namespace OnlinerNotifier.Scheduler.Jobs
                 var data = notificationService.GetNotificationData();
                 foreach (var user in data)
                 {
-                    JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products), (s) => s.ToRunNow());//OnceAt(user.User.NotificationTime));
+                    var notificationTime = user.User.NotificationTime;
+                    JobManager.AddJob(() => emailSendingService.SendChanges(user.User, user.Products), (s) => s.ToRunOnceAt(notificationTime.Hour, notificationTime.Minute));
                 }
             }
         }
