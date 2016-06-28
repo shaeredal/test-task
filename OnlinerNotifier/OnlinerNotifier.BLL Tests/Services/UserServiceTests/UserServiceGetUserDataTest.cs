@@ -1,24 +1,11 @@
-﻿using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Services.Implementations;
-using OnlinerNotifier.BLL_Tests.Moq;
-using OnlinerNotifier.DAL;
 
-namespace OnlinerNotifier.BLL_Tests.Services
+namespace OnlinerNotifier.BLL_Tests.Services.UserServiceTests
 {
-    [TestFixture]
-    public class UserServiceGetUserDataTest
+    public class UserServiceGetUserDataTest : UserServiceTestBase
     {
-        private Mock<IUnitOfWork> unitOfWorkMock;
-
-        [SetUp]
-        public void Setup()
-        {
-            var mockStorage = new MockStorage();
-            unitOfWorkMock = mockStorage.UnitOfWorkMock;
-        }
-
         [Test]
         public void GetUserData_UserData_GetUserData()
         {

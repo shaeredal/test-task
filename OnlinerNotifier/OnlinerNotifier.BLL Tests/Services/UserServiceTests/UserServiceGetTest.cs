@@ -1,26 +1,12 @@
 ﻿using System;
-using Moq;
 using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Services.Implementations;
-using OnlinerNotifier.BLL_Tests.Moq;
-using OnlinerNotifier.DAL;
-using OnlinerNotifier.DAL.Repositories.Interfaces;
 
-namespace OnlinerNotifier.BLL_Tests.Services
+namespace OnlinerNotifier.BLL_Tests.Services.UserServiceTests
 {
-    [TestFixture]
-    public class UserServiceGetTest
+    public class UserServiceGetTest : UserServiceTestBase
     {
-        private Mock<IUnitOfWork> unitOfWorkMock;
-
-        [SetUp]
-        public void Setup()
-        {
-            var mockStorage = new MockStorage();
-            unitOfWorkMock = mockStorage.UnitOfWorkMock;
-        }
-
         [TestCase(1, ExpectedResult = "TestName")]
         public string Get_GetUserById_GetUserViewModelWithSpecificName(int id)
         {

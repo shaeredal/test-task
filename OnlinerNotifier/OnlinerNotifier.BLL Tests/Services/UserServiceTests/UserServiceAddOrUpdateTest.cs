@@ -1,30 +1,14 @@
-﻿using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using OAuth2.Models;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Services.Implementations;
-using OnlinerNotifier.BLL_Tests.Moq;
-using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
-using OnlinerNotifier.DAL.Repositories.Interfaces;
 
-namespace OnlinerNotifier.BLL_Tests.Services
+namespace OnlinerNotifier.BLL_Tests.Services.UserServiceTests
 {
-    [TestFixture]
-    public class UserServiceAddOrUpdateTest
+    public class UserServiceAddOrUpdateTest : UserServiceTestBase
     {
-        private Mock<IUnitOfWork> unitOfWorkMock;
-        private Mock<IUserRepository> userRepositoryMock;
-
-        [SetUp]
-        public void Setup()
-        {
-            var mockStorage = new MockStorage();
-            unitOfWorkMock = mockStorage.UnitOfWorkMock;
-            userRepositoryMock = mockStorage.UserRepositoryMock;
-        }
-
         [Test]
         public void AddOrUpdate_CreateNewUser_IsCreates()
         {
