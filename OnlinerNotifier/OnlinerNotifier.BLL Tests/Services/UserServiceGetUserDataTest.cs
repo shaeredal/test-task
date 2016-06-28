@@ -1,50 +1,43 @@
-﻿using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
-using OAuth2.Models;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL_Tests.Moq;
 using OnlinerNotifier.DAL;
-using OnlinerNotifier.DAL.Models;
-using OnlinerNotifier.DAL.Repositories.Interfaces;
 
 namespace OnlinerNotifier.BLL_Tests.Services
 {
     [TestFixture]
-    public class UserServiceAddOrUpdateTest
+    public class UserServiceGetUserDataTest
     {
         private Mock<IUnitOfWork> unitOfWorkMock;
-        private Mock<IUserRepository> userRepositoryMock;
 
         [SetUp]
         public void Setup()
         {
             var mockStorage = new MockStorage();
             unitOfWorkMock = mockStorage.UnitOfWorkMock;
-            userRepositoryMock = mockStorage.UserRepositoryMock;
         }
 
         [Test]
-        public void AddOrUpdate_CreateNewUser_IsCreates()
+        public void GetUserData_UserData_GetUserData()
         {
             var userService = new UserService(unitOfWorkMock.Object, new UserMapper(new UserProductsMapper(new ProductMapper())));
-            var userInfo = new UserInfo() {Id = "42"};
 
-            userService.AddOrUpdate(userInfo);
+            var result = userService.GetUserData(1);
 
-            userRepositoryMock.Verify(ur =>ur.Create(It.IsAny<User>()), Times.Once);
+            Assert.AreEqual("TestName", result.FirstName);
+            Assert.AreEqual("TestLastName", result.LastName);
         }
 
         [Test]
-        public void AddOrUpdate_CreateNewUser_ReturnsId()
+        public void GetUserData_UserData_GetNull()
         {
             var userService = new UserService(unitOfWorkMock.Object, new UserMapper(new UserProductsMapper(new ProductMapper())));
-            var userInfo = new UserInfo() { Id="not 42" };
 
-            var result = userService.AddOrUpdate(userInfo);
+            var result = userService.GetUserData(11);
 
-            Assert.AreEqual(42, result);
+            Assert.IsNull(result);
         }
     }
 }
