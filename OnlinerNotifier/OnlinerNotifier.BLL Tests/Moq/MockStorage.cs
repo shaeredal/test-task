@@ -8,27 +8,24 @@ namespace OnlinerNotifier.BLL_Tests.Moq
 {
     public class MockStorage
     {
-        private Mock<IUserRepository> userRepositoryMock;
-        private Mock<IUnitOfWork> unitOfWorkMock;
-
         public MockStorage()
         {
             GenerateUserRepositoryMock();
             GenerateUnitOfWorkMock();
         }
 
-        public Mock<IUserRepository> GetUserRepositoryMock => userRepositoryMock;
+        public Mock<IUserRepository> UserRepositoryMock { get; private set; }
 
-        public Mock<IUnitOfWork> GetUnitOfWorkMock => unitOfWorkMock;
+        public Mock<IUnitOfWork> UnitOfWorkMock { get; private set; }
 
         private void GenerateUserRepositoryMock()
         {
-            userRepositoryMock = new Mock<IUserRepository>();
-            userRepositoryMock.Setup(ur => ur.Get(1)).Returns(() => new User() { Id = 1, FirstName = "TestName" });
-            userRepositoryMock.Setup(ur => ur.Get(It.Is<int>(i => i != 1))).Returns(() => null);
+            UserRepositoryMock = new Mock<IUserRepository>();
+            UserRepositoryMock.Setup(ur => ur.Get(1)).Returns(() => new User() { Id = 1, FirstName = "TestName", LastName = "TestLastName"});
+            UserRepositoryMock.Setup(ur => ur.Get(It.Is<int>(i => i != 1))).Returns(() => null);
             var userList = GenerateUserList();
-            userRepositoryMock.Setup(ur => ur.GetAll()).Returns(() => userList);
-            userRepositoryMock.Setup(ur => ur.Create(It.IsAny<User>()));
+            UserRepositoryMock.Setup(ur => ur.GetAll()).Returns(() => userList);
+            UserRepositoryMock.Setup(ur => ur.Create(It.IsAny<User>()));
         }
 
         private List<User> GenerateUserList()
@@ -42,8 +39,8 @@ namespace OnlinerNotifier.BLL_Tests.Moq
 
         private void GenerateUnitOfWorkMock()
         {
-            unitOfWorkMock = new Mock<IUnitOfWork>();
-            unitOfWorkMock.Setup(m => m.Users).Returns(userRepositoryMock.Object);
+            UnitOfWorkMock = new Mock<IUnitOfWork>();
+            UnitOfWorkMock.Setup(m => m.Users).Returns(UserRepositoryMock.Object);
         }
     }
 }

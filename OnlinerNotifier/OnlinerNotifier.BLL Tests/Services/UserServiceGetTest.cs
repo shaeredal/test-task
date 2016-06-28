@@ -18,7 +18,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
         public void Setup()
         {
             var mockStorage = new MockStorage();
-            unitOfWorkMock = mockStorage.GetUnitOfWorkMock;
+            unitOfWorkMock = mockStorage.UnitOfWorkMock;
         }
 
         [TestCase(1, ExpectedResult = "TestName")]
