@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc.Html;
 using Moq;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
@@ -10,6 +11,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
     {
         public MockStorage()
         {
+            GenerateProductMock();
             GenerateUserMock();
             GenerateUserRepositoryMock();
             GenerateProductRepositoryMock();
@@ -19,6 +21,10 @@ namespace OnlinerNotifier.BLL_Tests.Moq
         public Mock<IUserRepository> UserRepositoryMock { get; private set; }
 
         public Mock<User> UserMock { get; private set; }
+
+        public Mock<Product> ProductMock { get; private set; }
+
+        public Mock<UserProduct> UserProductMock { get; private set; }
 
         public Mock<IRepository<Product>> ProductRepositoryMock { get; private set; }
 
@@ -33,7 +39,6 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             UserRepositoryMock.Setup(ur => ur.GetAll()).Returns(() => userList);
             UserRepositoryMock.Setup(ur => ur.Create(It.IsAny<User>()));
             UserRepositoryMock.Setup(ur => ur.Create(It.IsAny<User>()));
-
         }
 
         private void GenerateUserMock()
@@ -42,6 +47,23 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             UserMock.Object.Id = 1;
             UserMock.Object.FirstName = "TestName";
             UserMock.Object.LastName = "TestLastName";
+            GenerateUserProductMock(ProductMock.Object, UserMock.Object);
+            UserMock.Object.UserProducts.Add(UserProductMock.Object);
+        }
+
+        private void GenerateUserProductMock(Product product, User user)
+        {
+            UserProductMock = new Mock<UserProduct>();
+            UserProductMock.Object.Id = 1;
+            UserProductMock.Object.Product = product;
+            UserProductMock.Object.User = user;
+        }
+
+        private void GenerateProductMock()
+        {
+            ProductMock = new Mock<Product>();
+            ProductMock.Object.Id = 1;
+            ProductMock.Object.Name = "TestProductName";    
         }
 
         private List<User> GenerateUserList()
@@ -56,6 +78,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
         private void GenerateProductRepositoryMock()
         {
             ProductRepositoryMock = new Mock<IRepository<Product>>();
+            ProductRepositoryMock.Setup(pr => pr.Get(1)).Returns(() => ProductMock.Object);
             var productList = GenerateProductList();
             ProductRepositoryMock.Setup(pr => pr.GetAll()).Returns(() => productList);
             ProductRepositoryMock.Setup(pr => pr.Create(It.IsAny<Product>()));
@@ -75,6 +98,10 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             UnitOfWorkMock = new Mock<IUnitOfWork>();
             UnitOfWorkMock.Setup(m => m.Users).Returns(UserRepositoryMock.Object);
             UnitOfWorkMock.Setup(m => m.Products).Returns(ProductRepositoryMock.Object);
+            var userProducts = new List<UserProduct>();
+            userProducts.Add(UserProductMock.Object);
+            UnitOfWorkMock.Setup(m => m.UserProducts.GetAll())
+                .Returns(() => userProducts);
         }
     }
 }
