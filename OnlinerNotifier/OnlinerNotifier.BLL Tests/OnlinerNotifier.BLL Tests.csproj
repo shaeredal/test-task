@@ -105,6 +105,8 @@
     <Compile Include="Moq\MockStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ProductServiceTests\ProductServiceAddTest.cs" />
+    <Compile Include="Services\ProductServiceTests\ProductServiceDeleteTest.cs" />
+    <Compile Include="Services\ProductServiceTests\ProductServiceGetUserProductsTest.cs" />
     <Compile Include="Services\ProductServiceTests\ProductServiceTestBase.cs" />
     <Compile Include="Services\TimeCalculationServiceTest.cs" />
     <Compile Include="Services\TrackingServiceTest.cs" />

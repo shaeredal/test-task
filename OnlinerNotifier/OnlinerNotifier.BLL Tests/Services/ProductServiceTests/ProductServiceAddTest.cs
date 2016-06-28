@@ -17,7 +17,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
             productService.Add(productViewModel, 1);
 
             productRepositoryMock.Verify(p => p.Create(It.IsAny<Product>()), Times.Exactly(times));
-            Assert.AreEqual(1, userMock.Object.UserProducts.Count());
+            Assert.AreEqual(2, userMock.Object.UserProducts.Count());
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
             productService.Add(productViewModel, 1);
             productService.Add(productViewModel, 1);
 
-            Assert.AreEqual(1, userMock.Object.UserProducts.Count());
+            Assert.AreEqual(2, userMock.Object.UserProducts.Count());
         }
     }
 }
