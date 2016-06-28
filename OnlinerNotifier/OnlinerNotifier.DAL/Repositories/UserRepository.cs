@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using OnlinerNotifier.DAL.Models;
+using OnlinerNotifier.DAL.Repositories.Interfaces;
 
 namespace OnlinerNotifier.DAL.Repositories
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IUserRepository
     {
         private Context db;
 

@@ -8,10 +8,10 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 {
     public class UserService : IUserService
     {
-        private UnitOfWork unitOfWork;
+        private IUnitOfWork unitOfWork;
         private UserMapper userMapper;
 
-        public UserService(UnitOfWork unitOfWork, UserMapper userMapper)
+        public UserService(IUnitOfWork unitOfWork, UserMapper userMapper)
         {
             this.unitOfWork = unitOfWork;
             this.userMapper = userMapper;

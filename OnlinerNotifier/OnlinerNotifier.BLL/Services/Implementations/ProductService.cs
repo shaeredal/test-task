@@ -9,11 +9,11 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 {
     public class ProductService : IProductService
     {
-        private UnitOfWork unitOfWork;
+        private IUnitOfWork unitOfWork;
         private ProductMapper productMapper;
         private UserProductsMapper userProductsMapper;
 
-        public ProductService(UnitOfWork unitOfWork, ProductMapper productMapper, UserProductsMapper userProductsMapper)
+        public ProductService(IUnitOfWork unitOfWork, ProductMapper productMapper, UserProductsMapper userProductsMapper)
         {
             this.unitOfWork = unitOfWork;
             this.productMapper = productMapper;

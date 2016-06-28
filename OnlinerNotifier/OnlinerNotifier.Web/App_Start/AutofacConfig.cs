@@ -69,7 +69,7 @@ namespace OnlinerNotifier
         private static void RegisterTypes(ContainerBuilder builder)
         {
             builder.RegisterType<AuthorizationRoot>().AsSelf().SingleInstance();
-            builder.RegisterType<UnitOfWork>().AsSelf().InstancePerDependency();
+            builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerDependency();
             RegisterServices(builder);
             RegisterMappers(builder);
             RegisterJobs(builder);

@@ -8,13 +8,13 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 {
     public class PricesCheckingService : IPricesCheckingService
     {
-        private UnitOfWork unitOfWork;
+        private IUnitOfWork unitOfWork;
 
         private PriceChangesMapper priceChangesMapper;
 
         private IOnlinerSearchService onlinerSearchService;
 
-        public PricesCheckingService(UnitOfWork unitOfWork, PriceChangesMapper priceChangesMapper, IOnlinerSearchService onlinerSearchService)
+        public PricesCheckingService(IUnitOfWork unitOfWork, PriceChangesMapper priceChangesMapper, IOnlinerSearchService onlinerSearchService)
         {
             this.unitOfWork = unitOfWork;
             this.priceChangesMapper = priceChangesMapper;

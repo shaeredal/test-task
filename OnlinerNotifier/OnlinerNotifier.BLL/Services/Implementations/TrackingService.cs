@@ -5,9 +5,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 {
     public class TrackingService : ITrackingService
     {
-        private UnitOfWork unitOfWork;
+        private IUnitOfWork unitOfWork;
 
-        public TrackingService(UnitOfWork unitOfWork)
+        public TrackingService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
