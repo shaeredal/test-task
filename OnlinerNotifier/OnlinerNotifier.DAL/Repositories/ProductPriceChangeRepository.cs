@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using OnlinerNotifier.DAL.Models;
+using OnlinerNotifier.DAL.Repositories.Interfaces;
 
 namespace OnlinerNotifier.DAL.Repositories
 {

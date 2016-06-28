@@ -9,9 +9,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 {
     public class NotificationService : INotificationService
     {
-        private UnitOfWork unitOfWork;
+        private IUnitOfWork unitOfWork;
 
-        public NotificationService(UnitOfWork unitOfWork)
+        public NotificationService(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }

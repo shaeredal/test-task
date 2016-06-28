@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace OnlinerNotifier.DAL
+namespace OnlinerNotifier.DAL.Repositories.Interfaces
 {
     public interface IRepository<T> where T : class
     {

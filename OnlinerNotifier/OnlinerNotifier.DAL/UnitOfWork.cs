@@ -1,9 +1,11 @@
 ﻿using System;
+using OnlinerNotifier.DAL.Models;
 using OnlinerNotifier.DAL.Repositories;
+using OnlinerNotifier.DAL.Repositories.Interfaces;
 
 namespace OnlinerNotifier.DAL
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private Context db = new Context();
         private UserRepository userRepository;
@@ -11,7 +13,7 @@ namespace OnlinerNotifier.DAL
         private ProductPriceChangeRepository productPriceChangeRepository;
         private UserProductRepository userProductRepository;
 
-        public UserRepository Users
+        public IUserRepository Users
         {
             get
             {
@@ -23,7 +25,7 @@ namespace OnlinerNotifier.DAL
             }
         }
 
-        public ProductRepository Products
+        public IRepository<Product> Products
         {
             get
             {
@@ -35,7 +37,7 @@ namespace OnlinerNotifier.DAL
             }
         }
 
-        public ProductPriceChangeRepository PriceCanges
+        public IRepository<ProductPriceChange> PriceCanges
         {
             get
             {
@@ -47,7 +49,7 @@ namespace OnlinerNotifier.DAL
             }
         }
 
-        public UserProductRepository UserProducts
+        public IRepository<UserProduct> UserProducts
         {
             get
             {
