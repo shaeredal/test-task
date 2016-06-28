@@ -104,11 +104,14 @@
   <ItemGroup>
     <Compile Include="Moq\MockStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ProductServiceTests\ProductServiceTestBase.cs" />
     <Compile Include="Services\TimeCalculationServiceTest.cs" />
     <Compile Include="Services\TrackingServiceTest.cs" />
-    <Compile Include="Services\UserServiceGetUserDataTest.cs" />
-    <Compile Include="Services\UserServiceAddOrUpdateTest.cs" />
-    <Compile Include="Services\UserServiceGetTest.cs" />
+    <Compile Include="Services\UserServiceTests\UserServiceGetUserDataTest.cs" />
+    <Compile Include="Services\UserServiceTests\UserServiceAddOrUpdateTest.cs" />
+    <Compile Include="Services\UserServiceTests\UserServiceGetTest.cs" />
+    <Compile Include="Services\UserServiceTests\UserServiceSetNotificationParametersTest.cs" />
+    <Compile Include="Services\UserServiceTests\UserServiceTestBase.cs" />
     <Compile Include="Validators\EmailValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
