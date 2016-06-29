@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc.Html;
 using Moq;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
@@ -42,6 +43,8 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             UserRepositoryMock.Setup(ur => ur.Get(It.Is<int>(i => i != 1))).Returns(() => null);
             var userList = GenerateUserList();
             UserRepositoryMock.Setup(ur => ur.GetAll()).Returns(() => userList);
+            var deepUserList = GenerateUserListDeep();
+            UserRepositoryMock.Setup(ur => ur.GetAllDeep()).Returns(() => deepUserList);
             UserRepositoryMock.Setup(ur => ur.Create(It.IsAny<User>()));
             UserRepositoryMock.Setup(ur => ur.Create(It.IsAny<User>()));
         }
@@ -77,6 +80,19 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             userList.Add(new User() { Id = 1, SocialId = "qwerty" });
             userList.Add(new User() { Id = 2, SocialId = "7788" });
             userList.Add(new User() { Id = 42, SocialId = "not 42" });
+            return userList;
+        }
+
+        private List<User> GenerateUserListDeep()
+        {
+            var priceChanges = new List<ProductPriceChange>
+            {
+                new ProductPriceChange() {NewMinPrice = 100, NewMaxPrice = 200, OldMinPrice = 99, OldMaxPrice = 199, CheckTime = DateTime.Now},
+                new ProductPriceChange() {NewMinPrice = 101, NewMaxPrice = 201, OldMinPrice = 100, OldMaxPrice = 200, CheckTime = DateTime.Now}
+            };
+            var product = new Product() { PriceChanges = priceChanges };
+            var userProducts = new List<UserProduct> {new UserProduct() {IsTracked = true, Product = product}};
+            var userList = new List<User> {new User() {Id = 33, UserProducts = userProducts}};
             return userList;
         }
 
