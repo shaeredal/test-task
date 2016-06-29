@@ -23,9 +23,18 @@ namespace OnlinerNotifier.BLL_Tests.Services
         public decimal GetNotificationData_Data_CorrectData(int index)
         {
             var data = notificationService.GetNotificationData();
-            var result = data[0].Products[0].Product.PriceChanges.ToList()[index].NewMinPrice;
+            var result = data[0].Products[0].Changes[index].NewMinPrice;
             
             return result;
-        } 
+        }
+
+        [Test]
+        public void GetNotificationData_Data_OlderThanDayAreNotIncluded()
+        {
+            var data = notificationService.GetNotificationData();
+            var result = data[0].Products[0].Changes;
+
+            Assert.AreEqual(2, result.Count);
+        }
     }
 }
