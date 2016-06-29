@@ -10,6 +10,7 @@ using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.BLL_Tests.Services
 {
+    [TestFixture]
     public class PriceCheckingServiceTest
     {
         private Mock<IUnitOfWork> unitOfWorkMock;
