@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Web;
 using OnlinerNotifier.BLL.Models.NotificationModels;
+using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL.Models;
@@ -22,10 +23,13 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         private ISmtpClient smtpClient;
 
-        public EmailSendingService(EmailValidator emailValidator, ISmtpClient smtpClient)
+        private ITemplatePathProvider templatePathProvider;
+
+        public EmailSendingService(EmailValidator emailValidator, ISmtpClient smtpClient, ITemplatePathProvider templatePathProvider)
         {
-            this.emailValidator = emailValidator;
+            this.emailValidator = emailValidator;          
             this.smtpClient = smtpClient;
+            this.templatePathProvider = templatePathProvider;
         }
 
         public void SendChanges(User user, List<NotificationProductChangesModel> priceChanges)
@@ -52,8 +56,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         private string GetMailBody(List<NotificationProductChangesModel> priceChanges)
         {
-            var templatePath = Path.Combine(HttpRuntime.AppDomainAppPath,
-                "..\\OnlinerNotifier.BLL\\Templates\\EmailTemplate.cshtml");
+            var templatePath = templatePathProvider.GetEmailTemplatePath();
             var template = File.ReadAllText(templatePath);
             return Razor.Parse(template, priceChanges);
         }
