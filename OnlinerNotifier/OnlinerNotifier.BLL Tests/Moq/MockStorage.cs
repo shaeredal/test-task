@@ -88,7 +88,9 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             var priceChanges = new List<ProductPriceChange>
             {
                 new ProductPriceChange() {NewMinPrice = 100, NewMaxPrice = 200, OldMinPrice = 99, OldMaxPrice = 199, CheckTime = DateTime.Now},
-                new ProductPriceChange() {NewMinPrice = 101, NewMaxPrice = 201, OldMinPrice = 100, OldMaxPrice = 200, CheckTime = DateTime.Now}
+                new ProductPriceChange() {NewMinPrice = 101, NewMaxPrice = 201, OldMinPrice = 100, OldMaxPrice = 200, CheckTime = DateTime.Now},
+                new ProductPriceChange() {NewMinPrice = 101, NewMaxPrice = 201, OldMinPrice = 100, OldMaxPrice = 200,
+                    CheckTime = DateTime.Now - TimeSpan.FromDays(5)}
             };
             var product = new Product() { PriceChanges = priceChanges };
             var userProducts = new List<UserProduct> {new UserProduct() {IsTracked = true, Product = product}};
