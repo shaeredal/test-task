@@ -57,6 +57,10 @@ namespace OnlinerNotifier.BLL.Services.Implementations
         {
             var user = unitOfWork.Users.Get(userId);
             var product = unitOfWork.Products.Get(productId);
+            if (user == null)
+            {
+                return false;
+            }
             if (user.UserProducts.Select(up => up.Product).Contains(product))
             {
                 var userProduct = unitOfWork.UserProducts.GetAll().First(x => x.User == user && x.Product == product);
