@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc.Html;
 using Moq;
+using OnlinerNotifier.BLL.Models.OnlinerDataModels;
+using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
 using OnlinerNotifier.DAL.Repositories.Interfaces;
@@ -15,6 +17,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             GenerateUserMock();
             GenerateUserRepositoryMock();
             GenerateProductRepositoryMock();
+            GenerateOnlinerServiceMock();
             GenerateUnitOfWorkMock();   
         }
 
@@ -27,6 +30,8 @@ namespace OnlinerNotifier.BLL_Tests.Moq
         public Mock<UserProduct> UserProductMock { get; private set; }
 
         public Mock<IRepository<Product>> ProductRepositoryMock { get; private set; }
+
+        public Mock<IOnlinerSearchService> OnlinerSearchServiceMock { get; private set; }
 
         public Mock<IUnitOfWork> UnitOfWorkMock { get; private set; }
 
@@ -91,6 +96,43 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             productList.Add(new Product() { Id = 200, OnlinerId = 33});
             productList.Add(new Product() { Id = 300, OnlinerId = 1122 });
             return productList;
+        }
+
+        private void GenerateOnlinerServiceMock()
+        {
+            OnlinerSearchServiceMock = new Mock<IOnlinerSearchService>();
+            var searchResult = GenerateSearcResult();
+            OnlinerSearchServiceMock.Setup(m => m.Search(It.IsAny<string>())).Returns(() => searchResult);
+        }
+
+        private SearchResultOnliner GenerateSearcResult()
+        {
+            var productList = new List<ProductOnliner>();
+            productList.Add(new ProductOnliner()
+            {
+                FullName = "TestProduct1",
+                Id = 12345,
+                Prices = new PriceOnliner()
+                {
+                    Max = 70000,
+                    Min = 50000
+                }
+            });
+            productList.Add(new ProductOnliner()
+            {
+                FullName = "TestProduct2",
+                Id = 12,
+                Prices = new PriceOnliner()
+                {
+                    Max = 80000,
+                    Min = 40000
+                }
+            });
+            var searchResult = new SearchResultOnliner()
+            {
+                Products = productList
+            };
+            return searchResult;
         }
 
         private void GenerateUnitOfWorkMock()
