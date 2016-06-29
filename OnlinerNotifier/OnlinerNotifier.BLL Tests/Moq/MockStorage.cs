@@ -65,6 +65,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             UserProductMock.Object.Id = 1;
             UserProductMock.Object.Product = product;
             UserProductMock.Object.User = user;
+            UserProductMock.Object.IsTracked = true;
         }
 
         private void GenerateProductMock()
@@ -160,8 +161,8 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             UnitOfWorkMock.Setup(m => m.Products).Returns(ProductRepositoryMock.Object);
             var userProducts = new List<UserProduct>();
             userProducts.Add(UserProductMock.Object);
-            UnitOfWorkMock.Setup(m => m.UserProducts.GetAll())
-                .Returns(() => userProducts);
+            UnitOfWorkMock.Setup(m => m.UserProducts.GetAll()).Returns(() => userProducts);
+            UnitOfWorkMock.Setup(m => m.UserProducts.Get(1)).Returns(() => UserProductMock.Object);
         }
     }
 }
