@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Net.Mail;
+using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
 using Autofac;
@@ -9,6 +10,7 @@ using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Validators;
+using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.Scheduler;
 using OnlinerNotifier.Scheduler.Jobs;
@@ -74,6 +76,7 @@ namespace OnlinerNotifier
             RegisterMappers(builder);
             RegisterJobs(builder);
             builder.RegisterType<EmailValidator>().AsSelf();
+            builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
         }
 
         private static void RegisterServices(ContainerBuilder builder)

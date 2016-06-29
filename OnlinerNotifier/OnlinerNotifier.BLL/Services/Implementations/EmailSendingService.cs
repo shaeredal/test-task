@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Web;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Validators;
+using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL.Models;
 using RazorEngine;
 
@@ -19,11 +20,12 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         private readonly string senderName = "Onliner Notifier";
 
-        private readonly string password = "securepassword";
+        private ISmtpClient smtpClient;
 
-        public EmailSendingService(EmailValidator emailValidator)
+        public EmailSendingService(EmailValidator emailValidator, ISmtpClient smtpClient)
         {
-            this.emailValidator = emailValidator;          
+            this.emailValidator = emailValidator;
+            this.smtpClient = smtpClient;
         }
 
         public void SendChanges(User user, List<NotificationProductChangesModel> priceChanges)
@@ -37,7 +39,6 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             var toAddress = new MailAddress(email, $"{user.FirstName} {user.LastName}");
             string subject = "Price Changes";
             string body = GetMailBody(priceChanges);
-            var smtp = GetGmailSmtpClient();
             using (var message = new MailMessage(fromAddress, toAddress)
             {
                 Subject = subject,
@@ -45,7 +46,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 IsBodyHtml = true
             })
             {
-                smtp.Send(message);
+                smtpClient.Send(message);
             }
         }
 
@@ -55,19 +56,6 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 "..\\OnlinerNotifier.BLL\\Templates\\EmailTemplate.cshtml");
             var template = File.ReadAllText(templatePath);
             return Razor.Parse(template, priceChanges);
-        }
-
-        private SmtpClient GetGmailSmtpClient()
-        {
-            return new SmtpClient
-            {
-                Host = "smtp.gmail.com",
-                Port = 587,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(address, password),
-            };
         }
     }
 }
