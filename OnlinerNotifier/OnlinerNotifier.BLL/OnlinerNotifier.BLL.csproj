@@ -103,6 +103,8 @@
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Services\Implementations\PriceCheckingService.cs" />
     <Compile Include="Validators\EmailValidator.cs" />
+    <Compile Include="Wrappers\ISmtpClient.cs" />
+    <Compile Include="Wrappers\SmtpClientWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
