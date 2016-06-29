@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System.Web.Mvc.Html;
 using Moq;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
 using OnlinerNotifier.DAL.Repositories.Interfaces;
@@ -19,7 +21,8 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             GenerateUserRepositoryMock();
             GenerateProductRepositoryMock();
             GenerateOnlinerServiceMock();
-            GenerateUnitOfWorkMock();   
+            GenerateUnitOfWorkMock();
+            GenerateSmtpClientMock();
         }
 
         public Mock<IUserRepository> UserRepositoryMock { get; private set; }
@@ -35,6 +38,8 @@ namespace OnlinerNotifier.BLL_Tests.Moq
         public Mock<IOnlinerSearchService> OnlinerSearchServiceMock { get; private set; }
 
         public Mock<IUnitOfWork> UnitOfWorkMock { get; private set; }
+
+        public Mock<ISmtpClient> smtpClientMock { get; private set; }
 
         private void GenerateUserRepositoryMock()
         {
@@ -55,6 +60,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             UserMock.Object.Id = 1;
             UserMock.Object.FirstName = "TestName";
             UserMock.Object.LastName = "TestLastName";
+            UserMock.Object.Email = "User@email.test";
             GenerateUserProductMock(ProductMock.Object, UserMock.Object);
             UserMock.Object.UserProducts.Add(UserProductMock.Object);
         }
@@ -163,6 +169,12 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             userProducts.Add(UserProductMock.Object);
             UnitOfWorkMock.Setup(m => m.UserProducts.GetAll()).Returns(() => userProducts);
             UnitOfWorkMock.Setup(m => m.UserProducts.Get(1)).Returns(() => UserProductMock.Object);
+        }
+
+        private void GenerateSmtpClientMock()
+        {
+            smtpClientMock = new Mock<ISmtpClient>();
+            smtpClientMock.Setup(m => m.Send(It.IsAny<MailMessage>()));
         }
     }
 }

@@ -102,6 +102,8 @@
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Services\Implementations\PriceCheckingService.cs" />
+    <Compile Include="Templates\TemplatePathProvider\ITemplatePathProvider.cs" />
+    <Compile Include="Templates\TemplatePathProvider\TemplatePathProvider.cs" />
     <Compile Include="Validators\EmailValidator.cs" />
     <Compile Include="Wrappers\ISmtpClient.cs" />
     <Compile Include="Wrappers\SmtpClientWrapper.cs" />
