@@ -8,9 +8,9 @@ using OAuth2;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
-using OnlinerNotifier.BLL.Providers;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
+using OnlinerNotifier.Scheduler;
 using OnlinerNotifier.Scheduler.Jobs;
 
 namespace OnlinerNotifier
@@ -74,7 +74,6 @@ namespace OnlinerNotifier
             RegisterMappers(builder);
             RegisterJobs(builder);
             builder.RegisterType<EmailValidator>().AsSelf();
-            builder.RegisterType<SmtpClientProvider>().As<ISmtpClientProvider>();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
