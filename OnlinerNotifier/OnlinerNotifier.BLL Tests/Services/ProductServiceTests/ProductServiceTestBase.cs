@@ -14,6 +14,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
     {
         protected Mock<IUnitOfWork> unitOfWorkMock;
         protected Mock<User> userMock;
+        protected Mock<Product> productMock;
         protected Mock<IUserRepository> userRepositoryMock;
         protected Mock<IRepository<Product>> productRepositoryMock;
         protected ProductService productService;
@@ -24,6 +25,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
             var mockStorage = new MockStorage();
             unitOfWorkMock = mockStorage.UnitOfWorkMock;
             userMock = mockStorage.UserMock;
+            productMock = mockStorage.ProductMock;
             productRepositoryMock = mockStorage.ProductRepositoryMock;
             userRepositoryMock = mockStorage.UserRepositoryMock;
             var productMapper = new ProductMapper();

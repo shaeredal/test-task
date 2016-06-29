@@ -10,7 +10,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
     {
         [TestCase(12346, 1)]
         [TestCase(12345, 0)]
-        public void Add_ProductAddition_Added(int onlinerId, int times)
+        public void Add_ProductAdding_Added(int onlinerId, int times)
         {
             var productViewModel = new ProductViewModel() { OnlinerId = onlinerId };
 
@@ -21,7 +21,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
         }
 
         [Test]
-        public void Add_ProductAddition_RelationIsNotDuplicated()
+        public void Add_ProductAdding_RelationIsNotDuplicated()
         {
             var productViewModel = new ProductViewModel() { OnlinerId = 12345 };
 
