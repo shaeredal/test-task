@@ -2,6 +2,10 @@
     padding-top: 80px; 
 }
 
+a {
+    cursor: pointer;
+}
+
 #signin {
     margin-top: 20px;
 }
