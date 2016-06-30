@@ -28,3 +28,18 @@ a {
     top: 8px;
     right: 8px;
 }
+
+.product {
+    display: block;
+    height: 100px;
+    max-height: 100px;
+}
+
+.product div{
+    height: 100px;
+}
+
+.product-image {
+    max-width: 100px;
+    max-height: 100px;
+}

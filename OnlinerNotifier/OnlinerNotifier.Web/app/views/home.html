@@ -11,12 +11,9 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="col-md-6">
-                        <h5>Name</h5>
-                    </div>
-                    <div class="col-md-2">
+            <div class="panel panel-default product-panel">
+                <div class="panel-heading row">
+                    <div class="col-md-2 col-lg-offset-7">
                         <h5>Lowest price</h5>
                     </div>
                     <div class="col-md-2">
@@ -27,17 +24,22 @@
                     <div infinite-scroll="more()">
                         <div ng-repeat="n in products track by $index">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <a ng-href={{n.html_url}}>{{n.full_name}}</a>
-                                </div>
-                                <div class="col-md-2">
-                                    {{n.prices.min | currencyFilter:currentRate}}
-                                </div>
-                                <div class="col-md-2">
-                                    {{n.prices.max | currencyFilter:currentRate}}
-                                </div>
-                                <div class="col-md-2">
-                                    <a ng-click="addProduct(n.id)">Add</a>
+                                <div class="product indent">
+                                    <div class="col-md-2">
+                                        <img class="product-image" ng-src={{n.images.icon}}>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <a ng-href={{n.html_url}}>{{n.full_name}}</a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span>{{n.prices.min | currencyFilter:currentRate}}</span>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <span>{{n.prices.max | currencyFilter:currentRate}}</span>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <a ng-click="addProduct(n.id)">Add</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,11 +1,14 @@
 ﻿account.filter('currencyFilter', function () {
-    return function (x, currentRate) {
-        return Math.round(x / currentRate);
-    }
+    return filterFunc;
 });
 
 home.filter('currencyFilter', function () {
-    return function (x, currentRate) {
-        return Math.round(x / currentRate);
-    }
+    return filterFunc;
 });
+
+var filterFunc = function(x, currentRate) {
+    if (isNaN(x) || x == 0) {
+        return "no offers";
+    }
+    return Math.round(x / currentRate);
+};
