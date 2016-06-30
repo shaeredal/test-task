@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using OAuth2.Models;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.DAL.Models;
@@ -20,10 +21,11 @@ namespace OnlinerNotifier.BLL.Mappers
             {
                 FirstName = userInfo.FirstName,
                 LastName = userInfo.LastName,
-                AvatarUri = userInfo.AvatarUri.Normal,
+                AvatarUri = userInfo.AvatarUri.Small,
                 Email = userInfo.Email,
                 SocialId = userInfo.Id,
-                ProviderName = userInfo.ProviderName
+                ProviderName = userInfo.ProviderName,
+                NotificationTime = DateTime.Now
             };
         }
 

@@ -1,8 +1,13 @@
 ﻿<div ng-include="'app/views/navbar.html'"></div>
 
 <div class="container body-content">
-    <div class="row">
-        <input class="col-md-12 input-lg" type="text" ng-change="search()" ng-model="searchQuery">
+    <div class="row indent">
+        <div class="col-md-12 search">
+            <div class="inner-addon left-addon">
+                <i class="fa fa-search"></i>
+                <input class="search-input" type="form-control" ng-change="search()" ng-model="searchQuery" placeholder="Enter a product name">
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-12">
