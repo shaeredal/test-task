@@ -5,7 +5,7 @@ namespace OnlinerNotifier.BLL.Services
 {
     public interface IProductService
     {
-        void Add(ProductViewModel product, int userId);
+        bool Add(ProductViewModel product, int userId);
         List<ProductViewModel> GetUserProducts(int userId);
         bool Delete(int userId, int productId);
     }

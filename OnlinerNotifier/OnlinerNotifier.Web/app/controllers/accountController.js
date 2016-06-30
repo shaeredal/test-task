@@ -38,8 +38,6 @@ account.controller('accountController',
             var isTracked = $scope.userProducts[index].IsTracked;
             $http.post('api/Tracking', { 'id': id, 'status': !isTracked })
                 .then(function(response) {
-                    //TODO: change status
-                    console.log(response);
                     if (response.status == 200) {
                         $scope.userProducts[index].IsTracked = !isTracked;
                     }

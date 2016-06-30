@@ -29,18 +29,22 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="row" ng-repeat="n in searchResult.products track by $index">
-                        <div class="col-md-6">
-                            <a ng-href={{n.html_url}}>{{n.full_name}}</a>
-                        </div>
-                        <div class="col-md-2">
-                            {{n.prices.min}}
-                        </div>
-                        <div class="col-md-2">
-                            {{n.prices.max}}
-                        </div>
-                        <div class="col-md-2">
-                            <a ng-click="addProduct(n.id)">Add</a>
+                    <div infinite-scroll="more()">
+                        <div ng-repeat="n in products track by $index">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a ng-href={{n.html_url}}>{{n.full_name}}</a>
+                                </div>
+                                <div class="col-md-2">
+                                    {{n.prices.min}}
+                                </div>
+                                <div class="col-md-2">
+                                    {{n.prices.max}}
+                                </div>
+                                <div class="col-md-2">
+                                    <a ng-click="addProduct(n.id)">Add</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

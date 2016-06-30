@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Http;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.Filters;
@@ -20,10 +21,14 @@ namespace OnlinerNotifier.Controllers
             return productService.GetUserProducts(Principal.Id);
         }
 
-        public void Post(ProductViewModel product)
+        public IHttpActionResult Post(ProductViewModel product)
         {
             var userId = Principal.Id;
-            productService.Add(product, userId);
+            if (productService.Add(product, userId))
+            {
+                return Ok();
+            }
+            return Conflict();
         }
     }
 }
