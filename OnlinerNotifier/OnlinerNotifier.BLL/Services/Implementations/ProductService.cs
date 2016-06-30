@@ -20,7 +20,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             this.userProductsMapper = userProductsMapper;
         }
 
-        public void Add(ProductViewModel productModel, int userId)
+        public bool Add(ProductViewModel productModel, int userId)
         {
             var products = unitOfWork.Products;
 
@@ -33,10 +33,10 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 unitOfWork.Save();
             }
 
-            AddToUser(product, userId);
+            return AddToUser(product, userId);
         }
 
-        private void AddToUser(Product product, int userId)
+        private bool AddToUser(Product product, int userId)
         {
             var user = unitOfWork.Users.Get(userId);
             if (!user.UserProducts.Select(up => up.Product).Contains(product))
@@ -44,7 +44,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 var userProduct = userProductsMapper.ToDomain(user, product);
                 user.UserProducts.Add(userProduct);
                 unitOfWork.Save();
+                return true;
             }
+            return false;
         }
 
         public List<ProductViewModel> GetUserProducts(int userId)

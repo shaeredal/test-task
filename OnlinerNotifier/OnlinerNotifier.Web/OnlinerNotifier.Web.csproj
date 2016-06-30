@@ -187,6 +187,7 @@
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-2.0.0.js" />
     <Content Include="scripts\jquery-2.0.0.min.js" />
+    <Content Include="scripts\ng-infinite-scroll.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
