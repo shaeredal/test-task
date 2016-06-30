@@ -11,28 +11,37 @@
 
 
 <div class="container body-content">
-    <div class="row">
-        <form name="NotificationForm">
-            <div class="col-md-2">
-                <input type="time" ng-model="time" required>
+    <div class="row jumbotron">
+        <form class="form-inline" name="NotificationForm">
+            <div class="form-group">
+                <label for="time">Time:</label>
+                <input id="time" class="form-control" type="time" ng-model="time" required>
             </div>
-            <div class="col-md-3">
-                <input type="email" ng-model="email" required>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input id="email" class="form-control" type="email" ng-model="email" required>
             </div>
-            <div class="col-md-1">
-                <button ng-click="setTime()">Set</button>
-            </div>
-            <div class="col-md-1">
-                <select ng-model="currentRate" ng-init="currentRate = currencies[0].rate">
-                    <option ng-repeat="x in currencies" value="{{x.rate}}">{{x.name}}</option>
-                </select>
-            </div>
+            <button type="submit" class="btn" ng-click="setData()">Set Notification Data</button>
         </form>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Tracking products</div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5 class="panel-heading">Tracking products</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <label for="currency">Currency:</label>
+                                <select id="currency" class="form-control" ng-model="currentRate" ng-init="currentRate = currencies[0].rate">
+                                    <option ng-repeat="x in currencies" value="{{x.rate}}">{{x.name}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel-body">
                     <div class="row" ng-repeat="n in userProducts track by $index">
                         <div class="col-md-6">

@@ -22,7 +22,7 @@ namespace OnlinerNotifier.Controllers
             {
                 return Ok();
             }
-            return NotFound();
+            return Conflict();
         }
     }
 }

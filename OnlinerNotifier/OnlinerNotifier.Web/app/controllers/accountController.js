@@ -28,9 +28,14 @@ account.controller('accountController',
                 });
         };
 
-        $scope.setTime = function() {
+        $scope.setData = function() {
             if ($scope.NotificationForm.$valid) {
-                $http.post('api/Notification/', { 'Time': $scope.time, Email: $scope.email });
+                $http.post('api/Notification/', { 'Time': $scope.time, Email: $scope.email })
+                    .then(function(response) {
+                        alert("Data is set.");
+                    }, function(response) {
+                        alert("Error.");
+                    });
             }
         }
 

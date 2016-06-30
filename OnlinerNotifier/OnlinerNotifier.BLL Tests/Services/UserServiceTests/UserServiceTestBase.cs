@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Services.Implementations;
+using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL_Tests.Moq;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Repositories.Interfaces;
@@ -21,7 +22,9 @@ namespace OnlinerNotifier.BLL_Tests.Services.UserServiceTests
             var mockStorage = new MockStorage();
             unitOfWorkMock = mockStorage.UnitOfWorkMock;
             userRepositoryMock = mockStorage.UserRepositoryMock;
-            userService = new UserService(unitOfWorkMock.Object, new UserMapper(new UserProductsMapper(new ProductMapper())));
+            userService = new UserService(unitOfWorkMock.Object, 
+                new UserMapper(new UserProductsMapper(new ProductMapper())),
+                new EmailValidator());
         }
     }
 }
