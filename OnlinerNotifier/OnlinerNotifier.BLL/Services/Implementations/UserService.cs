@@ -2,6 +2,7 @@
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Models.NotificationModels;
+using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
 
 namespace OnlinerNotifier.BLL.Services.Implementations
@@ -10,11 +11,13 @@ namespace OnlinerNotifier.BLL.Services.Implementations
     {
         private IUnitOfWork unitOfWork;
         private UserMapper userMapper;
+        private EmailValidator emailValidator;
 
-        public UserService(IUnitOfWork unitOfWork, UserMapper userMapper)
+        public UserService(IUnitOfWork unitOfWork, UserMapper userMapper, EmailValidator emailValidator)
         {
             this.unitOfWork = unitOfWork;
             this.userMapper = userMapper;
+            this.emailValidator = emailValidator;
         }
 
         public UserViewModel Get(int id)
@@ -54,7 +57,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
         public bool SetNotificationParameters(int userId, NotificationParametersModel parameters)
         {
             var user = unitOfWork.Users.Get(userId);
-            if (user != null)
+            if (user != null && emailValidator.IsValid(parameters.Email))
             {
                 user.NotificationTime = parameters.Time;
                 user.Email = parameters.Email;
