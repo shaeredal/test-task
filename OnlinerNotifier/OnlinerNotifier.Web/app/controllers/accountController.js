@@ -20,6 +20,7 @@ account.controller('accountController',
             .then(function(response) {
                 $scope.currencies.push({ name: "USD", rate: response.data.Cur_OfficialRate });
             });
+        $scope.currentRate = $scope.currencies[0].rate;
 
         $scope.delProduct = function(id, index) {
             $http.delete('api/Account/' + id)

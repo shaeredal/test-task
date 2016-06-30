@@ -4,11 +4,16 @@
             <a class="navbar-brand" href="#/home/">OnlinerNotifier</a>
         </div>
         <ul class="nav navbar-nav pull-right">
-            <li>
+            <li class="nav-item">
                 <a class="nav-link" href="/#/account">
                     <img ng-src={{avatarUri}}>
                     <b>{{name}}</b>
                 </a>
+            </li>
+            <li class="nav-item">
+                        <select id="currency" class="form-control" ng-model="$parent.currentRate">
+                            <option ng-repeat="x in currencies" value="{{x.rate}}">{{x.name}}</option>
+                        </select>
             </li>
         </ul>
     </div>

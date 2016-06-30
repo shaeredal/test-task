@@ -21,16 +21,6 @@
                     <div class="col-md-6">
                         <h5 class="panel-heading">Tracking products</h5>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-inline">
-                            <div class="form-group">
-                                <label for="currency">Currency:</label>
-                                <select id="currency" class="form-control" ng-model="currentRate" ng-init="currentRate = currencies[0].rate">
-                                    <option ng-repeat="x in currencies" value="{{x.rate}}">{{x.name}}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="panel-body">
                     <div class="row" ng-repeat="n in userProducts track by $index">

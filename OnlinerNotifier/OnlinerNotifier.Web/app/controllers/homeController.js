@@ -1,6 +1,7 @@
 ﻿'use strict';
-angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll'])
-    .controller('homeController', function ($scope, $http, $cookies) {
+var home = angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll']);
+
+home.controller('homeController', function ($scope, $http, $cookies, $filter) {
         var userId = $cookies.get('User');
         $http.get('api/User/' + userId)
             .then(function(response) {
@@ -16,6 +17,15 @@ angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll'])
                     $scope.lastPage = response.data.page.current;
                 });
         }
+
+        $scope.currencies = [{ name: "BYB", rate: 1 }];
+        $http.get('https://www.nbrb.by/API/ExRates/Rates/145?onDate=' +
+                $filter('date')(Date.now(), 'EEE%2C+dd+MMM+yyyy+21%3A00%3A00') +
+                '&Periodicity=0&Cur_ID=145')
+            .then(function (response) {
+                $scope.currencies.push({ name: "USD", rate: response.data.Cur_OfficialRate });
+            });
+        $scope.currentRate = $scope.currencies[0].rate;
 
         $scope.more = function() {
             $scope.lastPage += 1;
