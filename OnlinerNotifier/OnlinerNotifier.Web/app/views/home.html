@@ -2,8 +2,8 @@
 
 <div class="container body-content">
     <div class="row indent">
-        <div class="col-md-12 search">
-            <div class="inner-addon left-addon">
+        <div class="col-md-12">
+            <div class="search">
                 <i class="fa fa-search"></i>
                 <input class="search-input" type="form-control" ng-change="search()" ng-model="searchQuery" placeholder="Enter a product name">
             </div>
@@ -17,10 +17,10 @@
                         <h5>Name</h5>
                     </div>
                     <div class="col-md-2">
-                        <h5>Lowest price (BYB)</h5>
+                        <h5>Lowest price</h5>
                     </div>
                     <div class="col-md-2">
-                        <h5>Highest price (BYB)</h5>
+                        <h5>Highest price</h5>
                     </div>
                 </div>
                 <div class="panel-body">
@@ -31,10 +31,10 @@
                                     <a ng-href={{n.html_url}}>{{n.full_name}}</a>
                                 </div>
                                 <div class="col-md-2">
-                                    {{n.prices.min}}
+                                    {{n.prices.min | currencyFilter:currentRate}}
                                 </div>
                                 <div class="col-md-2">
-                                    {{n.prices.max}}
+                                    {{n.prices.max | currencyFilter:currentRate}}
                                 </div>
                                 <div class="col-md-2">
                                     <a ng-click="addProduct(n.id)">Add</a>

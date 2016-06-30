@@ -20,12 +20,11 @@ a {
 }
 
 .search-input {
-    text-indent: 30px;
     width: 100%;
 }
 
 .search .fa-search {
     position: absolute;
     top: 8px;
-    left: 20px;
+    right: 8px;
 }
