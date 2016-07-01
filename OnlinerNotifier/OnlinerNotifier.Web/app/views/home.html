@@ -38,8 +38,8 @@
                                         <span>{{n.prices.max | currencyFilter:currentRate}}</span>
                                     </div>
                                     <div class="col-md-1" ng-switch="trackedIds.indexOf(n.id) > -1">
-                                        <a ng-switch-when="false" ng-click="addProduct(n.id)">Add</a>
-                                        <a ng-switch-when="true" ng-click="delProduct(n.id)">Delete</a>
+                                        <a class="add-plus" ng-switch-when="false" ng-click="addProduct(n.id)"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                        <a class="remove-cross" ng-switch-when="true" ng-click="delProduct(n.id)"><i class="fa fa-times" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>

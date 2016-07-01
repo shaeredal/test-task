@@ -61,3 +61,29 @@ a {
 .product-panel h5 {
     text-align: center;
 }
+
+.product-panel i {
+    text-align: center;
+    font-size: 24px;
+}
+
+.product-panel i {
+    text-align: center;
+    font-size: 24px;
+}
+
+.remove-cross {
+    color: red;
+}
+
+.remove-cross:hover {
+    color: darkred;
+}
+
+.add-plus {
+    color: green;
+}
+
+.add-plus:hover {
+    color: darkgreen;
+}
