@@ -3,12 +3,23 @@ var home = angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll']
 
 home.controller('homeController', function ($scope, $http, $cookies, $filter) {
         var userId = $cookies.get('User');
-        $http.get('api/User/' + userId)
-            .then(function(response) {
+        $http.get('api/Account/' + userId)
+            .then(function (response) {
                 var user = response.data;
                 $scope.name = user.FirstName + ' ' + user.LastName;
                 $scope.avatarUri = user.AvatarUri;
+                $scope.userProducts = user.UserProducts;
+                $scope.email = user.Email;
+
+                $scope.trackedIds = function (){
+                    var idList = [];
+                    for (let up of $scope.userProducts) {
+                        idList.push(up.Product.OnlinerId);
+                    }
+                    return idList;
+                }();
             });
+        
 
         $scope.search = function() {
             $http.get('https://catalog.api.onliner.by/search/products?query=' + $scope.searchQuery)
@@ -59,6 +70,7 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
             $http.post("api/Product", productData)
                 .then(function(response) {
                     alert('"' + product.full_name + '"' + " is added in the track list.");
+                    $scope.trackedIds.push(product.id);
                 }, function(response) {
                     alert('"'+product.full_name+'"'+" is alredy in the track list.");
                 });
