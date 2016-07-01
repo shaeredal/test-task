@@ -15,7 +15,8 @@ namespace OnlinerNotifier
                 .Include("~/scripts/ng-infinite-scroll.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery")
-                .Include("~/scripts/jquery-{version}.js"));
+                .Include("~/scripts/jquery-{version}.js")
+                .Include("~/scripts/jquery.signalR-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap")
                 .Include("~/scripts/bootstrap.js"));
