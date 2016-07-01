@@ -37,8 +37,9 @@
                                     <div class="col-md-2">
                                         <span>{{n.prices.max | currencyFilter:currentRate}}</span>
                                     </div>
-                                    <div class="col-md-1">
-                                        <a ng-click="addProduct(n.id)">Add</a>
+                                    <div class="col-md-1" ng-switch="trackedIds.indexOf(n.id) > -1">
+                                        <a ng-switch-when="false" ng-click="addProduct(n.id)">Add</a>
+                                        <a ng-switch-when="true" ng-click="delProduct(n.id)">Delete</a>
                                     </div>
                                 </div>
                             </div>
