@@ -2,6 +2,25 @@
 var home = angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll']);
 
 home.controller('homeController', function ($scope, $http, $cookies, $filter) {
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-bottom-right"
+        }
+
+        $scope.toastHub = $.connection.toastHub;
+        $scope.toastHub.client.showAddToast = function (text) {
+            console.log(text);
+            toastr.info(text);
+        };
+        $scope.toastHub.client.showDeleteToast = function (text) {
+            console.log(text);
+            toastr.info(text);
+            
+        };
+        $.connection.hub.start().done(function () {
+
+        });
+
         $scope.updateInfo = function() {
             var userId = $cookies.get('User');
             $http.get('api/Account/' + userId)
@@ -54,7 +73,7 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
         }
 
         $scope.addProduct = function (id) {
-
+            $scope.toastHub.server.getAddToast("productname"); //temporary
             var productMatch = $scope.products.filter(function(prod) {
                 return prod.id == id;
             });
@@ -79,6 +98,7 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
         }
 
         $scope.delProduct = function (onlinerId) {
+            $scope.toastHub.server.getDeleteToast("productname"); //temporary
             var id;
             for (let up of $scope.userProducts) {
                 if (up.Product.OnlinerId == onlinerId) {
