@@ -30,8 +30,11 @@
                 </div>
                 <div class="panel-body product indent">
                     <div class="row" ng-repeat="n in userProducts track by $index">
-                        <div class="col-md-6">
-                           {{n.Product.Name}}
+                        <div class="col-md-2">
+                            <img class="product-image" ng-src={{n.Product.Image}} ng-show="n.Product.Image">
+                        </div>
+                        <div class="col-md-4">
+                            <a ng-href={{n.Product.Url}}>{{n.Product.Name}}</a>
                         </div>
                         <div class="col-md-2">
                             <span>{{n.Product.MinPrice | currencyFilter:currentRate}}</span>

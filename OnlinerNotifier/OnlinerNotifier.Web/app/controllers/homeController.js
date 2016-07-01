@@ -76,7 +76,9 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
             var product = productMatch[0];
             var productData = {
                 "OnlinerId": product.id,
-                "Name": product.full_name,           
+                "Name": product.full_name,
+                "Image": product.images.header,
+                "Url": product.html_url
             };
             if (product.prices) {
                 productData["MaxPrice"] = product.prices.max;

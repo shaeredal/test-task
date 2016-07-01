@@ -12,7 +12,9 @@ namespace OnlinerNotifier.BLL.Mappers
                 OnlinerId = model.OnlinerId,
                 Name = model.Name,
                 MaxPrice = model.MaxPrice,
-                MinPrice = model.MinPrice
+                MinPrice = model.MinPrice,
+                Image = model.Image,
+                Url = model.Url
             };
         }
 
@@ -24,7 +26,9 @@ namespace OnlinerNotifier.BLL.Mappers
                 OnlinerId = product.OnlinerId,
                 Name = product.Name,
                 MaxPrice = product.MaxPrice,
-                MinPrice = product.MinPrice
+                MinPrice = product.MinPrice,
+                Image = product.Image,
+                Url = product.Url
             };
         }
     }
