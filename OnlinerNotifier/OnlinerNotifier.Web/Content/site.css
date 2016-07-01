@@ -39,6 +39,10 @@ a {
     vertical-align: middle;
 }
 
+.product span {
+    text-align: center;
+}
+
 .product div{
     display: table;
     table-layout: fixed;
@@ -52,4 +56,8 @@ a {
 
 .tracked {
     background: lightgreen;
+}
+
+.product-panel h5 {
+    text-align: center;
 }
