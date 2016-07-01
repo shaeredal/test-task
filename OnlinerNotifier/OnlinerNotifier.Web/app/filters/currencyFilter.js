@@ -10,5 +10,5 @@ var filterFunc = function(x, currentRate) {
     if (isNaN(x) || x == 0) {
         return "no offers";
     }
-    return Math.round(x / currentRate);
+    return (x / currentRate).toFixed(2);
 };
