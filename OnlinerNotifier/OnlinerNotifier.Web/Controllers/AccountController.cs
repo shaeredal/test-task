@@ -2,6 +2,7 @@
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.Filters;
+using OnlinerNotifier.ToastNotifier;
 
 namespace OnlinerNotifier.Controllers
 {
@@ -10,11 +11,13 @@ namespace OnlinerNotifier.Controllers
     {
         private readonly IUserService userService;
         private readonly IProductService productService;
+        private readonly IToastNotifier toastNotifier;
 
-        public AccountController(IUserService userService, IProductService productService)
+        public AccountController(IUserService userService, IProductService productService, IToastNotifier toastNotifier)
         {
             this.userService = userService;
             this.productService = productService;
+            this.toastNotifier = toastNotifier;
         }
 
         public UserDataViewModel GetData()
@@ -26,6 +29,7 @@ namespace OnlinerNotifier.Controllers
         {
             if (productService.Delete(Principal.Id, id))
             {
+                toastNotifier.Send("Product is deleted.");
                 return Ok();
             }
             return NotFound();
