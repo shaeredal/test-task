@@ -24,9 +24,9 @@
                     <div infinite-scroll="more()">
                         <div ng-repeat="n in products track by $index">
                             <div class="row">
-                                <div class="product indent">
+                                <div class="product indent" ng-class="{'tracked' : trackedIds.indexOf(n.id) > -1}">
                                     <div class="col-md-2">
-                                        <img class="product-image" ng-src={{n.images.icon}}>
+                                        <img class="product-image" ng-src={{n.images.header}} ng-show="n.images.header">
                                     </div>
                                     <div class="col-md-5">
                                         <a ng-href={{n.html_url}}>{{n.full_name}}</a>
