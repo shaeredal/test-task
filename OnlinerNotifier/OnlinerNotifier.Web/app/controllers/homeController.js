@@ -1,25 +1,8 @@
 ﻿'use strict';
-var home = angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll']);
+var home = angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll', 'signalRToastNotifications']);
 
 home.controller('homeController', function ($scope, $http, $cookies, $filter) {
-        toastr.options = {
-            "closeButton": true,
-            "positionClass": "toast-bottom-right"
-        }
-
-        $scope.toastHub = $.connection.toastHub;
-        $scope.toastHub.client.notify = function(message) {
-            toastr.info(message);
-        };
-        $scope.toastHub.client.setUserId = function(userId) {
-            $scope.signalRUserId = userId;
-            $cookies.put("signalRUserId", userId);
-        }
-        $.connection.hub.start().done(function () {
-            $scope.toastHub.server.getUserId();
-        });
-
-        $scope.updateInfo = function() {
+       $scope.updateInfo = function() {
             var userId = $cookies.get('User');
             $http.get('api/Account/' + userId)
                 .then(function (response) {
@@ -41,11 +24,30 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
         $scope.updateInfo();
         
 
-        $scope.search = function() {
+        $scope.search = function () {
+            if (!$scope.searchQuery) {
+                $scope.products = null;
+                return;
+            }
             $http.get('https://catalog.api.onliner.by/search/products?query=' + $scope.searchQuery)
                 .then(function(response) {
                     $scope.products = response.data.products;
                     $scope.lastPage = response.data.page.current;
+                });
+        }
+
+        $scope.more = function () {
+            if (!$scope.searchQuery) {
+                $scope.products = null;
+                return;
+            }
+            $scope.lastPage += 1;
+            $http.get('https://catalog.api.onliner.by/search/products?query=' +
+                    $scope.searchQuery +
+                    "&page=" +
+                    $scope.lastPage)
+                .then(function (response) {
+                    $scope.products = $scope.products.concat(response.data.products);
                 });
         }
 
@@ -58,17 +60,6 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
                 $scope.currencies.push({ name: "USD", rate: response.data.Cur_OfficialRate * 10000 });
             });
         $scope.currentRate = $scope.currencies[0].rate;
-
-        $scope.more = function() {
-            $scope.lastPage += 1;
-            $http.get('https://catalog.api.onliner.by/search/products?query=' +
-                    $scope.searchQuery +
-                    "&page=" +
-                    $scope.lastPage)
-                .then(function (response) {
-                    $scope.products = $scope.products.concat(response.data.products);
-                });
-        }
 
         $scope.addProduct = function (id) {
             var productMatch = $scope.products.filter(function(prod) {

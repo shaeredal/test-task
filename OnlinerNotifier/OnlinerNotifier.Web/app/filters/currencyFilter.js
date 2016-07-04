@@ -1,8 +1,4 @@
-﻿account.filter('currencyFilter', function () {
-    return filterFunc;
-});
-
-home.filter('currencyFilter', function () {
+﻿app.filter('currencyFilter', function () {
     return filterFunc;
 });
 
