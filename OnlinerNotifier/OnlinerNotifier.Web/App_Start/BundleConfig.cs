@@ -30,7 +30,8 @@ namespace OnlinerNotifier
                 .Include("~/app/controllers/accountController.js")
                 .Include("~/app/controllers/homeController.js")
                 .Include("~/app/filters/trackingFormatFilter.js")
-                .Include("~/app/filters/currencyFilter.js"));
+                .Include("~/app/filters/currencyFilter.js")
+                .Include("~/app/other/signalRToastNotifications.js"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap")
                 .Include("~/Content/bootstrap.css"));

@@ -87,3 +87,8 @@ a {
 .add-plus:hover {
     color: darkgreen;
 }
+
+.table-placeholder {
+    font-size: 48px;
+    color: lightgray;
+}
