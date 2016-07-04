@@ -2,6 +2,6 @@
 {
     public interface IToastNotifier
     {
-        void Send(string message);
+        void Send(string connectionId, string message);
     }
 }

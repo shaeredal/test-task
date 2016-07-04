@@ -5,10 +5,10 @@ namespace OnlinerNotifier.ToastNotifier
 {
     public class ToastNotifier : IToastNotifier
     {
-        public void Send(string message)
+        public void Send(string connectionId, string message)
         {
             var hubContext = GlobalHost.ConnectionManager.GetHubContext<ToastHub>();
-            hubContext.Clients.All.notify(message); //temporary, have to be User(userId)
+            hubContext.Clients.Client(connectionId).notify(message);
         }
     }
 }

@@ -11,8 +11,12 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
         $scope.toastHub.client.notify = function(message) {
             toastr.info(message);
         };
+        $scope.toastHub.client.setUserId = function(userId) {
+            $scope.signalRUserId = userId;
+            $cookies.put("signalRUserId", userId);
+        }
         $.connection.hub.start().done(function () {
-
+            $scope.toastHub.server.getUserId();
         });
 
         $scope.updateInfo = function() {
@@ -99,7 +103,7 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
                     id = up.Product.Id;
                 }
             }
-            $http.delete('api/Account/' + id)
+            $http.delete('api/Product/' + id)
                 .then(function (response) {
                     $scope.updateInfo();
                 });

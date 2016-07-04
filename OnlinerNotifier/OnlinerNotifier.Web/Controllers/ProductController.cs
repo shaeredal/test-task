@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Web.Http;
-using Microsoft.AspNet.SignalR;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.Filters;
-using OnlinerNotifier.Hubs;
 using OnlinerNotifier.ToastNotifier;
 
 namespace OnlinerNotifier.Controllers
@@ -13,12 +13,12 @@ namespace OnlinerNotifier.Controllers
     public class ProductController : ApiControllerBase
     {
         private readonly IProductService productService;
-        private readonly IToastNotifier toastNotifer;
+        private readonly IToastNotifier toastNotifier;
 
-        public ProductController(IProductService productService, IToastNotifier toastNotifer)
+        public ProductController(IProductService productService, IToastNotifier toastNotifier)
         {
             this.productService = productService;
-            this.toastNotifer = toastNotifer;
+            this.toastNotifier = toastNotifier;
         }
 
         public List<ProductViewModel> Get()
@@ -31,10 +31,31 @@ namespace OnlinerNotifier.Controllers
             var userId = Principal.Id;
             if (productService.Add(product, userId))
             {
-                toastNotifer.Send(product.Name + " is added.");
+                SendNotification(product.Name, "is added.");
                 return Ok();
             }
             return Conflict();
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            if (productService.Delete(Principal.Id, id))
+            {
+                SendNotification("Product", "is deleted."); //TODO: get product name
+                return Ok();
+            }
+            return NotFound();
+        }
+
+        private void SendNotification(string productName, string message)
+        {
+            var signalRUserId = GetSignalRConnectionId();
+            toastNotifier.Send(signalRUserId, $"{productName} {message}");
+        }
+
+        private string GetSignalRConnectionId()
+        {
+            return Request.Headers.GetCookies("signalRUserId").FirstOrDefault()?["signalRUserId"].Value;
         }
     }
 }
