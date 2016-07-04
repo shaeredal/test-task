@@ -187,6 +187,7 @@
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\filters\currencyFilter.js" />
     <Content Include="app\filters\trackingFormatFilter.js" />
+    <Content Include="app\other\netMQToastNotifications.js" />
     <Content Include="app\other\signalRToastNotifications.js" />
     <Content Include="app\views\account.html" />
     <Content Include="app\views\auth.html" />
@@ -256,7 +257,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ToastHub.cs" />
+    <Compile Include="NetMQSockets\ToastSocket.cs" />
     <Compile Include="ToastNotifier\IToastNotifier.cs" />
+    <Compile Include="ToastNotifier\NetMQToastNotifier.cs" />
     <Compile Include="ToastNotifier\SignalRToastNotifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\Jobs\CheckPricesJob.cs" />

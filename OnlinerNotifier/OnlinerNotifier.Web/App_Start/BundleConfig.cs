@@ -31,7 +31,8 @@ namespace OnlinerNotifier
                 .Include("~/app/controllers/homeController.js")
                 .Include("~/app/filters/trackingFormatFilter.js")
                 .Include("~/app/filters/currencyFilter.js")
-                .Include("~/app/other/signalRToastNotifications.js"));
+                .Include("~/app/other/signalRToastNotifications.js")
+                .Include("~/app/other/netMQToastNotifications.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/JSMQ")
                 .Include("~/scripts/JSMQ.js"));

@@ -43,7 +43,10 @@
                             <span>{{n.Product.MaxPrice | currencyFilter:currentRate}}</span>
                         </div>
                         <div class="col-md-1">
-                            <a ng-click="changeTrackingStatus(n.Id, $index)">{{n.IsTracked | trackingFormat}}</a>
+                            <a ng-click="changeTrackingStatus(n.Id, $index)" ng-switch="n.IsTracked">
+                                <span class="track-icon" ng-switch-when="true"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                <span class="not-track-icon" ng-switch-when="false"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                            </a>
                         </div>
                         <div class="col-md-1">
                                 <a class="remove-cross" ng-click="delProduct(n.Product.Id, $index)"><i class="fa fa-times" aria-hidden="true"></i></a>
