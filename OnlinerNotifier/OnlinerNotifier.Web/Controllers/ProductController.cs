@@ -49,13 +49,7 @@ namespace OnlinerNotifier.Controllers
 
         private void SendNotification(string productName, string message)
         {
-            var signalRUserId = GetSignalRConnectionId();
-            toastNotifier.Send(signalRUserId, $"{productName} {message}");
-        }
-
-        private string GetSignalRConnectionId()
-        {
-            return Request.Headers.GetCookies("signalRUserId").FirstOrDefault()?["signalRUserId"].Value;
+            toastNotifier.Send(Request, $"{productName} {message}");
         }
     }
 }
