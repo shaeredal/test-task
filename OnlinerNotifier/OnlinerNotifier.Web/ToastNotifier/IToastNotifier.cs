@@ -1,7 +1,9 @@
-﻿namespace OnlinerNotifier.ToastNotifier
+﻿using System.Net.Http;
+
+namespace OnlinerNotifier.ToastNotifier
 {
     public interface IToastNotifier
     {
-        void Send(string connectionId, string message);
+        void Send(HttpRequestMessage request, string message);
     }
 }

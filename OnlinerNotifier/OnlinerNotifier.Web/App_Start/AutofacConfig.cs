@@ -79,7 +79,7 @@ namespace OnlinerNotifier
             builder.RegisterType<EmailValidator>().AsSelf();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
-            builder.RegisterType<ToastNotifier.ToastNotifier>().As<IToastNotifier>();
+            builder.RegisterType<SignalRToastNotifier>().As<IToastNotifier>();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
