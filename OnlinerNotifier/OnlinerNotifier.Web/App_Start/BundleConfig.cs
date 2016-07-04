@@ -33,6 +33,9 @@ namespace OnlinerNotifier
                 .Include("~/app/filters/currencyFilter.js")
                 .Include("~/app/other/signalRToastNotifications.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/JSMQ")
+                .Include("~/scripts/JSMQ.js"));
+
             bundles.Add(new StyleBundle("~/Content/bootstrap")
                 .Include("~/Content/bootstrap.css"));
 
