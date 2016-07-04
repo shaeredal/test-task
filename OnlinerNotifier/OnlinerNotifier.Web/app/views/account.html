@@ -16,28 +16,37 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default">
+            <div class="panel panel-default product-panel">
                 <div class="row">
                     <div class="col-md-6">
                         <h5 class="panel-heading">Tracking products</h5>
                     </div>
+                    <div class="col-md-2">
+                        <h5>Lowest price</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <h5>Highest price</h5>
+                    </div>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body product indent">
                     <div class="row" ng-repeat="n in userProducts track by $index">
-                        <div class="col-md-6">
-                            {{n.Product.Name}}
+                        <div class="col-md-2">
+                            <img class="product-image" ng-src={{n.Product.Image}} ng-show="n.Product.Image">
                         </div>
-                        <div class="col-md-1">
-                            {{n.Product.MinPrice | currencyFilter:currentRate}}
-                        </div>
-                        <div class="col-md-1">
-                            {{n.Product.MaxPrice | currencyFilter:currentRate}}
+                        <div class="col-md-4">
+                            <a ng-href={{n.Product.Url}}>{{n.Product.Name}}</a>
                         </div>
                         <div class="col-md-2">
+                            <span>{{n.Product.MinPrice | currencyFilter:currentRate}}</span>
+                        </div>
+                        <div class="col-md-2">
+                            <span>{{n.Product.MaxPrice | currencyFilter:currentRate}}</span>
+                        </div>
+                        <div class="col-md-1">
                             <a ng-click="changeTrackingStatus(n.Id, $index)">{{n.IsTracked | trackingFormat}}</a>
                         </div>
                         <div class="col-md-1">
-                            <a ng-click="delProduct(n.Product.Id, $index)">Delete</a>
+                                <a class="remove-cross" ng-click="delProduct(n.Product.Id, $index)"><i class="fa fa-times" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>

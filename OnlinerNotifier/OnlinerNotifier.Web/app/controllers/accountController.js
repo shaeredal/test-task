@@ -24,7 +24,7 @@ account.controller('accountController',
         $scope.currentRate = $scope.currencies[0].rate;
 
         $scope.delProduct = function(id, index) {
-            $http.delete('api/Account/' + id)
+            $http.delete('api/Product/' + id)
                 .then(function(response) {
                     $scope.userProducts.splice(index, 1);
                 });

@@ -2,6 +2,23 @@
 var home = angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll']);
 
 home.controller('homeController', function ($scope, $http, $cookies, $filter) {
+        toastr.options = {
+            "closeButton": true,
+            "positionClass": "toast-bottom-right"
+        }
+
+        $scope.toastHub = $.connection.toastHub;
+        $scope.toastHub.client.notify = function(message) {
+            toastr.info(message);
+        };
+        $scope.toastHub.client.setUserId = function(userId) {
+            $scope.signalRUserId = userId;
+            $cookies.put("signalRUserId", userId);
+        }
+        $.connection.hub.start().done(function () {
+            $scope.toastHub.server.getUserId();
+        });
+
         $scope.updateInfo = function() {
             var userId = $cookies.get('User');
             $http.get('api/Account/' + userId)
@@ -54,7 +71,6 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
         }
 
         $scope.addProduct = function (id) {
-
             var productMatch = $scope.products.filter(function(prod) {
                 return prod.id == id;
             });
@@ -64,7 +80,9 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
             var product = productMatch[0];
             var productData = {
                 "OnlinerId": product.id,
-                "Name": product.full_name,           
+                "Name": product.full_name,
+                "Image": product.images.header,
+                "Url": product.html_url
             };
             if (product.prices) {
                 productData["MaxPrice"] = product.prices.max;
@@ -85,7 +103,7 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter) {
                     id = up.Product.Id;
                 }
             }
-            $http.delete('api/Account/' + id)
+            $http.delete('api/Product/' + id)
                 .then(function (response) {
                     $scope.updateInfo();
                 });

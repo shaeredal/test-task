@@ -13,8 +13,8 @@ using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL;
-using OnlinerNotifier.Scheduler;
 using OnlinerNotifier.Scheduler.Jobs;
+using OnlinerNotifier.ToastNotifier;
 
 namespace OnlinerNotifier
 {
@@ -79,6 +79,7 @@ namespace OnlinerNotifier
             builder.RegisterType<EmailValidator>().AsSelf();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
+            builder.RegisterType<ToastNotifier.ToastNotifier>().As<IToastNotifier>();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
