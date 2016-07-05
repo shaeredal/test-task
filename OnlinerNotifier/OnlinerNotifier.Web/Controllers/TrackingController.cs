@@ -2,6 +2,7 @@
 using OnlinerNotifier.BLL.Models.TrackingModels;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.Filters;
+using OnlinerNotifier.ToastNotifier;
 
 namespace OnlinerNotifier.Controllers
 {
@@ -9,19 +10,33 @@ namespace OnlinerNotifier.Controllers
     public class TrackingController : ApiControllerBase
     {
         private ITrackingService trackingService;
+        private IToastNotifier toastNotifier;
 
-        public TrackingController(ITrackingService trackingService)
+        public TrackingController(ITrackingService trackingService, IToastNotifier toastNotifier)
         {
             this.trackingService = trackingService;
+            this.toastNotifier = toastNotifier;
         }
 
         public IHttpActionResult Post([FromBody] TrackingModel trackingModel)
         {
             if (trackingService.ChangeStatus(trackingModel))
             {
+                SendMessage(trackingModel.Status);
                 return Ok();
             };
             return NotFound();
+        }
+
+        private void SendMessage(bool status)
+        {
+            string statusString = "";
+            if (!status)
+            {
+                statusString = "not ";
+            }
+
+            toastNotifier.Send(Request, $"Product is {statusString}tracked.");
         }
     }
 }

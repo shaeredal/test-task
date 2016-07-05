@@ -33,8 +33,7 @@ namespace OnlinerNotifier
 
             bundles.Add(new ScriptBundle("~/bundles/SignalR")
                 .Include("~/scripts/jquery.signalR-{version}.js")
-                .Include("~/app/other/signalRToastNotifications.js")
-                .Include("~/signalr/hubs"));
+                .Include("~/app/other/signalRToastNotifications.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/NetMQ")
                 .Include("~/scripts/JSMQ.js")
