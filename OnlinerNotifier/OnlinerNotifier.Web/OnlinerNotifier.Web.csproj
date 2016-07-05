@@ -252,6 +252,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\TrackingController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Enums\ToastNotificationProviderType.cs" />
     <Compile Include="Filters\AuthenticationFailureResult.cs" />
     <Compile Include="Filters\AuthenticationAttribute.cs" />
     <Compile Include="Filters\Principal.cs" />
