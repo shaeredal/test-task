@@ -27,7 +27,7 @@
     @Scripts.Render("~/bundles/app")
     @Scripts.Render("~/bundles/JSMQ")
 
-    @if(ToastNotificationsConfig.ProviderType == ToastNotificationProviderType.Signalr)
+    @if(ToastNotificationsConfig.ProviderType == ToastNotificationProviderType.SignalR)
     {
         <script src="~/signalr/hubs"></script>
     }
