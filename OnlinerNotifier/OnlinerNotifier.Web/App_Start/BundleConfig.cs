@@ -15,8 +15,7 @@ namespace OnlinerNotifier
                 .Include("~/scripts/ng-infinite-scroll.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery")
-                .Include("~/scripts/jquery-{version}.js")
-                .Include("~/scripts/jquery.signalR-{version}.js"));
+                .Include("~/scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/toastr")
                 .Include("~/scripts/toastr.js"));
@@ -30,12 +29,16 @@ namespace OnlinerNotifier
                 .Include("~/app/controllers/accountController.js")
                 .Include("~/app/controllers/homeController.js")
                 .Include("~/app/filters/trackingFormatFilter.js")
-                .Include("~/app/filters/currencyFilter.js")
-                .Include("~/app/other/signalRToastNotifications.js")
-                .Include("~/app/other/netMQToastNotifications.js"));
+                .Include("~/app/filters/currencyFilter.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/JSMQ")
-                .Include("~/scripts/JSMQ.js"));
+            bundles.Add(new ScriptBundle("~/bundles/SignalR")
+                .Include("~/scripts/jquery.signalR-{version}.js")
+                .Include("~/app/other/signalRToastNotifications.js")
+                .Include("~/signalr/hubs"));
+
+            bundles.Add(new ScriptBundle("~/bundles/NetMQ")
+                .Include("~/scripts/JSMQ.js")
+                .Include("~/app/other/netMQToastNotifications.js"));
 
             bundles.Add(new StyleBundle("~/Content/bootstrap")
                 .Include("~/Content/bootstrap.css"));

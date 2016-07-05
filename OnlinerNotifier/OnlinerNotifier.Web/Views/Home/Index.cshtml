@@ -9,7 +9,7 @@
 
 <html ng-app="onlinerNotifier">
 <head>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/font-awesome")
     @Styles.Render("~/Content/toastr")
@@ -17,19 +17,40 @@
     <title>Index</title>
 </head>
 <body>
-    <div ng-view>
-    </div>
+<div ng-view>
+</div>
+
+    @{
+        switch (ToastNotificationsConfig.ProviderType)
+        {
+            case ToastNotificationProviderType.SignalR:
+                ViewBag.NotificationsModule = "signalRToastNotifications";
+                break;
+            case ToastNotificationProviderType.NetMQ:
+                ViewBag.NotificationsModule = "netMQToastNotifications";
+                break;
+        }
+        <script>var notificationModule = '@ViewBag.NotificationsModule'</script>
+    }
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/ng-infinite-scroll")
     @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/app")
-    @Scripts.Render("~/bundles/JSMQ")
 
-    @if(ToastNotificationsConfig.ProviderType == ToastNotificationProviderType.SignalR)
-    {
-        <script src="~/signalr/hubs"></script>
+    @{
+        switch (ToastNotificationsConfig.ProviderType)
+        {
+            case ToastNotificationProviderType.SignalR:
+                @Scripts.Render("~/bundles/SignalR");
+                <script src="~/signalr/hubs"></script>
+                break;
+            case ToastNotificationProviderType.NetMQ:
+                @Scripts.Render("~/bundles/NetMQ");
+                break;
+        }
     }
 </body>
 </html>
