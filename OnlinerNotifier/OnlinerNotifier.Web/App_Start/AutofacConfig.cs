@@ -8,6 +8,7 @@ using Autofac.Integration.WebApi;
 using NetMQ;
 using NetMQ.WebSockets;
 using OAuth2;
+using OnlinerNotifier.App_Start;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
@@ -79,13 +80,10 @@ namespace OnlinerNotifier
             RegisterServices(builder);
             RegisterMappers(builder);
             RegisterJobs(builder);
+            RegisterToastNotificator(builder);
             builder.RegisterType<EmailValidator>().AsSelf();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
-            builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
-            builder.RegisterType<NetMQToastNotifier>().As<IToastNotifier>();
-            //builder.RegisterType<SignalRToastNotifier>().As<IToastNotifier>();
-
-            builder.RegisterInstance(NetMQContext.Create().CreateWSPublisher()).SingleInstance();
+            builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>(); 
         }
 
         private static void RegisterServices(ContainerBuilder builder)
@@ -112,6 +110,20 @@ namespace OnlinerNotifier
         {
             builder.RegisterType<CheckPricesJob>().AsSelf().InstancePerDependency();
             builder.RegisterType<SetNotifiersJob>().AsSelf().InstancePerDependency();
+        }
+
+        private static void RegisterToastNotificator(ContainerBuilder builder)
+        {
+            switch (ToastNotificationsConfig.ProviderName)
+            {
+                case "SignalR":
+                    builder.RegisterType<SignalRToastNotifier>().As<IToastNotifier>();
+                    break;
+                case "NetMQ":
+                    builder.RegisterInstance(NetMQContext.Create().CreateWSPublisher()).SingleInstance();
+                    builder.RegisterType<NetMQToastNotifier>().As<IToastNotifier>();
+                    break;
+            }
         }
     }
 }

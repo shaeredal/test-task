@@ -9,6 +9,7 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using FluentScheduler;
 using NetMQ.WebSockets;
+using OnlinerNotifier.App_Start;
 using OnlinerNotifier.NetMQSockets;
 using OnlinerNotifier.Scheduler;
 
@@ -22,11 +23,18 @@ namespace OnlinerNotifier
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);           
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ToastNotificationsConfig.SetProviderName();
+
             AutofacConfig.RegisterDependencies();
             JobManager.JobFactory = new JobFactory(GlobalConfiguration.Configuration);
             JobManager.Initialize(new MyRegistry());
-            ToastSocket.Bind(GlobalConfiguration.Configuration);
+
+            if (ToastNotificationsConfig.ProviderName == "NetMQ")
+            {
+                ToastSocket.Bind(GlobalConfiguration.Configuration);
+            }
         }
     }
 }
