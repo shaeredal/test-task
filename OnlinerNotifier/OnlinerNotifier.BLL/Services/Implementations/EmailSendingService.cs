@@ -37,7 +37,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             var email = user.Email;
             if (!emailValidator.IsValid(email))
             { 
-                throw new Exception("Email is invalid.");
+                throw new Exception("Email address is not valid.");
             }
             var fromAddress = new MailAddress(address, senderName);
             var toAddress = new MailAddress(email, $"{user.FirstName} {user.LastName}");

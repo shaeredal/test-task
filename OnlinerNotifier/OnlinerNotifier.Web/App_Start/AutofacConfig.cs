@@ -11,6 +11,7 @@ using OnlinerNotifier.App_Start;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
+using OnlinerNotifier.BLL.Redis;
 using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
@@ -82,7 +83,8 @@ namespace OnlinerNotifier
             RegisterToastNotificator(builder);
             builder.RegisterType<EmailValidator>().AsSelf();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
-            builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>(); 
+            builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
+            builder.RegisterType<RedisConnectorHelper>().AsSelf().SingleInstance();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
