@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System.Linq;
+using System.Net.Http;
 using System.Text;
 using NetMQ;
 using NetMQ.WebSockets;
@@ -16,7 +17,13 @@ namespace OnlinerNotifier.ToastNotifier
 
         public void Send(HttpRequestMessage request, string message)
         {
-            publisher.SendMore("toast").Send(message);
+            var userId = GetUserId(request);
+            publisher.SendMore(userId).Send(message);
+        }
+
+        public string GetUserId(HttpRequestMessage request)
+        {
+            return request.Headers.GetCookies("User").FirstOrDefault()?["User"].Value;
         }
     }
 }

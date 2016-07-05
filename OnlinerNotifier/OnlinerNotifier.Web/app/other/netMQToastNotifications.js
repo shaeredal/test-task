@@ -1,6 +1,6 @@
 ﻿'use strict';
 angular.module('netMQToastNotifications', [])
-.run(function() {
+.run(function($cookies) {
         toastr.options = {
             "closeButton": true,
             "positionClass": "toast-bottom-right"
@@ -9,7 +9,7 @@ angular.module('netMQToastNotifications', [])
         var subscriber = new JSMQ.Subscriber();
         
         subscriber.connect("ws://localhost:81");
-        subscriber.subscribe("toast");
+        subscriber.subscribe($cookies.get("User"));
 
         subscriber.onMessage = function (message) {
             message.popString();
