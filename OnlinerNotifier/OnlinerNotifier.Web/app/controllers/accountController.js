@@ -1,5 +1,5 @@
 ﻿'use strict';
-var account = angular.module('onlinerNotifier.account', ['ngRoute', 'netMQToastNotifications']); // 'signalRToastNotifications']);
+var account = angular.module('onlinerNotifier.account', []);
 
 account.controller('accountController',
     function($scope, $http, $cookies, $filter) {

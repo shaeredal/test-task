@@ -1,5 +1,5 @@
 ﻿'use strict';
-var home = angular.module('onlinerNotifier.home', ['ngRoute', 'infinite-scroll', 'netMQToastNotifications']); // 'signalRToastNotifications']);
+var home = angular.module('onlinerNotifier.home', ['infinite-scroll']);
 
 home.controller('homeController', function ($scope, $http, $cookies, $filter) {
        $scope.updateInfo = function() {

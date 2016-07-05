@@ -4,7 +4,9 @@
     'ngCookies',
     'onlinerNotifier.auth',
     'onlinerNotifier.account',
-    'onlinerNotifier.home'
+    'onlinerNotifier.home',
+    //'signalRToastNotifications',
+    'netMQToastNotifications'
 ]);
 
 app.config(['$routeProvider',
