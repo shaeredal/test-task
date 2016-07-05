@@ -92,3 +92,11 @@ a {
     font-size: 48px;
     color: lightgray;
 }
+
+.track-icon {
+    color: goldenrod;
+}
+
+.not-track-icon {
+    color: saddlebrown;
+}

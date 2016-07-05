@@ -28,25 +28,30 @@
                         <h5>Highest price</h5>
                     </div>
                 </div>
-                <div class="panel-body product indent">
+                <div class="panel-body">
                     <div class="row" ng-repeat="n in userProducts track by $index">
-                        <div class="col-md-2">
-                            <img class="product-image" ng-src={{n.Product.Image}} ng-show="n.Product.Image">
-                        </div>
-                        <div class="col-md-4">
-                            <a ng-href={{n.Product.Url}}>{{n.Product.Name}}</a>
-                        </div>
-                        <div class="col-md-2">
-                            <span>{{n.Product.MinPrice | currencyFilter:currentRate}}</span>
-                        </div>
-                        <div class="col-md-2">
-                            <span>{{n.Product.MaxPrice | currencyFilter:currentRate}}</span>
-                        </div>
-                        <div class="col-md-1">
-                            <a ng-click="changeTrackingStatus(n.Id, $index)">{{n.IsTracked | trackingFormat}}</a>
-                        </div>
-                        <div class="col-md-1">
+                        <div class="product indent">
+                            <div class="col-md-2">
+                                <img class="product-image" ng-src={{n.Product.Image}} ng-show="n.Product.Image">
+                            </div>
+                            <div class="col-md-4">
+                                <a ng-href={{n.Product.Url}}>{{n.Product.Name}}</a>
+                            </div>
+                            <div class="col-md-2">
+                                <span>{{n.Product.MinPrice | currencyFilter:currentRate}}</span>
+                            </div>
+                            <div class="col-md-2">
+                                <span>{{n.Product.MaxPrice | currencyFilter:currentRate}}</span>
+                            </div>
+                            <div class="col-md-1">
+                                <a ng-click="changeTrackingStatus(n.Id, $index)" ng-switch="n.IsTracked">
+                                    <span class="track-icon" ng-switch-when="true"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                    <span class="not-track-icon" ng-switch-when="false"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                </a>
+                            </div>
+                            <div class="col-md-1">
                                 <a class="remove-cross" ng-click="delProduct(n.Product.Id, $index)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>

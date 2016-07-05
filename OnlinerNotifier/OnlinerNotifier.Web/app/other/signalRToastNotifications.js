@@ -1,4 +1,4 @@
-﻿'use strict'
+﻿'use strict';
 angular.module('signalRToastNotifications', [])
 .run(function($cookies) {
         toastr.options = {

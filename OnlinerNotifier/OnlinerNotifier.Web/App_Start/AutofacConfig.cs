@@ -5,6 +5,8 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using NetMQ;
+using NetMQ.WebSockets;
 using OAuth2;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
@@ -13,6 +15,7 @@ using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL;
+using OnlinerNotifier.NetMQSockets;
 using OnlinerNotifier.Scheduler.Jobs;
 using OnlinerNotifier.ToastNotifier;
 
@@ -79,7 +82,10 @@ namespace OnlinerNotifier
             builder.RegisterType<EmailValidator>().AsSelf();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
-            builder.RegisterType<SignalRToastNotifier>().As<IToastNotifier>();
+            builder.RegisterType<NetMQToastNotifier>().As<IToastNotifier>();
+            //builder.RegisterType<SignalRToastNotifier>().As<IToastNotifier>();
+
+            builder.RegisterInstance(NetMQContext.Create().CreateWSPublisher()).SingleInstance();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
