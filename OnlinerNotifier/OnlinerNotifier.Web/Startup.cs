@@ -1,4 +1,8 @@
-﻿using Microsoft.Owin;
+﻿using System.Web.Http;
+using Microsoft.Owin;
+using OnlinerNotifier.App_Start;
+using OnlinerNotifier.Enums;
+using OnlinerNotifier.NetMQSockets;
 using Owin;
 
 [assembly: OwinStartup(typeof(OnlinerNotifier.Startup))]
@@ -9,7 +13,15 @@ namespace OnlinerNotifier
     {
         public void Configuration(IAppBuilder app)
         {
-            app.MapSignalR();
+            switch (ToastNotificationsConfig.ProviderType)
+            {
+                case ToastNotificationProviderType.Signalr:
+                    app.MapSignalR();
+                    break;
+                case ToastNotificationProviderType.NetMQ:
+                    ToastSocket.Bind(GlobalConfiguration.Configuration);
+                    break;
+            }
         }
     }
 }

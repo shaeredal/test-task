@@ -1,4 +1,6 @@
 ﻿@using System.Web.Optimization
+@using OnlinerNotifier.App_Start
+@using OnlinerNotifier.Enums
 @{
     Layout = null;
 }
@@ -24,6 +26,10 @@
     @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/app")
     @Scripts.Render("~/bundles/JSMQ")
-    <script src="~/signalr/hubs"></script>
+
+    @if(ToastNotificationsConfig.ProviderType == ToastNotificationProviderType.Signalr)
+    {
+        <script src="~/signalr/hubs"></script>
+    }
 </body>
 </html>

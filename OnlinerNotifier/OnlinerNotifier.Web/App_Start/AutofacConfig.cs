@@ -1,5 +1,4 @@
-﻿using System.Net.Mail;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
 using Autofac;
@@ -16,9 +15,9 @@ using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL;
-using OnlinerNotifier.NetMQSockets;
 using OnlinerNotifier.Scheduler.Jobs;
 using OnlinerNotifier.ToastNotifier;
+using OnlinerNotifier.Enums;
 
 namespace OnlinerNotifier
 {
@@ -114,12 +113,12 @@ namespace OnlinerNotifier
 
         private static void RegisterToastNotificator(ContainerBuilder builder)
         {
-            switch (ToastNotificationsConfig.ProviderName)
+            switch (ToastNotificationsConfig.ProviderType)
             {
-                case "SignalR":
+                case ToastNotificationProviderType.Signalr:
                     builder.RegisterType<SignalRToastNotifier>().As<IToastNotifier>();
                     break;
-                case "NetMQ":
+                case ToastNotificationProviderType.NetMQ:
                     builder.RegisterInstance(NetMQContext.Create().CreateWSPublisher()).SingleInstance();
                     builder.RegisterType<NetMQToastNotifier>().As<IToastNotifier>();
                     break;

@@ -1,22 +1,29 @@
 ﻿using System.Configuration;
-using NetMQ;
-using NetMQ.WebSockets;
-using NetMQ.zmq;
 using OnlinerNotifier.Configuration;
-using OnlinerNotifier.ToastNotifier;
+using OnlinerNotifier.Enums;
 
 namespace OnlinerNotifier.App_Start
 {
     public class ToastNotificationsConfig
     {
-        private static string providerName;
+        private static ToastNotificationProviderType providerType;
 
-        public static string ProviderName => providerName;
+        public static ToastNotificationProviderType ProviderType => providerType;
 
         public static void SetProviderName()
         {
             var section = (ToastNotificationsConfiguration) ConfigurationManager.GetSection("toastNotifications");
-            providerName = section.NotificationsProviderType;
+            switch (section.NotificationsProviderType)
+            {
+                case "SignalR":
+                    providerType = ToastNotificationProviderType.Signalr;
+                    break;
+                case "NetMQ":
+                    providerType = ToastNotificationProviderType.NetMQ;
+                    break;
+                default:
+                    throw new ConfigurationErrorsException();
+            }
         }
     }
 }
