@@ -5,8 +5,7 @@
     'onlinerNotifier.auth',
     'onlinerNotifier.account',
     'onlinerNotifier.home',
-    //'signalRToastNotifications',
-    'netMQToastNotifications'
+    notificationModule
 ]);
 
 app.config(['$routeProvider',

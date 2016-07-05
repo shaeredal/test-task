@@ -115,7 +115,7 @@ namespace OnlinerNotifier
         {
             switch (ToastNotificationsConfig.ProviderType)
             {
-                case ToastNotificationProviderType.Signalr:
+                case ToastNotificationProviderType.SignalR:
                     builder.RegisterType<SignalRToastNotifier>().As<IToastNotifier>();
                     break;
                 case ToastNotificationProviderType.NetMQ:

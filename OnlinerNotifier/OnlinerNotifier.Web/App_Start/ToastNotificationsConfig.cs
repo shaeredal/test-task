@@ -16,7 +16,7 @@ namespace OnlinerNotifier.App_Start
             switch (section.NotificationsProviderType)
             {
                 case "SignalR":
-                    providerType = ToastNotificationProviderType.Signalr;
+                    providerType = ToastNotificationProviderType.SignalR;
                     break;
                 case "NetMQ":
                     providerType = ToastNotificationProviderType.NetMQ;

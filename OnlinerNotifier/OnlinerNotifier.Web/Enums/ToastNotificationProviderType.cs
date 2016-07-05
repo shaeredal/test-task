@@ -2,7 +2,7 @@
 {
     public enum ToastNotificationProviderType
     {
-        Signalr,
+        SignalR,
         NetMQ
     }
 
