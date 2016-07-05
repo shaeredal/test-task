@@ -100,3 +100,7 @@ a {
 .not-track-icon {
     color: saddlebrown;
 }
+
+.notification-setting-panel {
+    padding: 16px;
+}
