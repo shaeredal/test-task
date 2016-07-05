@@ -26,8 +26,7 @@ namespace OnlinerNotifier
             AutofacConfig.RegisterDependencies();
             JobManager.JobFactory = new JobFactory(GlobalConfiguration.Configuration);
             JobManager.Initialize(new MyRegistry());
-
-            Task.Run(() => new ToastSocket(GlobalConfiguration.Configuration.DependencyResolver.GetRootLifetimeScope().Resolve<WSPublisher>()).RegisterSocket());
+            ToastSocket.Bind(GlobalConfiguration.Configuration);
         }
     }
 }

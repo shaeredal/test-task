@@ -12,23 +12,11 @@ namespace OnlinerNotifier.ToastNotifier
         public NetMQToastNotifier(WSPublisher publisher)
         {
             this.publisher = publisher;
-            //using (var context = NetMQContext.Create())
-            //{
-            //    using (WSPublisher pub = context.CreateWSPublisher())
-            //    {
-            //        pub.Bind("ws://localhost:81");
-
-            //        Poller poller = new Poller();
-
-            //        poller.Start();
-            //        publisher = pub;
-            //    }
-            //}
         }
 
         public void Send(HttpRequestMessage request, string message)
         {
-            publisher.SendMore("toast").Send(Encoding.ASCII.GetBytes(message));
+            publisher.SendMore("toast").Send(message);
         }
     }
 }

@@ -1,22 +1,16 @@
-﻿using NetMQ;
+﻿using System.Web.Http;
+using Autofac;
+using Autofac.Integration.WebApi;
 using NetMQ.WebSockets;
 
 namespace OnlinerNotifier.NetMQSockets
 {
     public class ToastSocket
     {
-        private WSPublisher publisher;
-
-        public ToastSocket(WSPublisher publisher)
+        public static void Bind(HttpConfiguration configuration)
         {
-            this.publisher = publisher;
-        }
-
-        public void RegisterSocket()
-        {
+            var publisher = configuration.DependencyResolver.GetRootLifetimeScope().Resolve<WSPublisher>();
             publisher.Bind("ws://localhost:81");
-            Poller poller = new Poller();
-            poller.Start();
         }
     }
 }
