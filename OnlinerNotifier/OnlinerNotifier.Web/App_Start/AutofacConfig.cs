@@ -84,7 +84,6 @@ namespace OnlinerNotifier
             builder.RegisterType<EmailValidator>().AsSelf();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
-            builder.RegisterType<RedisConnector>().AsSelf().SingleInstance();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
@@ -97,6 +96,7 @@ namespace OnlinerNotifier
             builder.RegisterType<EmailService>().As<IEmailService>().InstancePerDependency();
             builder.RegisterType<TrackingService>().As<ITrackingService>().InstancePerDependency();
             builder.RegisterType<TimeCalculationService>().As<ITimeCalculationService>().InstancePerDependency();
+            builder.RegisterType<RedisService>().As<IRedisService>().InstancePerDependency();
         }
 
         private static void RegisterMappers(ContainerBuilder builder)
