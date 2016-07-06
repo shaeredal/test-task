@@ -101,7 +101,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             };
             var product = new Product() { PriceChanges = priceChanges };
             var userProducts = new List<UserProduct> {new UserProduct() {IsTracked = true, Product = product}};
-            var userList = new List<User> {new User() {Id = 33, UserProducts = userProducts}};
+            var userList = new List<User> {new User() {Id = 33, UserProducts = userProducts, Email = "valid_address@it.is"}};
             return userList;
         }
 

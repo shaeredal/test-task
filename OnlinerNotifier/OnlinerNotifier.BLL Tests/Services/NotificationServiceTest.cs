@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
+using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL_Tests.Moq;
 
 namespace OnlinerNotifier.BLL_Tests.Services
@@ -15,7 +16,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
         public void Setup()
         {
             var mockStorage = new MockStorage();
-            notificationService = new NotificationService(mockStorage.UnitOfWorkMock.Object);
+            notificationService = new NotificationService(mockStorage.UnitOfWorkMock.Object, new EmailValidator());
         }
 
         [TestCase(0, ExpectedResult = 100)]
