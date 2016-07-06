@@ -1,4 +1,4 @@
-﻿app.factory('currencies', function($filter) {
+﻿app.factory('currencies', function($http, $filter) {
     var currencies = [{ name: "BYB", rate: 1 }];
     currencies.push({ name: "BYN", rate: 10000 });
     $http.get('https://www.nbrb.by/API/ExRates/Rates/145?onDate=' +

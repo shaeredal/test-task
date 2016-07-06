@@ -8,7 +8,9 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter, cu
                 .then(function (response) {
                     var user = response.data;
                     $scope.name = user.FirstName + ' ' + user.LastName;
-                    $scope.avatarUri = user.AvatarUri.replace("http://", "https://");
+                    if (user.AvatarUri.indexOf("http://") != -1){
+                        $scope.avatarUri = user.AvatarUri.replace("http://", "https://");
+                    }
                     $scope.userProducts = user.UserProducts;
                     $scope.email = user.Email;
 
