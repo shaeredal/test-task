@@ -1,8 +1,18 @@
 ﻿<div id="signin" class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <a ng-href={{twitterLink}} class="btn btn-primary btn-block" ng-show="twitterLink">
+    <div class="row" ng-show="twitterLink && facebookLink && vkLink">
+        <div class="col-md-6 col-md-offset-3 indent">
+            <a ng-href={{twitterLink}} class="btn btn-block twitter-button">
                 <i class="fa fa-twitter"></i> Sign in with Twitter
+            </a>
+        </div>
+        <div class="col-md-6 col-md-offset-3 indent">
+            <a ng-href={{facebookLink}} class="btn btn-block fb-button">
+                <i class="fa fa-facebook"></i> Sign in with Facebook
+            </a>
+        </div>
+        <div class="col-md-6 col-md-offset-3 indent">
+            <a ng-href={{vkLink}} class="btn btn-block vk-button">
+                <i class="fa fa-vk"></i> Sign in with VK
             </a>
         </div>
     </div>

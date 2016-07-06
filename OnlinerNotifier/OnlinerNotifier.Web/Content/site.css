@@ -104,3 +104,37 @@ a {
 .notification-setting-panel {
     padding: 16px;
 }
+
+.twitter-button {
+    background: #00aced;
+    color: white;
+}
+
+.twitter-button:hover {
+    background: #555555;
+    transition: background 0.2s;
+    color: white;
+}
+
+.fb-button {
+    background: #3b5998;
+    color: white;
+}
+
+.fb-button:hover {
+    background: #555555;
+    transition: background 0.2s;
+    color: white;
+}
+
+.vk-button {
+    background: #45668e;
+    color: white;
+}
+
+.vk-button:hover {
+    background: #555555;
+    transition: background 0.2s;
+    color: white;
+}
+
