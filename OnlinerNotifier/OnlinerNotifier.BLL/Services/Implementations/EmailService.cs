@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Mail;
+using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
@@ -23,11 +24,17 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         private ITemplatePathProvider templatePathProvider;
 
-        public EmailService(EmailValidator emailValidator, ISmtpClient smtpClient, ITemplatePathProvider templatePathProvider)
+        private EmailMapper emailMapper;
+
+        public EmailService(EmailValidator emailValidator, 
+            ISmtpClient smtpClient, 
+            ITemplatePathProvider templatePathProvider,
+            EmailMapper emailMapper)
         {
             this.emailValidator = emailValidator;          
             this.smtpClient = smtpClient;
             this.templatePathProvider = templatePathProvider;
+            this.emailMapper = emailMapper;
         }
 
         public void SendChanges(User user, List<NotificationProductChangesModel> priceChanges)
@@ -83,13 +90,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         public NotificationEmailModel GetEmail(User user, List<NotificationProductChangesModel> priceChanges)
         {
-            return new NotificationEmailModel()
-            {
-                EmailAddress = user.Email,
-                ReceiverName = $"{user.FirstName} {user.LastName}",
-                EmailBody = GetMailBody(priceChanges),
-                NotificationTime = user.NotificationTime
-            };
+            return emailMapper.ToModel(user, GetMailBody(priceChanges));
         }
     }
 }

@@ -17,6 +17,7 @@ namespace OnlinerNotifier.BLL.Mappers
         {
             return new NotificationEmailModel()
             {
+                UserId = user.Id,
                 EmailAddress = user.Email,
                 ReceiverName = $"{user.FirstName} {user.LastName}",
                 EmailBody = emailBody,

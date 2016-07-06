@@ -95,7 +95,9 @@
     <Compile Include="Redis\RedisConnector.cs" />
     <Compile Include="Services\IEmailService.cs" />
     <Compile Include="Services\Implementations\EmailService.cs" />
+    <Compile Include="Services\IRedisService.cs" />
     <Compile Include="Services\Implementations\NotificationService.cs" />
+    <Compile Include="Services\Implementations\RedisService.cs" />
     <Compile Include="Services\Implementations\TimeCalculationService.cs" />
     <Compile Include="Services\Implementations\OnlinerSearchService.cs" />
     <Compile Include="Services\Implementations\ProductService.cs" />
