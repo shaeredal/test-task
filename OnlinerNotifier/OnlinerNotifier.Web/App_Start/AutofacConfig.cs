@@ -84,7 +84,7 @@ namespace OnlinerNotifier
             builder.RegisterType<EmailValidator>().AsSelf();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
-            builder.RegisterType<RedisConnectorHelper>().AsSelf().SingleInstance();
+            builder.RegisterType<RedisConnector>().AsSelf().SingleInstance();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
