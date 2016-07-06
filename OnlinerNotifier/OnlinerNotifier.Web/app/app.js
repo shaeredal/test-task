@@ -2,6 +2,7 @@
 [
     'ngRoute',
     'ngCookies',
+    'ui.bootstrap',
     'onlinerNotifier.auth',
     'onlinerNotifier.account',
     'onlinerNotifier.home',

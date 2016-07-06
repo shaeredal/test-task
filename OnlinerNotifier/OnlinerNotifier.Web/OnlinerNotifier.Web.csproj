@@ -193,6 +193,7 @@
     <Content Include="app\filters\trackingFormatFilter.js" />
     <Content Include="app\other\netMQToastNotifications.js" />
     <Content Include="app\other\signalRToastNotifications.js" />
+    <Content Include="app\services\currencyService.js" />
     <Content Include="app\views\account.html" />
     <Content Include="app\views\auth.html" />
     <Content Include="app\views\home.html" />
@@ -204,6 +205,7 @@
     <Content Include="Content\site.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Global.asax" />
     <Content Include="scripts\angular-animate.js" />
     <Content Include="scripts\angular-animate.min.js" />
@@ -214,6 +216,10 @@
     <Content Include="scripts\angular-resource.min.js" />
     <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\angular-route.min.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="Content\bootstrap.min.css.map" />
