@@ -9,6 +9,10 @@ namespace OnlinerNotifier.BLL.Validators
 
         public bool IsValid(string email)
         {
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
             return Regex.IsMatch(email, emailRegexString, RegexOptions.IgnoreCase);
         }
     }

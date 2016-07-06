@@ -2,6 +2,7 @@
 using System.Net.Mail;
 using Moq;
 using NUnit.Framework;
+using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
@@ -29,7 +30,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
             var templatePathProviderMock = new Mock<ITemplatePathProvider>();
             templatePathProviderMock.Setup(m => m.GetEmailTemplatePath())
                 .Returns(() => "D:\\test-task\\OnlinerNotifier\\OnlinerNotifier.BLL\\Templates\\EmailTemplate.cshtml");
-            emailSendingService = new EmailService(new EmailValidator(), smtpClientWrapper.Object, templatePathProviderMock.Object);
+            emailSendingService = new EmailService(new EmailValidator(), smtpClientWrapper.Object, templatePathProviderMock.Object, new EmailMapper(new TimeCalculationService()));
         }
 
         [Test]
