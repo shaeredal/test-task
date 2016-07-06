@@ -112,6 +112,8 @@ namespace OnlinerNotifier
         {
             builder.RegisterType<CheckPricesJob>().AsSelf().InstancePerDependency();
             builder.RegisterType<SetNotifiersJob>().AsSelf().InstancePerDependency();
+            builder.RegisterType<SendEmailJob>().AsSelf().InstancePerDependency();
+            builder.RegisterType<PushEmailsJob>().AsSelf().InstancePerDependency();
         }
 
         private static void RegisterToastNotificator(ContainerBuilder builder)
