@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Hosting;
+﻿using System.Web.Hosting;
 using FluentScheduler;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Models.NotificationModels;
@@ -14,11 +13,11 @@ namespace OnlinerNotifier.Scheduler.Jobs
 
         private readonly INotificationService notificationService;
 
-        private readonly IEmailSendingService emailSendingService;
+        private readonly IEmailService emailSendingService;
 
         private readonly ITimeCalculationService notificationTimeCalculationService;
 
-        public SetNotifiersJob(INotificationService notificationService, IEmailSendingService emailSendingService,
+        public SetNotifiersJob(INotificationService notificationService, IEmailService emailSendingService,
             ITimeCalculationService notificationTimeCalculationService)
         {
             HostingEnvironment.RegisterObject(this);
