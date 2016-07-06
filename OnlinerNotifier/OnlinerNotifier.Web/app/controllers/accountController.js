@@ -27,10 +27,13 @@ account.controller('accountController',
             if ($scope.NotificationForm.$valid) {
                 $http.post('api/Notification/', { 'Time': $scope.time, Email: $scope.email })
                     .then(function(response) {
-                        alert("Data is set.");
-                    }, function(response) {
-                        alert("Error.");
-                    });
+                            toastr.success("Data is set.");
+                        },
+                        function(response) {
+                            toastr.error("Error.");
+                        });
+            } else {
+                toastr.error("Data is not correct.");
             }
         }
 
