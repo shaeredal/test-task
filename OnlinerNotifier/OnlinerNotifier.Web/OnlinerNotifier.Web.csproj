@@ -265,6 +265,8 @@
     </Compile>
     <Compile Include="Hubs\ToastHub.cs" />
     <Compile Include="NetMQSockets\ToastSocket.cs" />
+    <Compile Include="Scheduler\Jobs\PushEmailsJob.cs" />
+    <Compile Include="Scheduler\Jobs\SendEmailJob.cs" />
     <Compile Include="ToastNotifier\IToastNotifier.cs" />
     <Compile Include="ToastNotifier\NetMQToastNotifier.cs" />
     <Compile Include="ToastNotifier\SignalRToastNotifier.cs" />
