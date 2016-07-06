@@ -2,7 +2,7 @@
 var account = angular.module('onlinerNotifier.account', []);
 
 account.controller('accountController',
-    function($scope, $http, $cookies, $filter) {
+    function($scope, $http, $cookies, $filter, currencies) {
         var userId = $cookies.get('User');
         $http.get('api/Account/' + userId)
             .then(function(response) {
@@ -13,14 +13,7 @@ account.controller('accountController',
                 $scope.email = user.Email;
             });
 
-        $scope.currencies = [{ name: "BYB", rate: 1 }];
-        $scope.currencies.push({ name: "BYN", rate: 10000 });
-        $http.get('https://www.nbrb.by/API/ExRates/Rates/145?onDate=' +
-                $filter('date')(Date.now(), 'EEE%2C+dd+MMM+yyyy+21%3A00%3A00') +
-                '&Periodicity=0&Cur_ID=145')
-            .then(function(response) {
-                $scope.currencies.push({ name: "USD", rate: response.data.Cur_OfficialRate * 10000 });
-            });
+        $scope.currencies = currencies;
         $scope.currentRate = $scope.currencies[0].rate;
 
         $scope.delProduct = function(id, index) {
