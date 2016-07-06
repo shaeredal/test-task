@@ -94,17 +94,18 @@ namespace OnlinerNotifier
             builder.RegisterType<OnlinerSearchService>().As<IOnlinerSearchService>().InstancePerDependency();
             builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
             builder.RegisterType<NotificationService>().As<INotificationService>().InstancePerDependency();
-            builder.RegisterType<EmailSendingService>().As<IEmailSendingService>().InstancePerDependency();
+            builder.RegisterType<EmailService>().As<IEmailService>().InstancePerDependency();
             builder.RegisterType<TrackingService>().As<ITrackingService>().InstancePerDependency();
             builder.RegisterType<TimeCalculationService>().As<ITimeCalculationService>().InstancePerDependency();
         }
 
         private static void RegisterMappers(ContainerBuilder builder)
         {
-            builder.RegisterType<UserMapper>().AsSelf().InstancePerDependency();
-            builder.RegisterType<ProductMapper>().AsSelf().InstancePerDependency();
-            builder.RegisterType<PriceChangesMapper>().AsSelf().InstancePerDependency();
-            builder.RegisterType<UserProductsMapper>().AsSelf().InstancePerDependency();
+            builder.RegisterType<UserMapper>().AsSelf().SingleInstance();
+            builder.RegisterType<ProductMapper>().AsSelf().SingleInstance();
+            builder.RegisterType<PriceChangesMapper>().AsSelf().SingleInstance();
+            builder.RegisterType<UserProductsMapper>().AsSelf().SingleInstance();
+            builder.RegisterType<EmailMapper>().AsSelf().SingleInstance();
         }
 
         private static void RegisterJobs(ContainerBuilder builder)

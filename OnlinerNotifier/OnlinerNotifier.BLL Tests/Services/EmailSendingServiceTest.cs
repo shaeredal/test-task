@@ -16,7 +16,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
     [TestFixture]
     public class EmailSendingServiceTest
     {
-        private IEmailSendingService emailSendingService;
+        private IEmailService emailSendingService;
         private Mock<User> userMock;
         private Mock<ISmtpClient> smtpClientWrapper;
 
@@ -29,7 +29,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
             var templatePathProviderMock = new Mock<ITemplatePathProvider>();
             templatePathProviderMock.Setup(m => m.GetEmailTemplatePath())
                 .Returns(() => "D:\\test-task\\OnlinerNotifier\\OnlinerNotifier.BLL\\Templates\\EmailTemplate.cshtml");
-            emailSendingService = new EmailSendingService(new EmailValidator(), smtpClientWrapper.Object, templatePathProviderMock.Object);
+            emailSendingService = new EmailService(new EmailValidator(), smtpClientWrapper.Object, templatePathProviderMock.Object);
         }
 
         [Test]

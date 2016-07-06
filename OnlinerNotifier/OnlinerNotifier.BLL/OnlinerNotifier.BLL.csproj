@@ -74,11 +74,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\EmailMapper.cs" />
     <Compile Include="Mappers\PriceChangesMapper.cs" />
     <Compile Include="Mappers\ProductMapper.cs" />
     <Compile Include="Mappers\UserMapper.cs" />
     <Compile Include="Mappers\UserProductsMapper.cs" />
     <Compile Include="Models\NotificationModels\NotificationDataModel.cs" />
+    <Compile Include="Models\NotificationModels\NotificationEmailModel.cs" />
     <Compile Include="Models\NotificationModels\NotificationParametersModel.cs" />
     <Compile Include="Models\NotificationModels\NotificationProductChangesModel.cs" />
     <Compile Include="Models\OnlinerDataModels\PriceOnliner.cs" />
@@ -91,8 +93,8 @@
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redis\RedisConnectorHelper.cs" />
-    <Compile Include="Services\IEmailSendingService.cs" />
-    <Compile Include="Services\Implementations\EmailSendingService.cs" />
+    <Compile Include="Services\IEmailService.cs" />
+    <Compile Include="Services\Implementations\EmailService.cs" />
     <Compile Include="Services\Implementations\NotificationService.cs" />
     <Compile Include="Services\Implementations\TimeCalculationService.cs" />
     <Compile Include="Services\Implementations\OnlinerSearchService.cs" />
