@@ -5,4 +5,12 @@ angular.module('onlinerNotifier.auth', ['ngRoute'])
             .then(function(response) {
                 $scope.twitterLink = response.data.Url;
             });
+        $http.get('Authorization/GetAuthUrl?providerName=Facebook')
+            .then(function (response) {
+                $scope.facebookLink = response.data.Url;
+            });
+        $http.get('Authorization/GetAuthUrl?providerName=Vkontakte')
+            .then(function (response) {
+                $scope.vkLink = response.data.Url;
+            });
     });
