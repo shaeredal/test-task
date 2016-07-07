@@ -1,33 +1,21 @@
-﻿<html>
-<head>
-    <title>Price changes</title>
-</head>
-<body>
-    <table>
-        <tr>
-            <td>
-                <ol>
-                    @foreach (var product in Model)
+﻿<body>
+    <table border="1">
+        @foreach (var product in Model)
+            {
+            <tr>
+                <td>
+                    <span>@product.Product.Name</span>
+                </td>
+                <td>
+                    @foreach (var change in product.Changes)
                     {
-                        <li>
-                            <p>@product.Product.Name</p>
-                            <ul>
-                                @foreach (var change in product.Changes)
-                                {
-                                    <li>
-                                        <p>Old prices:</p>
-                                        <p>@change.OldMinPrice - @change.OldMaxPrice</p>
-                                        <p>New prices:</p>
-                                        <p>@change.NewMinPrice - @change.NewMaxPrice</p>
-                                    </li>
-                                }
-
-                            </ul>
-                        </li>
+                        <p>Old prices:</p>
+                        <p>@change.OldMinPrice - @change.OldMaxPrice</p>
+                        <p>New prices:</p>
+                        <p>@change.NewMinPrice - @change.NewMaxPrice</p>
                     }
-                </ol>
-            </td>
-        </tr>
+                </td>
+            </tr>
+        }
     </table>
 </body>
-</html>
