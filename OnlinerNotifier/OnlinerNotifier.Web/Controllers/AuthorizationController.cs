@@ -56,7 +56,7 @@ namespace OnlinerNotifier.Controllers
 
         private void SetStorage(string id, string key)
         {
-            RedisConnector.Connection.GetDatabase().StringSet($"user:{id}:key", key, new TimeSpan(1, 0, 0));
+            RedisConnector.Connection.GetDatabase().StringSet($"user:{id}:key", key, TimeSpan.FromHours(1));
         }
 
         private void SetCookies(string id, string key)
