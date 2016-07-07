@@ -1,6 +1,6 @@
 ﻿app.factory('currencies', function($http, $filter) {
-    var currencies = [{ name: "BYB", rate: 1 }];
-    currencies.push({ name: "BYN", rate: 10000 });
+    var currencies = [{ name: "BYN", rate: 10000 }];
+    currencies.push({ name: "BYB", rate: 1 });
     $http.get('https://www.nbrb.by/API/ExRates/Rates/145?onDate=' +
             $filter('date')(Date.now(), 'EEE%2C+dd+MMM+yyyy+21%3A00%3A00') +
             '&Periodicity=0&Cur_ID=145')
