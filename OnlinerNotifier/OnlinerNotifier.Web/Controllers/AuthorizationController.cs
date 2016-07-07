@@ -32,21 +32,19 @@ namespace OnlinerNotifier.Controllers
         public ActionResult Auth(string providerName)
         {
             UserInfo userInfo;
+            string key;
+            var client = GetClient(providerName);
             try
             {
-                var client = GetClient(providerName);
                 userInfo = client.GetUserInfo(Request.QueryString);
-                //var token = ((OAuth2Client)client).GetToken(Request.QueryString);
             }
             catch (Exception e)
             {
                 return Redirect("/#/auth");
             }
             var userId = userService.AddOrUpdate(userInfo);
-            var key = GetKey(providerName, Request.QueryString);
-
+            key = GetKey(providerName, client);
             SetAuthParameters(userId.ToString(), key);
-
             return Redirect("/#/home");
         }
 
@@ -74,16 +72,15 @@ namespace OnlinerNotifier.Controllers
             return authorizationRoot.Clients.First(c => c.Name == providerName);
         }
 
-        private string GetKey(string providerName, NameValueCollection queryString)
+        private string GetKey(string providerName, IClient client)
         {
-            //TODO: try to get token
             if (providerName == "Vkontakte" || providerName == "Facebook")
             {
-                return queryString["code"];
+                return ((OAuth2Client) client).AccessToken;
             }
             else if (providerName == "Twitter")
             {
-                return queryString["oauth_token"];
+                return ((OAuthClient)client).AccessToken;
             }
             else
             {
