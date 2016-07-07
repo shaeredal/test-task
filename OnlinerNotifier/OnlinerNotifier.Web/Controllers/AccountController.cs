@@ -1,10 +1,6 @@
-﻿using System.Linq;
-using System.Net.Http;
-using System.Web.Http;
-using OnlinerNotifier.BLL.Models;
+﻿using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.Filters;
-using OnlinerNotifier.ToastNotifier;
 
 namespace OnlinerNotifier.Controllers
 {
