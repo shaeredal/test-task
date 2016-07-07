@@ -8,6 +8,8 @@ namespace OnlinerNotifier.Scheduler.Jobs
 {
     public class SendEmailJob : IJob
     {
+        private object lockObject = new object();
+             
         private IRedisService redisService;
 
         private IEmailService emailService;
@@ -37,10 +39,12 @@ namespace OnlinerNotifier.Scheduler.Jobs
             var notificationTime = new DateTime((long)redis.StringGet($"notification email:{key}:time"));
             JobManager.AddJob(() =>
             {
-                var email = redisService.GetEmail(key);
-                emailService.SendChanges(email);
+                lock (lockObject)
+                {
+                    var email = redisService.GetEmail(key);
+                    emailService.SendChanges(email);
+                }
             }, (s) => s.ToRunOnceAt(notificationTime));
         }
-
     }
 }

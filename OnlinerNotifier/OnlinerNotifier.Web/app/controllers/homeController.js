@@ -1,7 +1,7 @@
 ﻿'use strict';
 var home = angular.module('onlinerNotifier.home', ['infinite-scroll']);
 
-home.controller('homeController', function ($scope, $http, $cookies, $filter, currencies) {
+home.controller('homeController', function ($scope, $http, $cookies, $location, $filter, currencies) {
        $scope.updateInfo = function() {
             var userId = $cookies.get('User');
             $http.get('api/Account/' + userId)
@@ -21,6 +21,11 @@ home.controller('homeController', function ($scope, $http, $cookies, $filter, cu
                         }
                         return idList;
                     }();
+                },
+                function(response) {
+                    if (response.status == 401) {
+                        $location.path("/");
+                    };
                 });
         }
         $scope.updateInfo();
