@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Filters;
+using OnlinerNotifier.BLL.Redis;
 
 namespace OnlinerNotifier.Filters
 {
@@ -17,12 +16,21 @@ namespace OnlinerNotifier.Filters
         {
 
             var userIdCookie = context.Request.Headers.GetCookies("User").FirstOrDefault();
-            if (userIdCookie != null)
+            var userKeyCookie = context.Request.Headers.GetCookies("Key").FirstOrDefault();
+            if (userIdCookie != null && userKeyCookie != null)
             {
                 int userId;
                 if (int.TryParse(userIdCookie["User"].Value, out userId))
                 {
-                    context.Principal = new Principal(userId);
+                    var key = RedisConnector.Connection.GetDatabase().StringGet($"user:{userId}:key");
+                    if (!key.IsNull && key == userKeyCookie["Key"].Value)
+                    {
+                        context.Principal = new Principal(userId);
+                    }
+                    else
+                    {
+                        context.ErrorResult = new AuthenticationFailureResult("Key is not match.", context.Request);
+                    }
                 }
                 else
                 {
