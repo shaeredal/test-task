@@ -54,7 +54,10 @@ namespace OnlinerNotifier
                 .Include("~/Content/toastr.css"));
 
             bundles.Add(new StyleBundle("~/Content/site")
-                .Include("~/Content/site.css"));
+                .Include("~/Content/app/site.css")
+                .Include("~/Content/app/auth.css")
+                .Include("~/Content/app/home.css")
+                .Include("~/Content/app/account.css"));
         }
     }
 }
