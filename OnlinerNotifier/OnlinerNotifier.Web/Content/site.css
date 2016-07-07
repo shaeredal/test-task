@@ -105,36 +105,25 @@ a {
     padding: 16px;
 }
 
-.twitter-button {
+.twitter-button:hover, .twitter-button:active, .twitter-button:visited {
     background: #00aced;
     color: white;
 }
 
-.twitter-button:hover {
-    background: #555555;
-    transition: background 0.2s;
-    color: white;
-}
-
-.fb-button {
+.fb-button:hover, .fb-button:active, .fb-button:visited {
     background: #3b5998;
     color: white;
 }
 
-.fb-button:hover {
-    background: #555555;
-    transition: background 0.2s;
-    color: white;
-}
-
-.vk-button {
+.vk-button:hover, .vk-button:active, .vk-button:visited {
     background: #45668e;
     color: white;
 }
 
-.vk-button:hover {
-    background: #555555;
+.social-button{
+    background: #999999;
     transition: background 0.2s;
-    color: white;
+    transition: color 0.2s;
+    color: #444444;
 }
 
