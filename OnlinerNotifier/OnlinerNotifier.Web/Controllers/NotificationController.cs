@@ -24,5 +24,14 @@ namespace OnlinerNotifier.Controllers
             }
             return Conflict();
         }
+
+        public IHttpActionResult Delete()
+        {
+            if (userService.DisableNotifications(Principal.Id))
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
     }
 }

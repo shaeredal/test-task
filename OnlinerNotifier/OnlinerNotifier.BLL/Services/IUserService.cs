@@ -9,5 +9,6 @@ namespace OnlinerNotifier.BLL.Services
         int AddOrUpdate(OAuth2.Models.UserInfo userInfo);
         UserDataViewModel GetUserData(int id);
         bool SetNotificationParameters(int userId, NotificationParametersModel parameters);
+        bool DisableNotifications(int userId);
     }
 }

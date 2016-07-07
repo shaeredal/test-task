@@ -13,5 +13,7 @@ namespace OnlinerNotifier.BLL.Models
         public string Email { get; set; }
 
         public List<UserProductViewModel> UserProducts { get; set; }
+
+        public bool EnableNotifications { get; set; }
     }
 }

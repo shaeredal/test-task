@@ -22,7 +22,10 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         public List<NotificationDataModel> GetNotificationData()
         {
-            var users = unitOfWork.Users.GetAllDeep().Where(u => emailValidator.IsValid(u.Email)).ToList();
+            var users = unitOfWork.Users.GetAllDeep()
+                .Where(u => u.EnableNotifications)
+                .Where(u => emailValidator.IsValid(u.Email))
+                .ToList();
 
             var result = new List<NotificationDataModel>();
             foreach (var user in users)

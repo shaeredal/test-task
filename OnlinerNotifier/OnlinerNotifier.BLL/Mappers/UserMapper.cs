@@ -47,7 +47,8 @@ namespace OnlinerNotifier.BLL.Mappers
                 LastName = user.LastName,
                 AvatarUri = user.AvatarUri,
                 Email = user.Email,
-                UserProducts = user.UserProducts.Select(up => userProductsMapper.ToModel(up)).ToList()
+                UserProducts = user.UserProducts.Select(up => userProductsMapper.ToModel(up)).ToList(),
+                EnableNotifications = user.EnableNotifications
             };
         }
     }

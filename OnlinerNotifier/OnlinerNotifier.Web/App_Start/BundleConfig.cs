@@ -32,6 +32,7 @@ namespace OnlinerNotifier
                 .Include("~/app/controllers/homeController.js")
                 .Include("~/app/filters/trackingFormatFilter.js")
                 .Include("~/app/filters/currencyFilter.js")
+                .Include("~/app/filters/notificationFilter.js")
                 .Include("~/app/services/currencyService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/SignalR")

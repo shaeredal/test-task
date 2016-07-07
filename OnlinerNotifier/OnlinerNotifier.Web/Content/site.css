@@ -105,6 +105,11 @@ a {
     padding: 16px;
 }
 
+.notification-status {
+    font-size: 24px;
+    color: lightgray;
+}
+
 .twitter-button:hover, .twitter-button:active, .twitter-button:visited {
     background: #00aced;
     color: white;
