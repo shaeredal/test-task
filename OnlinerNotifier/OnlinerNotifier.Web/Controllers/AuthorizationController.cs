@@ -40,12 +40,12 @@ namespace OnlinerNotifier.Controllers
             }
             catch (Exception e)
             {
-                return Redirect("/#/auth");
+                return Redirect("/auth");
             }
             var userId = userService.AddOrUpdate(userInfo);
             key = GetKey(providerName, client);
             SetAuthParameters(userId.ToString(), key);
-            return Redirect("/#/home");
+            return Redirect("/home");
         }
 
         private void SetAuthParameters(string id, string key)

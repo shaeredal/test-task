@@ -83,7 +83,7 @@ home.controller('homeController', function ($scope, $http, $cookies, $location, 
                 .then(function(response) {
                     $scope.updateInfo();
                 }, function(response) {
-                    alert('"'+product.full_name+'"'+" is not added.");
+                    toastr.error('"'+product.full_name+'"'+" is not added.");
                 });
         }
 
