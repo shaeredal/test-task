@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OAuth2;
 using OAuth2.Client;
+using OAuth2.Client.Impl;
 using OAuth2.Models;
+using OnlinerNotifier.BLL.Redis;
 using OnlinerNotifier.BLL.Services;
 
 namespace OnlinerNotifier.Controllers
@@ -23,7 +26,7 @@ namespace OnlinerNotifier.Controllers
 
         public ActionResult GetAuthUrl(string providerName)
         {
-            return Json( new { Url = GetClient(providerName).GetLoginLinkUri()}, JsonRequestBehavior.AllowGet);
+            return Json( new { Url = GetClient(providerName).GetLoginLinkUri() }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Auth(string providerName)
@@ -31,28 +34,61 @@ namespace OnlinerNotifier.Controllers
             UserInfo userInfo;
             try
             {
-                userInfo = GetClient(providerName).GetUserInfo(Request.QueryString);
+                var client = GetClient(providerName);
+                userInfo = client.GetUserInfo(Request.QueryString);
+                //var token = ((OAuth2Client)client).GetToken(Request.QueryString);
             }
             catch (Exception e)
             {
                 return Redirect("/#/auth");
             }
             var userId = userService.AddOrUpdate(userInfo);
+            var key = GetKey(providerName, Request.QueryString);
 
-            SetCookies(userId.ToString());
+            SetAuthParameters(userId.ToString(), key);
 
             return Redirect("/#/home");
         }
 
-        private void SetCookies(string id)
+        private void SetAuthParameters(string id, string key)
         {
-            HttpCookie cookie = new HttpCookie("User", id);
-            Response.Cookies.Add(cookie);
+            SetStorage(id, key);
+            SetCookies(id, key);
+        }
+
+        private void SetStorage(string id, string key)
+        {
+            RedisConnector.Connection.GetDatabase().StringSet($"user:{id}:key", key);
+        }
+
+        private void SetCookies(string id, string key)
+        {
+            HttpCookie idCookie = new HttpCookie("User", id);
+            HttpCookie keyCookie = new HttpCookie("Key", key);
+            Response.Cookies.Add(idCookie);
+            Response.Cookies.Add(keyCookie);
         }
 
         private IClient GetClient(string providerName)
         {
             return authorizationRoot.Clients.First(c => c.Name == providerName);
+        }
+
+        private string GetKey(string providerName, NameValueCollection queryString)
+        {
+            //TODO: try to get token
+            if (providerName == "Vkontakte" || providerName == "Facebook")
+            {
+                return queryString["code"];
+            }
+            else if (providerName == "Twitter")
+            {
+                return queryString["oauth_token"];
+            }
+            else
+            {
+                throw new Exception("Unsupported provider name.");
+            }
         }
     }
 }
