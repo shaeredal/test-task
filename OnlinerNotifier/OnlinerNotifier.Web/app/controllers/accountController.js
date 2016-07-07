@@ -2,7 +2,7 @@
 var account = angular.module('onlinerNotifier.account', []);
 
 account.controller('accountController',
-    function($scope, $http, $cookies, $filter, currencies) {
+    function($scope, $http, $cookies, $location, $filter, currencies) {
         var userId = $cookies.get('User');
         $http.get('api/Account/' + userId)
             .then(function(response) {
@@ -11,7 +11,12 @@ account.controller('accountController',
                 $scope.avatarUri = user.AvatarUri;
                 $scope.userProducts = user.UserProducts;
                 $scope.email = user.Email;
-            });
+            },
+                function (response) {
+                    if (response.status == 401) {
+                        $location.path("/");
+                    };
+                });
 
         $scope.currencies = currencies;
         $scope.currentRate = $scope.currencies[0].rate;

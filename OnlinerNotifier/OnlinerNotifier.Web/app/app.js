@@ -9,8 +9,8 @@
     notificationModule
 ]);
 
-app.config(['$routeProvider',
-    function ($routeProvider) {
+app.config(['$routeProvider', '$locationProvider',
+    function ($routeProvider, $locationProvider) {
         $routeProvider.when('/auth', {
             templateUrl: '/app/views/auth.html',
             controller: 'authController'
@@ -26,4 +26,6 @@ app.config(['$routeProvider',
         .otherwise({
             redirectTo: '/auth'    
         });
-}] )
+
+        $locationProvider.html5Mode(true);
+    }])
