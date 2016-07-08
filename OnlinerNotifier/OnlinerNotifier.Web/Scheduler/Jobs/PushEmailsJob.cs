@@ -2,6 +2,7 @@
 using FluentScheduler;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.EmailServices;
 
 namespace OnlinerNotifier.Scheduler.Jobs
 {
@@ -9,14 +10,14 @@ namespace OnlinerNotifier.Scheduler.Jobs
     {
         private readonly INotificationService notificationService;
 
-        private readonly IEmailService emailService;
+        private readonly IEmailBuildingService emailBuilderService;
 
         private readonly IRedisService redisService;
 
-        public PushEmailsJob(INotificationService notificationService, IEmailService emailService, IRedisService redisService)
+        public PushEmailsJob(INotificationService notificationService, IEmailBuildingService emailBuilderService, IRedisService redisService)
         {
             this.notificationService = notificationService;
-            this.emailService = emailService;
+            this.emailBuilderService = emailBuilderService;
             this.redisService = redisService;
         }
 
@@ -35,7 +36,7 @@ namespace OnlinerNotifier.Scheduler.Jobs
         {
             foreach (var userData in data)
             {
-                var email = emailService.GetEmail(userData.User, userData.Products);
+                var email = emailBuilderService.GetEmail(userData.User, userData.Products);
                 redisService.PublishEmail(email);
             }
         }

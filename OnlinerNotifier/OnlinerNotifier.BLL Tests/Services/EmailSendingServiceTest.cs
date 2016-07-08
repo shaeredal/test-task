@@ -5,7 +5,10 @@ using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Implementations;
+using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
+using OnlinerNotifier.BLL.Templates.Builders;
 using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
@@ -20,23 +23,27 @@ namespace OnlinerNotifier.BLL_Tests.Services
         private IEmailService emailSendingService;
         private Mock<User> userMock;
         private Mock<ISmtpClient> smtpClientWrapper;
+        private IEmailBuildingService emailBuilderService;
 
         [SetUp]
         public void Setup()
         {
             var mockStorage = new MockStorage();
             userMock = mockStorage.UserMock;
-            smtpClientWrapper = mockStorage.smtpClientMock;
+            smtpClientWrapper = mockStorage.SmtpClientMock;
             var templatePathProviderMock = new Mock<ITemplatePathProvider>();
             templatePathProviderMock.Setup(m => m.GetEmailTemplatePath())
                 .Returns(() => "D:\\test-task\\OnlinerNotifier\\OnlinerNotifier.BLL\\Templates\\EmailTemplate.cshtml");
-            emailSendingService = new EmailService(new EmailValidator(), smtpClientWrapper.Object, templatePathProviderMock.Object, new EmailMapper(new TimeCalculationService()));
+            emailBuilderService = new EmailBuildingService(new EmailMapper(new TimeCalculationService()), new RazorPriceChangesEmailBuilder(templatePathProviderMock.Object));
+            emailSendingService = new EmailService(new EmailValidator(), smtpClientWrapper.Object);
         }
 
         [Test]
         public void SendChanges_EmailSending_SendEmail()
         {
-            emailSendingService.SendChanges(userMock.Object, new List<NotificationProductChangesModel>());
+            var email = emailBuilderService.GetEmail(userMock.Object, new List<NotificationProductChangesModel>());
+
+            emailSendingService.Send(email);
 
             smtpClientWrapper.Verify(m => m.Send(It.IsAny<MailMessage>()), Times.Once);
         }

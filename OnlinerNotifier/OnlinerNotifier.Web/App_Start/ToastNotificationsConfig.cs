@@ -2,7 +2,7 @@
 using OnlinerNotifier.Configuration;
 using OnlinerNotifier.Enums;
 
-namespace OnlinerNotifier.App_Start
+namespace OnlinerNotifier
 {
     public class ToastNotificationsConfig
     {

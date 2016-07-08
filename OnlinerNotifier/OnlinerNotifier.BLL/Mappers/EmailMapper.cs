@@ -13,7 +13,7 @@ namespace OnlinerNotifier.BLL.Mappers
             this.timeCalculationService = timeCalculationService;
         }
 
-        public NotificationEmailModel ToModel(User user, string emailBody)
+        public NotificationEmailModel ToModel(User user, string emailBody, string subject)
         {
             return new NotificationEmailModel()
             {
@@ -21,6 +21,7 @@ namespace OnlinerNotifier.BLL.Mappers
                 EmailAddress = user.Email,
                 ReceiverName = $"{user.FirstName} {user.LastName}",
                 EmailBody = emailBody,
+                Subject = subject,
                 NotificationTime = timeCalculationService.CalculateNotificationTime(user.NotificationTime)
             };
         }

@@ -7,11 +7,12 @@ using Autofac.Integration.WebApi;
 using NetMQ;
 using NetMQ.WebSockets;
 using OAuth2;
-using OnlinerNotifier.App_Start;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
-using OnlinerNotifier.BLL.Redis;
+using OnlinerNotifier.BLL.Services.EmailServices;
+using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
+using OnlinerNotifier.BLL.Templates.Builders;
 using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
@@ -84,6 +85,7 @@ namespace OnlinerNotifier
             builder.RegisterType<EmailValidator>().AsSelf();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
+            builder.RegisterType<RazorPriceChangesEmailBuilder>().As<IPriceChangesEmailBuilder>();
         }
 
         private static void RegisterServices(ContainerBuilder builder)
@@ -94,6 +96,7 @@ namespace OnlinerNotifier
             builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
             builder.RegisterType<NotificationService>().As<INotificationService>().InstancePerDependency();
             builder.RegisterType<EmailService>().As<IEmailService>().InstancePerDependency();
+            builder.RegisterType<EmailBuildingService>().As<IEmailBuildingService>().InstancePerDependency();
             builder.RegisterType<TrackingService>().As<ITrackingService>().InstancePerDependency();
             builder.RegisterType<TimeCalculationService>().As<ITimeCalculationService>().InstancePerDependency();
             builder.RegisterType<RedisService>().As<IRedisService>().InstancePerDependency();
@@ -111,7 +114,6 @@ namespace OnlinerNotifier
         private static void RegisterJobs(ContainerBuilder builder)
         {
             builder.RegisterType<CheckPricesJob>().AsSelf().InstancePerDependency();
-            builder.RegisterType<SetNotifiersJob>().AsSelf().InstancePerDependency();
             builder.RegisterType<SendEmailJob>().AsSelf().InstancePerDependency();
             builder.RegisterType<PushEmailsJob>().AsSelf().InstancePerDependency();
         }
