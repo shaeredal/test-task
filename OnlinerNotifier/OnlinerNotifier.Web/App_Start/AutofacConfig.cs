@@ -14,8 +14,10 @@ using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Mappers.Interfaces;
 using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
+using OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices;
 using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
+using OnlinerNotifier.BLL.Services.Interfaces.PriceChangesServices;
 using OnlinerNotifier.BLL.Templates.Builders;
 using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
@@ -98,7 +100,8 @@ namespace OnlinerNotifier
             builder.RegisterType<UserService>().As<INotifiableUsersProvider>().InstancePerDependency();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerDependency();
             builder.RegisterType<OnlinerSearchService>().As<IOnlinerSearchService>().InstancePerDependency();
-            builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
+            builder.RegisterType<PricesChangesInfoService>().As<IPricesChangesInfoService>().InstancePerDependency();
+            builder.RegisterType<PriceChangesService>().As<IPriceChangesService>().InstancePerDependency();
             builder.RegisterType<NotificationDataDataService>().As<INotificationDataService>().InstancePerDependency();
             builder.RegisterType<EmailModelSender>().As<IEmailModelSender>().InstancePerDependency();
             builder.RegisterType<EmailBuildingService>().As<IEmailBuildingService>().InstancePerDependency();
@@ -111,7 +114,7 @@ namespace OnlinerNotifier
         {
             builder.RegisterType<UserMapper>().AsSelf().SingleInstance();
             builder.RegisterType<ProductMapper>().AsSelf().SingleInstance();
-            builder.RegisterType<PriceChangesMapper>().AsSelf().SingleInstance();
+            builder.RegisterType<PriceChangesMapper>().As<IPriceChangesMapper>().SingleInstance();
             builder.RegisterType<UserProductsMapper>().AsSelf().SingleInstance();
             builder.RegisterType<EmailMapper>().As<IEmailMapper>().SingleInstance();
             builder.RegisterType<NotificationProductChangesModelMapper>()

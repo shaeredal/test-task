@@ -21,10 +21,19 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             request.Method = "GET";
             request.Accept = "application/json";
             var response = (HttpWebResponse)request.GetResponse();
-            using (var reader = new StreamReader(response.GetResponseStream()))
+            return ReadResponseStream(response.GetResponseStream());
+        }
+
+        private string ReadResponseStream(Stream responseStream)
+        {
+            if (responseStream != null)
             {
-                return reader.ReadToEnd();
+                using (var reader = new StreamReader(responseStream))
+                {
+                    return reader.ReadToEnd();
+                }
             }
+            return null;
         }
 
         private SearchResultOnliner ParseResponse(string searchResultString)
