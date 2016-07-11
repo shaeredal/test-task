@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using OnlinerNotifier.BLL.Mappers;
+using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.DAL;

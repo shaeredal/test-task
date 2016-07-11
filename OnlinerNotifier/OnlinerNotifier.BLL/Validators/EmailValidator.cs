@@ -2,7 +2,7 @@
 
 namespace OnlinerNotifier.BLL.Validators
 {
-    public class EmailValidator
+    public class EmailValidator : IEmailValidator
     {
         private string emailRegexString =
           @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z";

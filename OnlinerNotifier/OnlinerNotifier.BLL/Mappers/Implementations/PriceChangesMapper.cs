@@ -2,7 +2,7 @@
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 using OnlinerNotifier.DAL.Models;
 
-namespace OnlinerNotifier.BLL.Mappers
+namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
     public class PriceChangesMapper
     {

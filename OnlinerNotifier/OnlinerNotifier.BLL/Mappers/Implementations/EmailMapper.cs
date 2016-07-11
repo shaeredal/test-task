@@ -1,11 +1,11 @@
-﻿using OnlinerNotifier.BLL.Models.NotificationModels;
-using OnlinerNotifier.BLL.Services;
+﻿using OnlinerNotifier.BLL.Mappers.Interfaces;
+using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.DAL.Models;
 
-namespace OnlinerNotifier.BLL.Mappers
+namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
-    public class EmailMapper
+    public class EmailMapper : IEmailMapper
     {
         private ITimeCalculationService timeCalculationService;
 

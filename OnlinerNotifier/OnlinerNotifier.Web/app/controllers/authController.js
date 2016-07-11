@@ -1,5 +1,5 @@
 ﻿'use strict';
-angular.module('onlinerNotifier.auth', ['ngRoute'])
+angular.module('onlinerNotifier.auth', [])
     .controller('authController', function ($scope, $http) {
         $http.get('Authorization/GetAuthUrl?providerName=Twitter')
             .then(function(response) {

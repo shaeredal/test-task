@@ -1,12 +1,9 @@
-﻿using System.Net.Mail;
-using OnlinerNotifier.BLL.Models.NotificationModels;
+﻿using OnlinerNotifier.BLL.Models.NotificationModels;
 
-namespace OnlinerNotifier.BLL.Services.Interfaces.EmailServices
+namespace OnlinerNotifier.BLL.Services.EmailServices
 {
-    public interface IEmailService
+    public interface IEmailModelSender
     {
         void Send(NotificationEmailModel emailModel);
-
-        void Send(MailAddress toAddress, string mailBody, string subject, bool isHtml);
     }
 }
