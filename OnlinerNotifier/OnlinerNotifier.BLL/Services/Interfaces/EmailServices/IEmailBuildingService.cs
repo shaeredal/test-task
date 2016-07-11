@@ -2,7 +2,7 @@
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.DAL.Models;
 
-namespace OnlinerNotifier.BLL.Services.EmailServices
+namespace OnlinerNotifier.BLL.Services.Interfaces.EmailServices
 {
     public interface IEmailBuildingService
     {

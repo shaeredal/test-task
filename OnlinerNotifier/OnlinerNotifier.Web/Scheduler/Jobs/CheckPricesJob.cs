@@ -1,6 +1,7 @@
 ﻿using System.Web.Hosting;
 using FluentScheduler;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.Interfaces;
 
 namespace OnlinerNotifier.Scheduler.Jobs
 {

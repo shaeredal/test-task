@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OnlinerNotifier.BLL.Models.NotificationModels;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;

@@ -1,4 +1,4 @@
-﻿namespace OnlinerNotifier.BLL.Services
+﻿namespace OnlinerNotifier.BLL.Services.Interfaces
 {
     public interface IPricesCheckingService
     {

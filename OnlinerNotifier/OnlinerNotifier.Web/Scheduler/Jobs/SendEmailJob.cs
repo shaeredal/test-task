@@ -2,7 +2,8 @@
 using FluentScheduler;
 using OnlinerNotifier.BLL.Redis;
 using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.EmailServices;
+using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using StackExchange.Redis;
 
 namespace OnlinerNotifier.Scheduler.Jobs

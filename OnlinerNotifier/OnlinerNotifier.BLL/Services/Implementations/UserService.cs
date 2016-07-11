@@ -2,6 +2,7 @@
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Models.NotificationModels;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
 

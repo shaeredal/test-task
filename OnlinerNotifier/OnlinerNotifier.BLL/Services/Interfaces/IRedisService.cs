@@ -1,6 +1,6 @@
 using OnlinerNotifier.BLL.Models.NotificationModels;
 
-namespace OnlinerNotifier.BLL.Services
+namespace OnlinerNotifier.BLL.Services.Interfaces
 {
     public interface IRedisService
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Mail;
 using OnlinerNotifier.BLL.Models.NotificationModels;
-using OnlinerNotifier.BLL.Services.EmailServices;
+using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
 

@@ -1,7 +1,7 @@
 ﻿using System.Net.Mail;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 
-namespace OnlinerNotifier.BLL.Services.EmailServices
+namespace OnlinerNotifier.BLL.Services.Interfaces.EmailServices
 {
     public interface IEmailService
     {

@@ -1,5 +1,6 @@
 ﻿using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Redis;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using StackExchange.Redis;
 
 namespace OnlinerNotifier.BLL.Services.Implementations

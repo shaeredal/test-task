@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models.NotificationModels;
-using OnlinerNotifier.BLL.Services.EmailServices;
+using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using OnlinerNotifier.BLL.Templates.Builders;
 using OnlinerNotifier.DAL.Models;
 

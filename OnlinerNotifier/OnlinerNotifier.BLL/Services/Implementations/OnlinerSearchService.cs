@@ -2,6 +2,7 @@
 using System.Net;
 using Newtonsoft.Json;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
+using OnlinerNotifier.BLL.Services.Interfaces;
 
 namespace OnlinerNotifier.BLL.Services.Implementations
 {

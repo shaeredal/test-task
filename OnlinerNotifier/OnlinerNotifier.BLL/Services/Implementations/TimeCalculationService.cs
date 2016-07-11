@@ -1,4 +1,5 @@
 ﻿using System;
+using OnlinerNotifier.BLL.Services.Interfaces;
 
 namespace OnlinerNotifier.BLL.Services.Implementations
 {

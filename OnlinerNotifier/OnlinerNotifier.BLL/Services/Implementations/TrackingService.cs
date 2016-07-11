@@ -1,4 +1,5 @@
 ﻿using OnlinerNotifier.BLL.Models.TrackingModels;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.DAL;
 
 namespace OnlinerNotifier.BLL.Services.Implementations

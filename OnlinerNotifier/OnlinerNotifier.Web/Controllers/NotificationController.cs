@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.Filters;
 
 namespace OnlinerNotifier.Controllers

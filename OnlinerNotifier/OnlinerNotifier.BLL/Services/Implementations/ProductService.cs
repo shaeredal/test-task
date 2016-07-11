@@ -2,6 +2,7 @@
 using System.Linq;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
 

@@ -5,6 +5,7 @@ using System.Web.Mvc.Html;
 using Moq;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;

@@ -2,7 +2,8 @@
 using FluentScheduler;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.EmailServices;
+using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 
 namespace OnlinerNotifier.Scheduler.Jobs
 {
