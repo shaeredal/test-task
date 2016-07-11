@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Net.Mail;
 using OnlinerNotifier.BLL.Models.NotificationModels;
+using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL.Wrappers;
 
 namespace OnlinerNotifier.BLL.Services.Implementations.EmailServices
 {
-    public class EmailService : IEmailService
+    public class EmailModelSender : IEmailModelSender, IEmailSender
     {
         private readonly string address = "OnlinerNotifier@gmail.com";
 
-        private EmailValidator emailValidator;
+        private IEmailValidator emailValidator;
 
         private ISmtpClient smtpClient;
 
-        public EmailService(EmailValidator emailValidator, ISmtpClient smtpClient)
+        public EmailModelSender(IEmailValidator emailValidator, ISmtpClient smtpClient)
         {
             this.smtpClient = smtpClient;
             this.emailValidator = emailValidator;

@@ -1,9 +1,8 @@
 ﻿using System;
 using FluentScheduler;
 using OnlinerNotifier.BLL.Redis;
-using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces;
-using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using StackExchange.Redis;
 
 namespace OnlinerNotifier.Scheduler.Jobs
@@ -14,16 +13,16 @@ namespace OnlinerNotifier.Scheduler.Jobs
              
         private IRedisService redisService;
 
-        private IEmailService emailService;
+        private IEmailModelSender _emailModelSender;
 
         private IDatabase redis;
 
         private ISubscriber sub;
 
-        public SendEmailJob(IRedisService redisService, IEmailService emailService)
+        public SendEmailJob(IRedisService redisService, IEmailModelSender _emailModelSender)
         {
             this.redisService = redisService;
-            this.emailService = emailService;
+            this._emailModelSender = _emailModelSender;
             redis = RedisConnector.Connection.GetDatabase();
             sub = RedisConnector.Connection.GetSubscriber();
         }
@@ -44,7 +43,7 @@ namespace OnlinerNotifier.Scheduler.Jobs
                 lock (lockObject)
                 {
                     var email = redisService.GetEmail(key);
-                    emailService.Send(email);
+                    _emailModelSender.Send(email);
                 }
             }, (s) => s.ToRunOnceAt(notificationTime));
         }

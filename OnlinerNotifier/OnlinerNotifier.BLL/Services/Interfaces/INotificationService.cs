@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 
 namespace OnlinerNotifier.BLL.Services.Interfaces
 {
-    public interface INotificationService
+    public interface INotificationDataService
     {
-        List<NotificationDataModel> GetNotificationData();
+        List<NotificationDataModel> CollectNotificationData(TimeSpan period);
     }
 }

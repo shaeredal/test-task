@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers;
+using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL_Tests.Moq;

@@ -10,9 +10,14 @@ using OAuth2;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
+using OnlinerNotifier.BLL.Mappers.Implementations;
+using OnlinerNotifier.BLL.Mappers.Interfaces;
+using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
+using OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices;
 using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
+using OnlinerNotifier.BLL.Services.Interfaces.PriceChangesServices;
 using OnlinerNotifier.BLL.Templates.Builders;
 using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
@@ -83,7 +88,7 @@ namespace OnlinerNotifier
             RegisterMappers(builder);
             RegisterJobs(builder);
             RegisterToastNotificator(builder);
-            builder.RegisterType<EmailValidator>().AsSelf();
+            builder.RegisterType<EmailValidator>().As<IEmailValidator>().SingleInstance();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
             builder.RegisterType<RazorPriceChangesEmailBuilder>().As<IPriceChangesEmailBuilder>();
@@ -92,11 +97,13 @@ namespace OnlinerNotifier
         private static void RegisterServices(ContainerBuilder builder)
         {
             builder.RegisterType<UserService>().As<IUserService>().InstancePerDependency();
+            builder.RegisterType<UserService>().As<INotifiableUsersProvider>().InstancePerDependency();
             builder.RegisterType<ProductService>().As<IProductService>().InstancePerDependency();
             builder.RegisterType<OnlinerSearchService>().As<IOnlinerSearchService>().InstancePerDependency();
-            builder.RegisterType<PricesCheckingService>().As<IPricesCheckingService>().InstancePerDependency();
-            builder.RegisterType<NotificationService>().As<INotificationService>().InstancePerDependency();
-            builder.RegisterType<EmailService>().As<IEmailService>().InstancePerDependency();
+            builder.RegisterType<PricesChangesInfoService>().As<IPricesChangesInfoService>().InstancePerDependency();
+            builder.RegisterType<PriceChangesService>().As<IPriceChangesService>().InstancePerDependency();
+            builder.RegisterType<NotificationDataDataService>().As<INotificationDataService>().InstancePerDependency();
+            builder.RegisterType<EmailModelSender>().As<IEmailModelSender>().InstancePerDependency();
             builder.RegisterType<EmailBuildingService>().As<IEmailBuildingService>().InstancePerDependency();
             builder.RegisterType<TrackingService>().As<ITrackingService>().InstancePerDependency();
             builder.RegisterType<TimeCalculationService>().As<ITimeCalculationService>().InstancePerDependency();
@@ -107,9 +114,13 @@ namespace OnlinerNotifier
         {
             builder.RegisterType<UserMapper>().AsSelf().SingleInstance();
             builder.RegisterType<ProductMapper>().AsSelf().SingleInstance();
-            builder.RegisterType<PriceChangesMapper>().AsSelf().SingleInstance();
+            builder.RegisterType<PriceChangesMapper>().As<IPriceChangesMapper>().SingleInstance();
             builder.RegisterType<UserProductsMapper>().AsSelf().SingleInstance();
-            builder.RegisterType<EmailMapper>().AsSelf().SingleInstance();
+            builder.RegisterType<EmailMapper>().As<IEmailMapper>().SingleInstance();
+            builder.RegisterType<NotificationProductChangesModelMapper>()
+                .As<INotificationProductChangesModelMapper>().SingleInstance();
+            builder.RegisterType<NotificationDataModelMapper>()
+                .As<INotificationDataModelMapper>().SingleInstance();
         }
 
         private static void RegisterJobs(ContainerBuilder builder)

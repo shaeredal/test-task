@@ -1,7 +1,7 @@
 ﻿using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.DAL.Models;
 
-namespace OnlinerNotifier.BLL.Mappers
+namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
     public class ProductMapper
     {

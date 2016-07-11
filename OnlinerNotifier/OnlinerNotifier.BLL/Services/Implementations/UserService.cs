@@ -1,20 +1,23 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using OnlinerNotifier.BLL.Mappers;
+using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
+using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.BLL.Services.Implementations
 {
-    public class UserService : IUserService
+    public class UserService : IUserService, INotifiableUsersProvider
     {
         private IUnitOfWork unitOfWork;
         private UserMapper userMapper;
-        private EmailValidator emailValidator;
+        private IEmailValidator emailValidator;
 
-        public UserService(IUnitOfWork unitOfWork, UserMapper userMapper, EmailValidator emailValidator)
+        public UserService(IUnitOfWork unitOfWork, UserMapper userMapper, IEmailValidator emailValidator)
         {
             this.unitOfWork = unitOfWork;
             this.userMapper = userMapper;
@@ -79,6 +82,14 @@ namespace OnlinerNotifier.BLL.Services.Implementations
                 return true;
             }
             return false;
+        }
+
+        public List<User> GetNotifiableUsers()
+        {
+            return unitOfWork.Users.GetAllDeep()
+                .Where(u => u.EnableNotifications)
+                .Where(u => emailValidator.IsValid(u.Email))
+                .ToList();
         }
     }
 }

@@ -2,6 +2,7 @@
 using FluentScheduler;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.PriceChangesServices;
 
 namespace OnlinerNotifier.Scheduler.Jobs
 {
@@ -11,13 +12,13 @@ namespace OnlinerNotifier.Scheduler.Jobs
 
         private bool shuttingDown;
 
-        private readonly IPricesCheckingService pricesCheckingService;
+        private readonly IPricesChangesInfoService _pricesChangesObserverService;
 
-        public CheckPricesJob(IPricesCheckingService pricesCheckingService)
+        public CheckPricesJob(IPricesChangesInfoService _pricesChangesObserverService)
         {
             HostingEnvironment.RegisterObject(this);
 
-            this.pricesCheckingService = pricesCheckingService;
+            this._pricesChangesObserverService = _pricesChangesObserverService;
         }
 
         public void Execute()
@@ -27,7 +28,7 @@ namespace OnlinerNotifier.Scheduler.Jobs
                 if (shuttingDown)
                     return;
 
-                pricesCheckingService.Check();
+                _pricesChangesObserverService.Update();
             }
         }
 

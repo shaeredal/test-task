@@ -2,17 +2,17 @@
     margin-top: 20px;
 }
 
-.twitter-button:hover, .twitter-button:active, .twitter-button:visited {
+.twitter-button:hover, .twitter-button:active {
     background: #00aced;
     color: white;
 }
 
-.fb-button:hover, .fb-button:active, .fb-button:visited {
+.fb-button:hover, .fb-button:active {
     background: #3b5998;
     color: white;
 }
 
-.vk-button:hover, .vk-button:active, .vk-button:visited {
+.vk-button:hover, .vk-button:active {
     background: #45668e;
     color: white;
 }

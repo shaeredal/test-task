@@ -74,11 +74,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mappers\EmailMapper.cs" />
-    <Compile Include="Mappers\PriceChangesMapper.cs" />
-    <Compile Include="Mappers\ProductMapper.cs" />
-    <Compile Include="Mappers\UserMapper.cs" />
-    <Compile Include="Mappers\UserProductsMapper.cs" />
+    <Compile Include="Mappers\Implementations\EmailMapper.cs" />
+    <Compile Include="Mappers\Interfaces\IPriceChangesMapper.cs" />
+    <Compile Include="Mappers\Interfaces\INotificationDataModelMapper.cs" />
+    <Compile Include="Mappers\Implementations\NotificationDataModelMapper.cs" />
+    <Compile Include="Mappers\Interfaces\INotificationProductChangesModelMapper.cs" />
+    <Compile Include="Mappers\Implementations\NotificationProductChangesModelMapper.cs" />
+    <Compile Include="Mappers\Implementations\PriceChangesMapper.cs" />
+    <Compile Include="Mappers\Implementations\ProductMapper.cs" />
+    <Compile Include="Mappers\Implementations\UserMapper.cs" />
+    <Compile Include="Mappers\Implementations\UserProductsMapper.cs" />
+    <Compile Include="Mappers\Interfaces\IEmailMapper.cs" />
     <Compile Include="Models\NotificationModels\NotificationDataModel.cs" />
     <Compile Include="Models\NotificationModels\NotificationEmailModel.cs" />
     <Compile Include="Models\NotificationModels\NotificationParametersModel.cs" />
@@ -93,12 +99,16 @@
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redis\RedisConnector.cs" />
+    <Compile Include="Services\Interfaces\PriceChangesServices\IPriceChangesService.cs" />
+    <Compile Include="Services\Implementations\PriceChangesServices\PriceChangesService.cs" />
     <Compile Include="Services\Interfaces\EmailServices\IEmailBuildingService.cs" />
+    <Compile Include="Services\Interfaces\EmailServices\IEmailSender.cs" />
     <Compile Include="Services\Interfaces\EmailServices\IEmailService.cs" />
     <Compile Include="Services\Implementations\EmailServices\EmailBuildingService.cs" />
     <Compile Include="Services\Implementations\EmailServices\EmailService.cs" />
+    <Compile Include="Services\Interfaces\INotifiableUsersProvider.cs" />
     <Compile Include="Services\Interfaces\IRedisService.cs" />
-    <Compile Include="Services\Implementations\NotificationService.cs" />
+    <Compile Include="Services\Implementations\NotificationDataService.cs" />
     <Compile Include="Services\Implementations\RedisService.cs" />
     <Compile Include="Services\Implementations\TimeCalculationService.cs" />
     <Compile Include="Services\Implementations\OnlinerSearchService.cs" />
@@ -107,12 +117,12 @@
     <Compile Include="Services\Interfaces\INotificationService.cs" />
     <Compile Include="Services\Interfaces\ITimeCalculationService.cs" />
     <Compile Include="Services\Interfaces\IOnlinerSearchService.cs" />
-    <Compile Include="Services\Interfaces\IPricesCheckingService.cs" />
+    <Compile Include="Services\Interfaces\PriceChangesServices\IPricesChangesInfoService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
     <Compile Include="Services\Interfaces\ITrackingService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\Implementations\UserService.cs" />
-    <Compile Include="Services\Implementations\PriceCheckingService.cs" />
+    <Compile Include="Services\Implementations\PriceChangesServices\PriceChangesInfoService.cs" />
     <Compile Include="Templates\Builders\IPriceChangesEmailBuilder.cs" />
     <Compile Include="Templates\Builders\RazorPriceChangesEmailBuilder.cs" />
     <Compile Include="Templates\TemplatePathProvider\ITemplatePathProvider.cs" />
@@ -120,6 +130,7 @@
     <Compile Include="Validators\EmailValidator.cs" />
     <Compile Include="SmtpClients\ISmtpClient.cs" />
     <Compile Include="SmtpClients\SmtpClientWrapper.cs" />
+    <Compile Include="Validators\IEmailValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -136,6 +147,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

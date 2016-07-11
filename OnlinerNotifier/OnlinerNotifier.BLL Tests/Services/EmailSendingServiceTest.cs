@@ -3,8 +3,10 @@ using System.Net.Mail;
 using Moq;
 using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers;
+using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
@@ -20,7 +22,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
     [TestFixture]
     public class EmailSendingServiceTest
     {
-        private IEmailService emailSendingService;
+        private IEmailModelSender _emailSendingModelSender;
         private Mock<User> userMock;
         private Mock<ISmtpClient> smtpClientWrapper;
         private IEmailBuildingService emailBuilderService;
@@ -35,7 +37,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
             templatePathProviderMock.Setup(m => m.GetEmailTemplatePath())
                 .Returns(() => "D:\\test-task\\OnlinerNotifier\\OnlinerNotifier.BLL\\Templates\\EmailTemplate.cshtml");
             emailBuilderService = new EmailBuildingService(new EmailMapper(new TimeCalculationService()), new RazorPriceChangesEmailBuilder(templatePathProviderMock.Object));
-            emailSendingService = new EmailService(new EmailValidator(), smtpClientWrapper.Object);
+            _emailSendingModelSender = new EmailModelSender(new EmailValidator(), smtpClientWrapper.Object);
         }
 
         [Test]
@@ -43,7 +45,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
         {
             var email = emailBuilderService.GetEmail(userMock.Object, new List<NotificationProductChangesModel>());
 
-            emailSendingService.Send(email);
+            _emailSendingModelSender.Send(email);
 
             smtpClientWrapper.Verify(m => m.Send(It.IsAny<MailMessage>()), Times.Once);
         }
