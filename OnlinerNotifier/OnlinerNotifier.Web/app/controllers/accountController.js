@@ -11,7 +11,8 @@ account.controller('accountController',
                 $scope.avatarUri = user.AvatarUri;
                 $scope.userProducts = user.UserProducts;
                 $scope.email = user.Email;
-            },
+                $scope.enableNotifications = user.EnableNotifications;
+                },
                 function (response) {
                     if (response.status == 401) {
                         $location.path("/");
@@ -31,7 +32,8 @@ account.controller('accountController',
         $scope.setData = function() {
             if ($scope.NotificationForm.$valid) {
                 $http.post('api/Notification/', { 'Time': $scope.time, Email: $scope.email })
-                    .then(function(response) {
+                    .then(function (response) {
+                            $scope.enableNotifications = true;
                             toastr.success("Data is set.");
                         },
                         function(response) {
@@ -49,6 +51,16 @@ account.controller('accountController',
                     if (response.status == 200) {
                         $scope.userProducts[index].IsTracked = !isTracked;
                     }
+                });
+        }
+
+        $scope.disableNotifications = function() {
+            $http.delete('api/Notification/')
+                .then(function(response) {
+                    $scope.enableNotifications = false;
+                    toastr.info("Notifications were disabled.");
+                }, function(response) {
+                    toastr.error("Can't disable notifications.");
                 });
         }
     });

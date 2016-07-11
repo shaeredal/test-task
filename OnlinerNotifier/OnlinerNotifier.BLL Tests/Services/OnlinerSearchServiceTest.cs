@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
+using OnlinerNotifier.BLL.Services.Interfaces;
 
 namespace OnlinerNotifier.BLL_Tests.Services
 {

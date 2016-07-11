@@ -8,8 +8,6 @@ namespace OnlinerNotifier.Scheduler
         public MyRegistry()
         {
             Schedule<CheckPricesJob>().ToRunNow().AndEvery(1).Days();
-            //Schedule<SetNotifiersJob>().ToRunNow().AndEvery(1).Days();
-
             Schedule<SendEmailJob>().ToRunNow();
             Schedule<PushEmailsJob>().ToRunNow().AndEvery(1).Days();
         }

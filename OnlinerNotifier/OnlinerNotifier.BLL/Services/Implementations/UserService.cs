@@ -2,6 +2,7 @@
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Models.NotificationModels;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
 
@@ -61,6 +62,19 @@ namespace OnlinerNotifier.BLL.Services.Implementations
             {
                 user.NotificationTime = parameters.Time;
                 user.Email = parameters.Email;
+                user.EnableNotifications = true;
+                unitOfWork.Save();
+                return true;
+            }
+            return false;
+        }
+
+        public bool DisableNotifications(int userId)
+        {
+            var user = unitOfWork.Users.Get(userId);
+            if (user != null)
+            {
+                user.EnableNotifications = false;
                 unitOfWork.Save();
                 return true;
             }

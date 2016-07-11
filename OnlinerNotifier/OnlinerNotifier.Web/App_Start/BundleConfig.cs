@@ -32,6 +32,7 @@ namespace OnlinerNotifier
                 .Include("~/app/controllers/homeController.js")
                 .Include("~/app/filters/trackingFormatFilter.js")
                 .Include("~/app/filters/currencyFilter.js")
+                .Include("~/app/filters/notificationFilter.js")
                 .Include("~/app/services/currencyService.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/SignalR")
@@ -53,7 +54,10 @@ namespace OnlinerNotifier
                 .Include("~/Content/toastr.css"));
 
             bundles.Add(new StyleBundle("~/Content/site")
-                .Include("~/Content/site.css"));
+                .Include("~/Content/app/site.css")
+                .Include("~/Content/app/auth.css")
+                .Include("~/Content/app/home.css")
+                .Include("~/Content/app/account.css"));
         }
     }
 }

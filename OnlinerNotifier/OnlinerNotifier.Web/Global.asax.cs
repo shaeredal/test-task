@@ -5,7 +5,6 @@ using System.Web.Routing;
 using System.Web.Http;
 using System.Web.Optimization;
 using FluentScheduler;
-using OnlinerNotifier.App_Start;
 using OnlinerNotifier.Scheduler;
 
 namespace OnlinerNotifier

@@ -2,14 +2,10 @@
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.DAL.Models;
 
-namespace OnlinerNotifier.BLL.Services
+namespace OnlinerNotifier.BLL.Services.Interfaces.EmailServices
 {
-    public interface IEmailService
+    public interface IEmailBuildingService
     {
-        void SendChanges(User user, List<NotificationProductChangesModel> priceChanges);
-
-        void SendChanges(NotificationEmailModel emailModel);
-
         NotificationEmailModel GetEmail(User user, List<NotificationProductChangesModel> priceChanges);
     }
 }

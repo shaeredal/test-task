@@ -12,6 +12,8 @@ namespace OnlinerNotifier.BLL.Models.NotificationModels
 
         public string EmailBody { get; set; }
 
+        public string Subject { get; set; }
+
         public DateTime NotificationTime { get; set; }
     }
 }

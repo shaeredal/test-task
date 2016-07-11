@@ -2,6 +2,8 @@
 using FluentScheduler;
 using OnlinerNotifier.BLL.Redis;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using StackExchange.Redis;
 
 namespace OnlinerNotifier.Scheduler.Jobs
@@ -42,7 +44,7 @@ namespace OnlinerNotifier.Scheduler.Jobs
                 lock (lockObject)
                 {
                     var email = redisService.GetEmail(key);
-                    emailService.SendChanges(email);
+                    emailService.Send(email);
                 }
             }, (s) => s.ToRunOnceAt(notificationTime));
         }

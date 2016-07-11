@@ -5,6 +5,7 @@ using System.Web.Mvc.Html;
 using Moq;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
@@ -39,7 +40,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
 
         public Mock<IUnitOfWork> UnitOfWorkMock { get; private set; }
 
-        public Mock<ISmtpClient> smtpClientMock { get; private set; }
+        public Mock<ISmtpClient> SmtpClientMock { get; private set; }
 
         private void GenerateUserRepositoryMock()
         {
@@ -61,6 +62,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             UserMock.Object.FirstName = "TestName";
             UserMock.Object.LastName = "TestLastName";
             UserMock.Object.Email = "User@email.test";
+            UserMock.Object.EnableNotifications = true;
             GenerateUserProductMock(ProductMock.Object, UserMock.Object);
             UserMock.Object.UserProducts.Add(UserProductMock.Object);
         }
@@ -101,7 +103,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             };
             var product = new Product() { PriceChanges = priceChanges };
             var userProducts = new List<UserProduct> {new UserProduct() {IsTracked = true, Product = product}};
-            var userList = new List<User> {new User() {Id = 33, UserProducts = userProducts, Email = "valid_address@it.is"}};
+            var userList = new List<User> {new User() {Id = 33, UserProducts = userProducts, Email = "valid_address@it.is", EnableNotifications = true}};
             return userList;
         }
 
@@ -173,8 +175,8 @@ namespace OnlinerNotifier.BLL_Tests.Moq
 
         private void GenerateSmtpClientMock()
         {
-            smtpClientMock = new Mock<ISmtpClient>();
-            smtpClientMock.Setup(m => m.Send(It.IsAny<MailMessage>()));
+            SmtpClientMock = new Mock<ISmtpClient>();
+            SmtpClientMock.Setup(m => m.Send(It.IsAny<MailMessage>()));
         }
     }
 }

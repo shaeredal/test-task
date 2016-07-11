@@ -23,6 +23,8 @@ namespace OnlinerNotifier.DAL.Models
 
         public ICollection<UserProduct> UserProducts { get; set; }
 
+        public bool EnableNotifications { get; set; }
+
         public User()
         {
             UserProducts = new List<UserProduct>();

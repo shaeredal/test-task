@@ -1,6 +1,6 @@
 ﻿using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 
-namespace OnlinerNotifier.BLL.Services
+namespace OnlinerNotifier.BLL.Services.Interfaces
 {
     public interface IOnlinerSearchService
     {

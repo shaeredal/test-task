@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.Filters;
 
 namespace OnlinerNotifier.Controllers
@@ -23,6 +24,15 @@ namespace OnlinerNotifier.Controllers
                 return Ok();
             }
             return Conflict();
+        }
+
+        public IHttpActionResult Delete()
+        {
+            if (userService.DisableNotifications(Principal.Id))
+            {
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }

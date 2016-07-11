@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OnlinerNotifier.BLL.Models.NotificationModels;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
@@ -22,7 +23,10 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         public List<NotificationDataModel> GetNotificationData()
         {
-            var users = unitOfWork.Users.GetAllDeep().Where(u => emailValidator.IsValid(u.Email)).ToList();
+            var users = unitOfWork.Users.GetAllDeep()
+                .Where(u => u.EnableNotifications)
+                .Where(u => emailValidator.IsValid(u.Email))
+                .ToList();
 
             var result = new List<NotificationDataModel>();
             foreach (var user in users)

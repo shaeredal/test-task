@@ -190,6 +190,7 @@
     <Content Include="app\controllers\authController.js" />
     <Content Include="app\controllers\homeController.js" />
     <Content Include="app\filters\currencyFilter.js" />
+    <Content Include="app\filters\notificationFilter.js" />
     <Content Include="app\filters\trackingFormatFilter.js" />
     <Content Include="app\other\netMQToastNotifications.js" />
     <Content Include="app\other\signalRToastNotifications.js" />
@@ -198,11 +199,14 @@
     <Content Include="app\views\auth.html" />
     <Content Include="app\views\home.html" />
     <Content Include="app\views\navbar.html" />
+    <Content Include="Content\app\account.css" />
+    <Content Include="Content\app\auth.css" />
+    <Content Include="Content\app\home.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\site.css" />
+    <Content Include="Content\app\site.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
@@ -279,7 +283,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scheduler\Jobs\CheckPricesJob.cs" />
     <Compile Include="Scheduler\JobFactory.cs" />
-    <Compile Include="Scheduler\Jobs\SetNotifiersJob.cs" />
     <Compile Include="Scheduler\MyRegistry.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

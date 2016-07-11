@@ -1,5 +1,6 @@
 ﻿using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.Filters;
 
 namespace OnlinerNotifier.Controllers

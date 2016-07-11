@@ -1,6 +1,5 @@
 ﻿using System.Web.Http;
 using Microsoft.Owin;
-using OnlinerNotifier.App_Start;
 using OnlinerNotifier.Enums;
 using OnlinerNotifier.NetMQSockets;
 using Owin;

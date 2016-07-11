@@ -6,27 +6,8 @@ a {
     cursor: pointer;
 }
 
-#signin {
-    margin-top: 20px;
-}
-
 .indent {
     margin-bottom: 10px;
-}
-
-.search {
-    position: relative;
-    font-size: 24px;
-}
-
-.search-input {
-    width: 100%;
-}
-
-.search .fa-search {
-    position: absolute;
-    top: 8px;
-    right: 8px;
 }
 
 .product {
@@ -92,49 +73,3 @@ a {
     font-size: 48px;
     color: lightgray;
 }
-
-.track-icon {
-    color: goldenrod;
-}
-
-.not-track-icon {
-    color: saddlebrown;
-}
-
-.notification-setting-panel {
-    padding: 16px;
-}
-
-.twitter-button {
-    background: #00aced;
-    color: white;
-}
-
-.twitter-button:hover {
-    background: #555555;
-    transition: background 0.2s;
-    color: white;
-}
-
-.fb-button {
-    background: #3b5998;
-    color: white;
-}
-
-.fb-button:hover {
-    background: #555555;
-    transition: background 0.2s;
-    color: white;
-}
-
-.vk-button {
-    background: #45668e;
-    color: white;
-}
-
-.vk-button:hover {
-    background: #555555;
-    transition: background 0.2s;
-    color: white;
-}
-

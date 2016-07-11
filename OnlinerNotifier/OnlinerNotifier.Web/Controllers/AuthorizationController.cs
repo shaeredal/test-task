@@ -9,6 +9,7 @@ using OAuth2.Client.Impl;
 using OAuth2.Models;
 using OnlinerNotifier.BLL.Redis;
 using OnlinerNotifier.BLL.Services;
+using OnlinerNotifier.BLL.Services.Interfaces;
 
 namespace OnlinerNotifier.Controllers
 {
