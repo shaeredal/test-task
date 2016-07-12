@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Web.Http;
 using OnlinerNotifier.BLL.Models;
-using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.UserProductServices;
 using OnlinerNotifier.Filters;
 using OnlinerNotifier.ToastNotifier;
 
@@ -13,10 +10,11 @@ namespace OnlinerNotifier.Controllers
     [Authentication]
     public class ProductController : ApiControllerBase
     {
-        private readonly IProductService productService;
+        private readonly IUserProductService productService;
+
         private readonly IToastNotifier toastNotifier;
 
-        public ProductController(IProductService productService, IToastNotifier toastNotifier)
+        public ProductController(IUserProductService productService, IToastNotifier toastNotifier)
         {
             this.productService = productService;
             this.toastNotifier = toastNotifier;
@@ -30,7 +28,7 @@ namespace OnlinerNotifier.Controllers
         public IHttpActionResult Post(ProductViewModel product)
         {
             var userId = Principal.Id;
-            if (productService.Add(product, userId))
+            if (productService.AddUserProduct(product, userId))
             {
                 SendNotification(product.Name, "is added.");
                 return Ok();
@@ -40,7 +38,7 @@ namespace OnlinerNotifier.Controllers
 
         public IHttpActionResult Delete(int id)
         {
-            if (productService.Delete(Principal.Id, id))
+            if (productService.RemoveUserProduct(Principal.Id, id))
             {
                 SendNotification("Product", "is deleted."); //TODO: get product name
                 return Ok();

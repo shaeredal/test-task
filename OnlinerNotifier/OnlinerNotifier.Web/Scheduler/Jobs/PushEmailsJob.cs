@@ -6,6 +6,7 @@ using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
+using OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices;
 
 namespace OnlinerNotifier.Scheduler.Jobs
 {

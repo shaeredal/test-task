@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 
-namespace OnlinerNotifier.BLL.Services.Interfaces
+namespace OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices
 {
     public interface INotificationDataService
     {

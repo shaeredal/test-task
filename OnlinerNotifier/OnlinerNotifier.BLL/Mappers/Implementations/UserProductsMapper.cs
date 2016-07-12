@@ -1,13 +1,14 @@
-﻿using OnlinerNotifier.BLL.Models;
+﻿using OnlinerNotifier.BLL.Mappers.Interfaces;
+using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
-    public class UserProductsMapper
+    public class UserProductsMapper : IUserProductsMapper
     {
-        private ProductMapper productMapper;
+        private IProductMapper productMapper;
 
-        public UserProductsMapper(ProductMapper productMapper)
+        public UserProductsMapper(IProductMapper productMapper)
         {
             this.productMapper = productMapper;
         }

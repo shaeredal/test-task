@@ -4,24 +4,25 @@ using System.Linq;
 using OnlinerNotifier.BLL.Mappers.Interfaces;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices;
 using OnlinerNotifier.DAL.Models;
 
-namespace OnlinerNotifier.BLL.Services.Implementations
+namespace OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices
 {
     public class NotificationDataDataService : INotificationDataService
     {
         private INotifiableUsersProvider notifiableUsersProvider;
 
-        private INotificationProductChangesModelMapper notificationProductChangesModelMapper;
+        private IUserProductChangesService userProductChangesService;
 
         private INotificationDataModelMapper notificationDataModelMapper;
 
         public NotificationDataDataService(INotifiableUsersProvider notifiableUsersProvider,
-            INotificationProductChangesModelMapper notificationProductChangesModelMapper,
+            IUserProductChangesService userProductChangesService,
             INotificationDataModelMapper notificationDataModelMapper)
         {
             this.notifiableUsersProvider = notifiableUsersProvider;
-            this.notificationProductChangesModelMapper = notificationProductChangesModelMapper;
+            this.userProductChangesService = userProductChangesService;
             this.notificationDataModelMapper = notificationDataModelMapper;
         }
 
@@ -42,31 +43,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 
         private NotificationDataModel GetUserNotifications(User user, TimeSpan period)
         {
-            return notificationDataModelMapper.ToModel(user, GetProductChanges(user, period));
-        }
-
-        private List<NotificationProductChangesModel> GetProductChanges(User user, TimeSpan period)
-        {
-            var result = new List<NotificationProductChangesModel>();
-            foreach (var product in GetTrackedProducts(user))
-            {
-                var changes = GetProductPriceChanges(product, period);
-                if (changes.Any())
-                {
-                    result.Add(notificationProductChangesModelMapper.ToModel(product, changes));
-                }
-            }
-            return result;
-        }
-
-        private List<Product> GetTrackedProducts(User user)
-        {
-            return user.UserProducts.Where(up => up.IsTracked).Select(up => up.Product).ToList();
-        }
-
-        private List<ProductPriceChange> GetProductPriceChanges(Product product, TimeSpan period)
-        {
-            return product.PriceChanges.Where(prod => DateTime.Now - prod.CheckTime < period).ToList();
+            return notificationDataModelMapper.ToModel(user, userProductChangesService.GetProductChanges(user, period));
         }
     }
 }

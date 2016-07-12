@@ -1,12 +1,8 @@
 ﻿using System.Linq;
 using Moq;
 using NUnit.Framework;
-using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Mappers.Implementations;
-using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices;
-using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.PriceChangesServices;
 using OnlinerNotifier.BLL_Tests.Moq;
 using OnlinerNotifier.DAL;
@@ -28,7 +24,8 @@ namespace OnlinerNotifier.BLL_Tests.Services
             var onlinerSearchServiceMock = mockStorage.OnlinerSearchServiceMock;
             unitOfWorkMock.Setup(m => m.PriceCanges.Create(It.IsAny<ProductPriceChange>()));
 
-            _pricesChangesObserverService = new PricesChangesInfoService(unitOfWorkMock.Object, new PriceChangesMapper(), onlinerSearchServiceMock.Object);
+            _pricesChangesObserverService = new PricesChangesInfoService(unitOfWorkMock.Object, onlinerSearchServiceMock.Object,
+                new PriceChangesService(unitOfWorkMock.Object, new PriceChangesMapper()));
         }
 
         [Test]
