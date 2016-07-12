@@ -116,7 +116,6 @@
     <Compile Include="Services\TrackingServiceTest.cs" />
     <Compile Include="Services\UserServiceTests\UserServiceGetUserDataTest.cs" />
     <Compile Include="Services\UserServiceTests\UserServiceAddOrUpdateTest.cs" />
-    <Compile Include="Services\UserServiceTests\UserServiceGetTest.cs" />
     <Compile Include="Services\UserServiceTests\UserServiceSetNotificationParametersTest.cs" />
     <Compile Include="Services\UserServiceTests\UserServiceTestBase.cs" />
     <Compile Include="Validators\EmailValidatorTest.cs" />

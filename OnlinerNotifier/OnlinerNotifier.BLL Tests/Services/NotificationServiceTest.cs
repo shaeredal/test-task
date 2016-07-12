@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices;
+using OnlinerNotifier.BLL.Services.Implementations.UserServices;
 using OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL_Tests.Moq;
@@ -18,7 +19,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
         public void Setup()
         {
             var mockStorage = new MockStorage();
-            notificationDataService = new NotificationDataDataService(new UserService(mockStorage.UnitOfWorkMock.Object, new UserMapper(new UserProductsMapper(new ProductMapper())), new EmailValidator()), 
+            notificationDataService = new NotificationDataDataService(new NotifiableUsersService(mockStorage.UnitOfWorkMock.Object, new EmailValidator()), 
                 new UserProductChangesService(new NotificationProductChangesModelMapper()),
                 new NotificationDataModelMapper());
         }

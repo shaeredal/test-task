@@ -1,25 +1,22 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using OAuth2;
 using OAuth2.Client;
-using OAuth2.Client.Impl;
 using OAuth2.Models;
 using OnlinerNotifier.BLL.Redis;
-using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.UserServices;
 
 namespace OnlinerNotifier.Controllers
 {
     public class AuthorizationController : Controller
     {
-        private readonly IUserService userService;
+        private readonly IUserManageService userService;
 
         private readonly AuthorizationRoot authorizationRoot;
 
-        public AuthorizationController(AuthorizationRoot authorizationRoot, IUserService userService)
+        public AuthorizationController(AuthorizationRoot authorizationRoot, IUserManageService userService)
         {
             this.authorizationRoot = authorizationRoot;
             this.userService = userService;
@@ -43,7 +40,7 @@ namespace OnlinerNotifier.Controllers
             {
                 return Redirect("/auth");
             }
-            var userId = userService.AddOrUpdate(userInfo);
+            var userId = userService.GetOrCreate(userInfo);
             key = GetKey(providerName, client);
             SetAuthParameters(userId.ToString(), key);
             return Redirect("/home");
@@ -75,18 +72,15 @@ namespace OnlinerNotifier.Controllers
 
         private string GetKey(string providerName, IClient client)
         {
-            if (providerName == "Vkontakte" || providerName == "Facebook")
+            switch (providerName)
             {
-                return ((OAuth2Client) client).AccessToken;
+                case "Vkontakte":
+                case "Facebook":
+                    return ((OAuth2Client) client).AccessToken;
+                case "Twitter":
+                    return ((OAuthClient) client).AccessToken;
             }
-            else if (providerName == "Twitter")
-            {
-                return ((OAuthClient)client).AccessToken;
-            }
-            else
-            {
-                throw new Exception("Unsupported provider name.");
-            }
+            throw new Exception("Unsupported provider name.");
         }
     }
 }

@@ -5,12 +5,6 @@ namespace OnlinerNotifier.Controllers
 {
     public class ApiControllerBase : ApiController
     {
-        public Principal Principal
-        {
-            get
-            {
-                return (Principal) RequestContext.Principal;
-            }
-        }
+        public Principal Principal => (Principal) RequestContext.Principal;
     }
 }

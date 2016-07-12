@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using OnlinerNotifier.DAL.Models;
 
-namespace OnlinerNotifier.BLL.Services.Interfaces
+namespace OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices
 {
     public interface INotifiableUsersProvider
     {

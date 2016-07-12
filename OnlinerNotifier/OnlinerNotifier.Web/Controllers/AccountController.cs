@@ -1,6 +1,6 @@
 ﻿using OnlinerNotifier.BLL.Models;
-using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.UserServices;
 using OnlinerNotifier.Filters;
 
 namespace OnlinerNotifier.Controllers
@@ -8,9 +8,9 @@ namespace OnlinerNotifier.Controllers
     [Authentication]
     public class AccountController : ApiControllerBase
     {
-        private readonly IUserService userService;
+        private readonly IUserDataService userService;
 
-        public AccountController(IUserService userService)
+        public AccountController(IUserDataService userService)
         {
             this.userService = userService;
         }

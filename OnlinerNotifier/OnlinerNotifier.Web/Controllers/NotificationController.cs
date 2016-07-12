@@ -1,7 +1,6 @@
 ﻿using System.Web.Http;
 using OnlinerNotifier.BLL.Models.NotificationModels;
-using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.UserServices;
 using OnlinerNotifier.Filters;
 
 namespace OnlinerNotifier.Controllers
@@ -9,17 +8,17 @@ namespace OnlinerNotifier.Controllers
     [Authentication]
     public class NotificationController : ApiControllerBase
     {
-        private IUserService userService;
+        private IUserNotificationsService notificationsService;
 
-        public NotificationController(IUserService userService)
+        public NotificationController(IUserNotificationsService notificationsService)
         {
-            this.userService = userService;
+            this.notificationsService = notificationsService;
         }
 
         [HttpPost]
         public IHttpActionResult Post([FromBody]NotificationParametersModel parameters)
         {
-            if (userService.SetNotificationParameters(Principal.Id, parameters))
+            if (notificationsService.SetNotificationParameters(Principal.Id, parameters))
             {
                 return Ok();
             }
@@ -28,7 +27,7 @@ namespace OnlinerNotifier.Controllers
 
         public IHttpActionResult Delete()
         {
-            if (userService.DisableNotifications(Principal.Id))
+            if (notificationsService.DisableNotifications(Principal.Id))
             {
                 return Ok();
             }
