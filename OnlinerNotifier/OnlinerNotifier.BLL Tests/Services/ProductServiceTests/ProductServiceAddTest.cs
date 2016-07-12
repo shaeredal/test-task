@@ -14,7 +14,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
         {
             var productViewModel = new ProductViewModel() { OnlinerId = onlinerId };
 
-            productService.Add(productViewModel, 1);
+            productService.AddUserProduct(productViewModel, 1);
 
             productRepositoryMock.Verify(p => p.Create(It.IsAny<Product>()), Times.Exactly(times));
             Assert.AreEqual(2, userMock.Object.UserProducts.Count());
@@ -25,8 +25,8 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
         {
             var productViewModel = new ProductViewModel() { OnlinerId = 12345 };
 
-            productService.Add(productViewModel, 1);
-            productService.Add(productViewModel, 1);
+            productService.AddUserProduct(productViewModel, 1);
+            productService.AddUserProduct(productViewModel, 1);
 
             Assert.AreEqual(2, userMock.Object.UserProducts.Count());
         }

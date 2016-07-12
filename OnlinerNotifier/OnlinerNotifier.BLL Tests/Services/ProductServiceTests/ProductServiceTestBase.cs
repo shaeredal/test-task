@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations;
+using OnlinerNotifier.BLL.Services.Implementations.UserProductServices;
 using OnlinerNotifier.BLL_Tests.Moq;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
@@ -18,7 +19,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
         protected Mock<Product> productMock;
         protected Mock<IUserRepository> userRepositoryMock;
         protected Mock<IRepository<Product>> productRepositoryMock;
-        protected ProductService productService;
+        protected UserProductService productService;
 
         [SetUp]
         public void Setup()
@@ -30,7 +31,10 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
             productRepositoryMock = mockStorage.ProductRepositoryMock;
             userRepositoryMock = mockStorage.UserRepositoryMock;
             var productMapper = new ProductMapper();
-            productService = new ProductService(unitOfWorkMock.Object, productMapper, new UserProductsMapper(productMapper));
+            productService = new UserProductService(
+                new UserProductGetService(unitOfWorkMock.Object, productMapper),
+                new UserProductAddService(unitOfWorkMock.Object, productMapper, new UserProductsMapper(productMapper)),
+                new UserProductRemoveService(unitOfWorkMock.Object));
         }
     }
 }

@@ -17,7 +17,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
         [Test]
         public void Delete_DeletingProduct_ProductIsDeleted()
         {
-            productService.Delete(1, 1);
+            productService.RemoveUserProduct(1, 1);
 
             unitOfWorkMock.Verify(m => m.Users.Get(1));
             unitOfWorkMock.Verify(m => m.Products.Get(1));
@@ -31,7 +31,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.ProductServiceTests
         [TestCase(2, 2, ExpectedResult = false)]
         public bool Delete_ReturnValue_IsCorrect(int userId, int productId)
         {
-            return productService.Delete(userId, productId);
+            return productService.RemoveUserProduct(userId, productId);
         }
     }
 }

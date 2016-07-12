@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using OAuth2.Models;
+using OnlinerNotifier.BLL.Mappers.Interfaces;
 using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.DAL.Models;
 
@@ -8,9 +9,9 @@ namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
     public class UserMapper
     {
-        private UserProductsMapper userProductsMapper;
+        private IUserProductsMapper userProductsMapper;
 
-        public UserMapper(UserProductsMapper userProductsMapper)
+        public UserMapper(IUserProductsMapper userProductsMapper)
         {
             this.userProductsMapper = userProductsMapper;
         }

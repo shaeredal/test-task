@@ -1,9 +1,10 @@
-﻿using OnlinerNotifier.BLL.Models;
+﻿using OnlinerNotifier.BLL.Mappers.Interfaces;
+using OnlinerNotifier.BLL.Models;
 using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
-    public class ProductMapper
+    public class ProductMapper : IProductMapper
     {
         public Product ToDomain(ProductViewModel model)
         {
