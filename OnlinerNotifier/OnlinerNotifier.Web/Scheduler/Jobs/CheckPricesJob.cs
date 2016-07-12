@@ -1,7 +1,5 @@
 ﻿using System.Web.Hosting;
 using FluentScheduler;
-using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.PriceChangesServices;
 
 namespace OnlinerNotifier.Scheduler.Jobs

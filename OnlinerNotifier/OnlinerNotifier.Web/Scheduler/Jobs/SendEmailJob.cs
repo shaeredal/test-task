@@ -2,7 +2,7 @@
 using FluentScheduler;
 using OnlinerNotifier.BLL.Redis;
 using OnlinerNotifier.BLL.Services.EmailServices;
-using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.RedisEmailServices;
 using StackExchange.Redis;
 
 namespace OnlinerNotifier.Scheduler.Jobs
@@ -11,18 +11,18 @@ namespace OnlinerNotifier.Scheduler.Jobs
     {
         private object lockObject = new object();
              
-        private IRedisService redisService;
+        private IRedisEmailGetter redisService;
 
-        private IEmailModelSender _emailModelSender;
+        private IEmailModelSender emailModelSender;
 
         private IDatabase redis;
 
         private ISubscriber sub;
 
-        public SendEmailJob(IRedisService redisService, IEmailModelSender _emailModelSender)
+        public SendEmailJob(IRedisEmailGetter redisService, IEmailModelSender emailModelSender)
         {
             this.redisService = redisService;
-            this._emailModelSender = _emailModelSender;
+            this.emailModelSender = emailModelSender;
             redis = RedisConnector.Connection.GetDatabase();
             sub = RedisConnector.Connection.GetSubscriber();
         }
@@ -43,7 +43,7 @@ namespace OnlinerNotifier.Scheduler.Jobs
                 lock (lockObject)
                 {
                     var email = redisService.GetEmail(key);
-                    _emailModelSender.Send(email);
+                    emailModelSender.Send(email);
                 }
             }, (s) => s.ToRunOnceAt(notificationTime));
         }

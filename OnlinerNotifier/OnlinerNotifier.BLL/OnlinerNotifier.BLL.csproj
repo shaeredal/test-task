@@ -104,6 +104,7 @@
     <Compile Include="Services\Implementations\NotificationDataSevices\NotifiableUsersService.cs" />
     <Compile Include="Services\Implementations\UserServices\UserManageService.cs" />
     <Compile Include="Services\Implementations\UserServices\UserNotificationsService.cs" />
+    <Compile Include="Services\Interfaces\RedisEmailServices\IRedisEmailGetter.cs" />
     <Compile Include="Services\Interfaces\UserProductServices\IUserProductService.cs" />
     <Compile Include="Services\Implementations\UserProductServices\UserProductGetService.cs" />
     <Compile Include="Services\Implementations\UserProductServices\UserProductAddService.cs" />
@@ -116,11 +117,11 @@
     <Compile Include="Services\Interfaces\EmailServices\IEmailSender.cs" />
     <Compile Include="Services\Interfaces\EmailServices\IEmailService.cs" />
     <Compile Include="Services\Implementations\EmailServices\EmailBuildingService.cs" />
-    <Compile Include="Services\Implementations\EmailServices\EmailService.cs" />
+    <Compile Include="Services\Implementations\EmailServices\EmailModelSender.cs" />
     <Compile Include="Services\Interfaces\NotificationDataSevices\INotifiableUsersProvider.cs" />
-    <Compile Include="Services\Interfaces\IRedisService.cs" />
+    <Compile Include="Services\Interfaces\RedisEmailServices\IRedisEmailPublisher.cs" />
     <Compile Include="Services\Implementations\NotificationDataSevices\NotificationDataService.cs" />
-    <Compile Include="Services\Implementations\RedisService.cs" />
+    <Compile Include="Services\Implementations\RedisEmailService.cs" />
     <Compile Include="Services\Implementations\TimeCalculationService.cs" />
     <Compile Include="Services\Implementations\OnlinerSearchService.cs" />
     <Compile Include="Services\Implementations\UserProductServices\UserProductRemoveService.cs" />
