@@ -6,14 +6,13 @@ using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
+using OnlinerNotifier.BLL.SmtpClients;
 using OnlinerNotifier.BLL.Templates.Builders;
 using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
-using OnlinerNotifier.BLL.Wrappers;
 using OnlinerNotifier.BLL_Tests.Moq;
 using OnlinerNotifier.DAL.Models;
 

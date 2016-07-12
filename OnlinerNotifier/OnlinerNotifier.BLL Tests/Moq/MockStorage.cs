@@ -4,7 +4,7 @@ using System.Net.Mail;
 using Moq;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 using OnlinerNotifier.BLL.Services.Interfaces;
-using OnlinerNotifier.BLL.Wrappers;
+using OnlinerNotifier.BLL.SmtpClients;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
 using OnlinerNotifier.DAL.Repositories.Interfaces;
