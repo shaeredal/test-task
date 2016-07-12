@@ -12,6 +12,7 @@ using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Mappers.Interfaces;
+using OnlinerNotifier.BLL.Redis;
 using OnlinerNotifier.BLL.Services.EmailServices;
 using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
 using OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices;
@@ -22,6 +23,7 @@ using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices;
 using OnlinerNotifier.BLL.Services.Interfaces.PriceChangesServices;
+using OnlinerNotifier.BLL.Services.Interfaces.RedisEmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces.UserProductServices;
 using OnlinerNotifier.BLL.Services.Interfaces.UserServices;
 using OnlinerNotifier.BLL.Templates.Builders;
@@ -120,7 +122,8 @@ namespace OnlinerNotifier
             builder.RegisterType<EmailBuildingService>().As<IEmailBuildingService>().InstancePerDependency();
             builder.RegisterType<TrackingService>().As<ITrackingService>().InstancePerDependency();
             builder.RegisterType<TimeCalculationService>().As<ITimeCalculationService>().InstancePerDependency();
-            builder.RegisterType<RedisService>().As<IRedisService>().InstancePerDependency();
+            builder.RegisterType<RedisEmailService>().As<IRedisEmailPublisher>().InstancePerDependency();
+            builder.RegisterType<RedisEmailService>().As<IRedisEmailGetter>().InstancePerDependency();
         }
 
         private static void RegisterMappers(ContainerBuilder builder)

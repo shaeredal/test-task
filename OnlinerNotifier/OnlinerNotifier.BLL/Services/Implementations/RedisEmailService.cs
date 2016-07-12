@@ -1,16 +1,16 @@
 ﻿using OnlinerNotifier.BLL.Models.NotificationModels;
 using OnlinerNotifier.BLL.Redis;
-using OnlinerNotifier.BLL.Services.Interfaces;
+using OnlinerNotifier.BLL.Services.Interfaces.RedisEmailServices;
 using StackExchange.Redis;
 
 namespace OnlinerNotifier.BLL.Services.Implementations
 {
-    public class RedisService : IRedisService
+    public class RedisEmailService : IRedisEmailPublisher, IRedisEmailGetter
     {
         private IDatabase redis;
         private ISubscriber sub;
 
-        public RedisService()
+        public RedisEmailService()
         {
             redis = RedisConnector.Connection.GetDatabase();
             sub = RedisConnector.Connection.GetSubscriber();

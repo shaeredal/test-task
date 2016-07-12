@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using FluentScheduler;
 using OnlinerNotifier.BLL.Models.NotificationModels;
-using OnlinerNotifier.BLL.Services;
-using OnlinerNotifier.BLL.Services.EmailServices;
-using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices;
+using OnlinerNotifier.BLL.Services.Interfaces.RedisEmailServices;
 
 namespace OnlinerNotifier.Scheduler.Jobs
 {
     public class PushEmailsJob : IJob
     {
-        private readonly INotificationDataService _notificationDataService;
+        private readonly INotificationDataService notificationDataService;
 
         private readonly IEmailBuildingService emailBuilderService;
 
-        private readonly IRedisService redisService;
+        private readonly IRedisEmailPublisher redisService;
 
-        public PushEmailsJob(INotificationDataService _notificationDataService, IEmailBuildingService emailBuilderService, IRedisService redisService)
+        public PushEmailsJob(INotificationDataService notificationDataService, 
+            IEmailBuildingService emailBuilderService, 
+            IRedisEmailPublisher redisService)
         {
-            this._notificationDataService = _notificationDataService;
+            this.notificationDataService = notificationDataService;
             this.emailBuilderService = emailBuilderService;
             this.redisService = redisService;
         }
@@ -33,7 +33,7 @@ namespace OnlinerNotifier.Scheduler.Jobs
 
         private List<NotificationDataModel> GetData()
         {
-            return _notificationDataService.CollectNotificationData(TimeSpan.FromDays(1));
+            return notificationDataService.CollectNotificationData(TimeSpan.FromDays(1));
         }
 
         private void PublishEmails(List<NotificationDataModel> data)
