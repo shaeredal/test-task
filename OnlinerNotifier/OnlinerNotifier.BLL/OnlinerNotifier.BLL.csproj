@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Mappers\Implementations\EmailMapper.cs" />
+    <Compile Include="Mappers\Interfaces\IUserMapper.cs" />
     <Compile Include="Mappers\Interfaces\IUserProductsMapper.cs" />
     <Compile Include="Mappers\Interfaces\IProductMapper.cs" />
     <Compile Include="Mappers\Interfaces\IPriceChangesMapper.cs" />
@@ -98,9 +99,11 @@
     <Compile Include="Models\UserProductViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
     <Compile Include="Models\UserDataViewModel.cs" />
-    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Redis\RedisConnector.cs" />
+    <Compile Include="Services\Implementations\NotificationDataSevices\NotifiableUsersService.cs" />
+    <Compile Include="Services\Implementations\UserServices\UserManageService.cs" />
+    <Compile Include="Services\Implementations\UserServices\UserNotificationsService.cs" />
     <Compile Include="Services\Interfaces\UserProductServices\IUserProductService.cs" />
     <Compile Include="Services\Implementations\UserProductServices\UserProductGetService.cs" />
     <Compile Include="Services\Implementations\UserProductServices\UserProductAddService.cs" />
@@ -114,7 +117,7 @@
     <Compile Include="Services\Interfaces\EmailServices\IEmailService.cs" />
     <Compile Include="Services\Implementations\EmailServices\EmailBuildingService.cs" />
     <Compile Include="Services\Implementations\EmailServices\EmailService.cs" />
-    <Compile Include="Services\Interfaces\INotifiableUsersProvider.cs" />
+    <Compile Include="Services\Interfaces\NotificationDataSevices\INotifiableUsersProvider.cs" />
     <Compile Include="Services\Interfaces\IRedisService.cs" />
     <Compile Include="Services\Implementations\NotificationDataSevices\NotificationDataService.cs" />
     <Compile Include="Services\Implementations\RedisService.cs" />
@@ -130,8 +133,10 @@
     <Compile Include="Services\Interfaces\UserProductServices\IUserProductGetService.cs" />
     <Compile Include="Services\Interfaces\UserProductServices\IUserProductRemoveService.cs" />
     <Compile Include="Services\Interfaces\ITrackingService.cs" />
-    <Compile Include="Services\Interfaces\IUserService.cs" />
-    <Compile Include="Services\Implementations\UserService.cs" />
+    <Compile Include="Services\Interfaces\UserServices\IUserManageService.cs" />
+    <Compile Include="Services\Interfaces\UserServices\IUserNotificationsService.cs" />
+    <Compile Include="Services\Interfaces\UserServices\IUserDataService.cs" />
+    <Compile Include="Services\Implementations\UserServices\UserDataService.cs" />
     <Compile Include="Services\Implementations\PriceChangesServices\PriceChangesInfoService.cs" />
     <Compile Include="Templates\Builders\IPriceChangesEmailBuilder.cs" />
     <Compile Include="Templates\Builders\RazorPriceChangesEmailBuilder.cs" />

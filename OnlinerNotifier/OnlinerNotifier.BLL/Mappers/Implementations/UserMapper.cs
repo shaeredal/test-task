@@ -7,7 +7,7 @@ using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
-    public class UserMapper
+    public class UserMapper : IUserMapper
     {
         private IUserProductsMapper userProductsMapper;
 
@@ -27,16 +27,6 @@ namespace OnlinerNotifier.BLL.Mappers.Implementations
                 SocialId = userInfo.Id,
                 ProviderName = userInfo.ProviderName,
                 NotificationTime = DateTime.Now
-            };
-        }
-
-        public UserViewModel ToModel(User user)
-        {
-            return new UserViewModel()
-            {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                AvatarUri = user.AvatarUri
             };
         }
 
