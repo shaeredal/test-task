@@ -4,8 +4,6 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using NetMQ;
-using NetMQ.WebSockets;
 using OAuth2;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Mappers.Implementations;
@@ -28,8 +26,6 @@ using OnlinerNotifier.BLL.Templates.TemplatePathProvider;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.DAL;
 using OnlinerNotifier.Scheduler.Jobs;
-using OnlinerNotifier.ToastNotifier;
-using OnlinerNotifier.Enums;
 
 namespace OnlinerNotifier
 {
