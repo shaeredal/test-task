@@ -18,12 +18,17 @@ namespace OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices
             this.priceChangesMapper = priceChangesMapper;
         }
 
-        public void CompareAndUpdate(Product product, ProductOnliner newProduct)
+        public void CompareAndUpdate(int productId, PriceOnliner newPrice)
         {
-            if (IsPriceChanged(product, newProduct.Prices))
+            var product = unitOfWork.Products.Get(productId);
+            if (newPrice == null)
             {
-                AddPriceChange(product, newProduct);
-                UpdatePrice(product, newProduct.Prices);
+                newPrice = new PriceOnliner() {Max = 0, Min = 0};
+            }
+            if (IsPriceChanged(product, newPrice))
+            {
+                AddPriceChange(product, newPrice);
+                UpdatePrice(product, newPrice);
             }
         }
 
@@ -40,9 +45,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices
             return newPrice.Min != product.MinPrice || newPrice.Max != product.MaxPrice;
         }
 
-        private void AddPriceChange(Product product, ProductOnliner newProduct)
+        private void AddPriceChange(Product product, PriceOnliner newPrice)
         {
-            var priceChanges = priceChangesMapper.ToDomain(product, newProduct);
+            var priceChanges = priceChangesMapper.ToDomain(product, newPrice);
             unitOfWork.PriceCanges.Create(priceChanges);
             unitOfWork.Save();
         }

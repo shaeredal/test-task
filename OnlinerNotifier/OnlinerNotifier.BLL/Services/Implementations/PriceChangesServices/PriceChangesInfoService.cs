@@ -1,10 +1,8 @@
 ﻿using System.Linq;
-using OnlinerNotifier.BLL.Mappers.Interfaces;
 using OnlinerNotifier.BLL.Models.OnlinerDataModels;
 using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.PriceChangesServices;
 using OnlinerNotifier.DAL;
-using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices
 {
@@ -31,7 +29,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices
                 var onlinerProduct = GetOnlinerProduct(product.Name, product.OnlinerId);
                 if (onlinerProduct != null)
                 {
-                    priceChangesService.CompareAndUpdate(product, onlinerProduct);
+                    priceChangesService.CompareAndUpdate(product.Id, onlinerProduct.Prices);
                 }               
             }
         }
