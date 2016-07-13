@@ -258,6 +258,9 @@
     <Compile Include="App_Start\ToastNotificationsConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configuration\ToastNotificationsConfiguration.cs" />
+    <Compile Include="Configuration\ToastNotificationsSetup\IToastNotificationsSetup.cs" />
+    <Compile Include="Configuration\ToastNotificationsSetup\NetMQNotificationsSetup.cs" />
+    <Compile Include="Configuration\ToastNotificationsSetup\SignalRNotificationsSetup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />

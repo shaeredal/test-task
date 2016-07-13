@@ -1,25 +1,23 @@
 ﻿using System.Configuration;
 using OnlinerNotifier.Configuration;
-using OnlinerNotifier.Enums;
+using OnlinerNotifier.Configuration.ToastNotificationsSetup;
 
 namespace OnlinerNotifier
 {
     public class ToastNotificationsConfig
     {
-        private static ToastNotificationProviderType providerType;
+        public static IToastNotificationsSetup Setup { get; set; }
 
-        public static ToastNotificationProviderType ProviderType => providerType;
-
-        public static void SetProviderName()
+        public static void SetProviderSetup()
         {
             var section = (ToastNotificationsConfiguration) ConfigurationManager.GetSection("toastNotifications");
             switch (section.NotificationsProviderType)
             {
                 case "SignalR":
-                    providerType = ToastNotificationProviderType.SignalR;
+                    Setup = new SignalRNotificationsSetup();
                     break;
                 case "NetMQ":
-                    providerType = ToastNotificationProviderType.NetMQ;
+                    Setup = new NetMqNotificationsSetup();
                     break;
                 default:
                     throw new ConfigurationErrorsException();

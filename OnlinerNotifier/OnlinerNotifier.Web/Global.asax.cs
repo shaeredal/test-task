@@ -18,7 +18,7 @@ namespace OnlinerNotifier
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ToastNotificationsConfig.SetProviderName();
+            ToastNotificationsConfig.SetProviderSetup();
             AutofacConfig.RegisterDependencies();
             JobManager.JobFactory = new JobFactory(GlobalConfiguration.Configuration);
             JobManager.Initialize(new MyRegistry());

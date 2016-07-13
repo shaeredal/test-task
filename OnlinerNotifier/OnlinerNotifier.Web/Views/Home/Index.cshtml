@@ -8,7 +8,7 @@
 
 <html ng-app="onlinerNotifier">
 <head>
-    <meta name="viewport" content="width=device-width"/>
+    <meta name="viewport" content="width=device-width" />
     <base href="/">
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/font-awesome")
@@ -17,21 +17,10 @@
     <title>Index</title>
 </head>
 <body>
-<div ng-view>
-</div>
+    <div ng-view>
+    </div>
 
-    @{
-        switch (ToastNotificationsConfig.ProviderType)
-        {
-            case ToastNotificationProviderType.SignalR:
-                ViewBag.NotificationsModule = "signalRToastNotifications";
-                break;
-            case ToastNotificationProviderType.NetMQ:
-                ViewBag.NotificationsModule = "netMQToastNotifications";
-                break;
-        }
-        <script>var notificationModule = '@ViewBag.NotificationsModule'</script>
-    }
+    <script>var notificationModule = '@ToastNotificationsConfig.Setup.NotificationsModuleName'</script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -40,17 +29,9 @@
     @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/app")
 
-    @{
-        switch (ToastNotificationsConfig.ProviderType)
-        {
-            case ToastNotificationProviderType.SignalR:
-                @Scripts.Render("~/bundles/SignalR");
-                <script src="~/signalr/hubs"></script>
-                break;
-            case ToastNotificationProviderType.NetMQ:
-                @Scripts.Render("~/bundles/NetMQ");
-                break;
-        }
-    }
+
+    @Scripts.Render(@ToastNotificationsConfig.Setup.NotificationsBundleName);
+    <script src="~/signalr/hubs"></script>
+
 </body>
 </html>

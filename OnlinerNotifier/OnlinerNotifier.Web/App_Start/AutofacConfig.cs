@@ -7,12 +7,9 @@ using Autofac.Integration.WebApi;
 using NetMQ;
 using NetMQ.WebSockets;
 using OAuth2;
-using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
-using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Mappers.Interfaces;
-using OnlinerNotifier.BLL.Redis;
 using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
 using OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices;
 using OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices;
@@ -94,7 +91,7 @@ namespace OnlinerNotifier
             RegisterServices(builder);
             RegisterMappers(builder);
             RegisterJobs(builder);
-            RegisterToastNotificator(builder);
+            ToastNotificationsConfig.Setup.RegisterDependencies(builder);
             builder.RegisterType<EmailValidator>().As<IEmailValidator>().SingleInstance();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
@@ -143,20 +140,6 @@ namespace OnlinerNotifier
             builder.RegisterType<CheckPricesJob>().AsSelf().InstancePerDependency();
             builder.RegisterType<SendEmailJob>().AsSelf().InstancePerDependency();
             builder.RegisterType<PushEmailsJob>().AsSelf().InstancePerDependency();
-        }
-
-        private static void RegisterToastNotificator(ContainerBuilder builder)
-        {
-            switch (ToastNotificationsConfig.ProviderType)
-            {
-                case ToastNotificationProviderType.SignalR:
-                    builder.RegisterType<SignalRToastNotifier>().As<IToastNotifier>();
-                    break;
-                case ToastNotificationProviderType.NetMQ:
-                    builder.RegisterInstance(NetMQContext.Create().CreateWSPublisher()).SingleInstance();
-                    builder.RegisterType<NetMQToastNotifier>().As<IToastNotifier>();
-                    break;
-            }
         }
     }
 }
