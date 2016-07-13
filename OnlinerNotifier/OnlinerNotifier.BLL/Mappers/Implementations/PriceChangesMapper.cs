@@ -7,16 +7,16 @@ namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
     public class PriceChangesMapper : IPriceChangesMapper
     {
-        public ProductPriceChange ToDomain(Product productOld, ProductOnliner productNew)
+        public ProductPriceChange ToDomain(Product productOld, PriceOnliner newPrice)
         {
             return new ProductPriceChange()
             {
                 CheckTime = DateTime.Now,
                 Product = productOld,
                 OldMinPrice = productOld.MinPrice,
-                NewMinPrice = productNew.Prices.Min,
+                NewMinPrice = newPrice.Min,
                 OldMaxPrice = productOld.MaxPrice,
-                NewMaxPrice = productNew.Prices.Max
+                NewMaxPrice = newPrice.Max
             };
         }
     }

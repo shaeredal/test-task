@@ -1,6 +1,6 @@
 ﻿using System.Net.Mail;
 
-namespace OnlinerNotifier.BLL.Wrappers
+namespace OnlinerNotifier.BLL.SmtpClients
 {
     public class SmtpClientWrapper : ISmtpClient
     {

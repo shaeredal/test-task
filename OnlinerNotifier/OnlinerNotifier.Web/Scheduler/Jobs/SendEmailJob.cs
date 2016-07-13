@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentScheduler;
 using OnlinerNotifier.BLL.Redis;
-using OnlinerNotifier.BLL.Services.EmailServices;
+using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces.RedisEmailServices;
 using StackExchange.Redis;
 

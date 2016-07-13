@@ -5,6 +5,6 @@ namespace OnlinerNotifier.BLL.Mappers.Interfaces
 {
     public interface IPriceChangesMapper
     {
-        ProductPriceChange ToDomain(Product productOld, ProductOnliner productNew);
+        ProductPriceChange ToDomain(Product product, PriceOnliner newPrice);
     }
 }
