@@ -275,7 +275,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\ToastHub.cs" />
-    <Compile Include="NetMQSockets\ToastSocket.cs" />
     <Compile Include="Scheduler\Jobs\PushEmailsJob.cs" />
     <Compile Include="Scheduler\Jobs\SendEmailJob.cs" />
     <Compile Include="ToastNotifier\IToastNotifier.cs" />

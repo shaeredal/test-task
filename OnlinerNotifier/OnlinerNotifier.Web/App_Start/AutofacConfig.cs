@@ -87,11 +87,11 @@ namespace OnlinerNotifier
             RegisterServices(builder);
             RegisterMappers(builder);
             RegisterJobs(builder);
-            ToastNotificationsConfig.Setup.RegisterDependencies(builder);
             builder.RegisterType<EmailValidator>().As<IEmailValidator>().SingleInstance();
             builder.RegisterType<SmtpClientWrapper>().As<ISmtpClient>();
             builder.RegisterType<TemplatePathProvider>().As<ITemplatePathProvider>();
             builder.RegisterType<RazorPriceChangesEmailBuilder>().As<IPriceChangesEmailBuilder>();
+            ToastNotificationsConfig.Setup.RegisterDependencies(builder);
         }
 
         private static void RegisterServices(ContainerBuilder builder)
