@@ -31,46 +31,45 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="panel panel-default product-panel">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h5 class="panel-heading">Tracking products</h5>
-                    </div>
-                    <div class="col-md-2">
-                        <h5>Lowest price</h5>
-                    </div>
-                    <div class="col-md-2">
-                        <h5>Highest price</h5>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="row" ng-repeat="n in userProducts track by $index">
-                        <div class="product indent">
-                            <div class="col-md-2">
-                                <img class="product-image" ng-src={{n.Product.Image}} ng-show="n.Product.Image">
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>
+                        <th>Tracking products
+                        <th class="price">Lowest price
+                        <th class="price">Highest price
+                    </tr>
+                </thead>
+                <tbody infinite-scroll="more()">
+                    <tr class="indent" ng-repeat="n in userProducts track by $index">
+                        <td>
+                            <div class="product-image">
+                                <span class="placer"></span>
+                                <img ng-src={{n.Product.Image}} ng-show="n.Product.Image">
                             </div>
-                            <div class="col-md-4">
-                                <a ng-href={{n.Product.Url}}>{{n.Product.Name}}</a>
-                            </div>
-                            <div class="col-md-2">
-                                <span>{{n.Product.MinPrice | currencyFilter:currentRate}}</span>
-                            </div>
-                            <div class="col-md-2">
-                                <span>{{n.Product.MaxPrice | currencyFilter:currentRate}}</span>
-                            </div>
-                            <div class="col-md-1">
-                                <a ng-click="changeTrackingStatus(n.Id, $index)" ng-switch="n.IsTracked">
-                                    <span class="track-icon" ng-switch-when="true"><i class="fa fa-eye" aria-hidden="true"></i></span>
-                                    <span class="not-track-icon" ng-switch-when="false"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
-                                </a>
-                            </div>
-                            <div class="col-md-1">
-                                <a class="remove-cross" ng-click="delProduct(n.Product.Id, $index)"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </td>
+                        <td>
+                            <a ng-href={{n.Product.Url}}>{{n.Product.Name | unsafe}}</a>
+                        </td>
+                        <td>
+                            <span>{{n.Product.MinPrice | currencyFilter:currentRate}}</span>
+                        </td>
+                        <td>
+                            <span>{{n.Product.MaxPrice | currencyFilter:currentRate}}</span>
+                        </td>
+                        <td class="icon-box">
+                            <a ng-click="changeTrackingStatus(n.Id, $index)" ng-switch="n.IsTracked">
+                                <span class="track-icon" ng-switch-when="true"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                <span class="not-track-icon" ng-switch-when="false"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                            </a>
+                        </td>
+                        <td class="icon-box">
+                            <a class="remove-cross" ng-click="delProduct(n.Product.Id, $index)"><i class="fa fa-times" aria-hidden="true"></i></a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
