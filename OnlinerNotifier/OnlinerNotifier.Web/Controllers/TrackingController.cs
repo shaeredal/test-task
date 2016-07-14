@@ -9,8 +9,8 @@ namespace OnlinerNotifier.Controllers
     [Authentication]
     public class TrackingController : ApiControllerBase
     {
-        private ITrackingService trackingService;
-        private IToastNotifier toastNotifier;
+        private readonly ITrackingService trackingService;
+        private readonly IToastNotifier toastNotifier;
 
         public TrackingController(ITrackingService trackingService, IToastNotifier toastNotifier)
         {

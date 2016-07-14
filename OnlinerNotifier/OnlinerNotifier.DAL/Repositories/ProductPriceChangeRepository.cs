@@ -8,7 +8,7 @@ namespace OnlinerNotifier.DAL.Repositories
 {
     public class ProductPriceChangeRepository : IRepository<ProductPriceChange>
     {
-        private Context db;
+        private readonly Context db;
 
         public ProductPriceChangeRepository(Context context)
         {

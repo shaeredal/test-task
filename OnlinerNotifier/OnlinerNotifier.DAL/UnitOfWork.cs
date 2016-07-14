@@ -7,7 +7,7 @@ namespace OnlinerNotifier.DAL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private Context db = new Context();
+        private readonly Context db = new Context();
         private UserRepository userRepository;
         private ProductRepository productRepository;
         private ProductPriceChangeRepository productPriceChangeRepository;

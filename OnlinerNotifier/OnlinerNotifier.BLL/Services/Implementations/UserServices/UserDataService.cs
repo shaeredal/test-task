@@ -7,8 +7,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations.UserServices
 {
     public class UserDataService : IUserDataService
     {
-        private IUnitOfWork unitOfWork;
-        private IUserMapper userMapper;
+        private readonly IUnitOfWork unitOfWork;
+
+        private readonly IUserMapper userMapper;
 
         public UserDataService(IUnitOfWork unitOfWork, IUserMapper userMapper)
         {

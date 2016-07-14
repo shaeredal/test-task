@@ -9,11 +9,11 @@ namespace OnlinerNotifier.BLL.Services.Implementations.EmailServices
 {
     public class EmailModelSender : IEmailModelSender, IEmailSender
     {
-        private readonly string address = "OnlinerNotifier@gmail.com";
+        private const string address = "OnlinerNotifier@gmail.com";
 
-        private IEmailValidator emailValidator;
+        private readonly IEmailValidator emailValidator;
 
-        private ISmtpClient smtpClient;
+        private readonly ISmtpClient smtpClient;
 
         public EmailModelSender(IEmailValidator emailValidator, ISmtpClient smtpClient)
         {

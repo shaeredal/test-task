@@ -5,7 +5,7 @@ namespace OnlinerNotifier.BLL.Redis
 {
     public class RedisConnector
     {
-        private static Lazy<ConnectionMultiplexer> lazyConnection;
+        private static readonly Lazy<ConnectionMultiplexer> lazyConnection;
 
         public static ConnectionMultiplexer Connection => lazyConnection.Value;
 

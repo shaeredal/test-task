@@ -58,8 +58,8 @@ namespace OnlinerNotifier.Controllers
 
         private void SetCookies(string id, string key)
         {
-            HttpCookie idCookie = new HttpCookie("User", id);
-            HttpCookie keyCookie = new HttpCookie("Key", key);
+            var idCookie = new HttpCookie("User", id);
+            var keyCookie = new HttpCookie("Key", key);
             Response.Cookies.Add(idCookie);
             Response.Cookies.Add(keyCookie);
         }

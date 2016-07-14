@@ -10,7 +10,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices
 {
     public class UserProductChangesService : IUserProductChangesService
     {
-        private INotificationProductChangesModelMapper notificationProductChangesModelMapper;
+        private readonly INotificationProductChangesModelMapper notificationProductChangesModelMapper;
 
         public UserProductChangesService(INotificationProductChangesModelMapper notificationProductChangesModelMapper)
         {

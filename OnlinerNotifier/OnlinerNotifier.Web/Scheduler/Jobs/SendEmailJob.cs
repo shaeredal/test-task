@@ -9,15 +9,15 @@ namespace OnlinerNotifier.Scheduler.Jobs
 {
     public class SendEmailJob : IJob
     {
-        private object lockObject = new object();
+        private readonly object lockObject = new object();
              
-        private IRedisEmailGetter redisService;
+        private readonly IRedisEmailGetter redisService;
 
-        private IEmailModelSender emailModelSender;
+        private readonly IEmailModelSender emailModelSender;
 
-        private IDatabase redis;
+        private readonly IDatabase redis;
 
-        private ISubscriber sub;
+        private readonly ISubscriber sub;
 
         public SendEmailJob(IRedisEmailGetter redisService, IEmailModelSender emailModelSender)
         {

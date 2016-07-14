@@ -8,7 +8,7 @@ namespace OnlinerNotifier.DAL.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private Context db;
+        private readonly Context db;
 
         public UserRepository(Context context)
         {
