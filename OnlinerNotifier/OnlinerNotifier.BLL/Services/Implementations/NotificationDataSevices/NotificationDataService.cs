@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using OnlinerNotifier.BLL.Mappers.Interfaces;
 using OnlinerNotifier.BLL.Models.NotificationModels;
-using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices;
 using OnlinerNotifier.DAL.Models;
 

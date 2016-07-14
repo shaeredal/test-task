@@ -1,9 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using OnlinerNotifier.BLL.Mappers.Implementations;
-using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices;
-using OnlinerNotifier.BLL.Services.Implementations.UserServices;
 using OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices;
 using OnlinerNotifier.BLL.Validators;
 using OnlinerNotifier.BLL_Tests.Moq;

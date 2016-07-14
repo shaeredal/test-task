@@ -1,5 +1,4 @@
 ﻿using OnlinerNotifier.BLL.Models;
-using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.UserServices;
 using OnlinerNotifier.Filters;
 

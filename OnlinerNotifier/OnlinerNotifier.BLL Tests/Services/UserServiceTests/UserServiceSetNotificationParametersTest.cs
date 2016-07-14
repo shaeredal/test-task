@@ -12,7 +12,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.UserServiceTests
         private IUserNotificationsService notificationsService;
 
         [SetUp]
-        public void Setup()
+        public new void Setup()
         {
             notificationsService = new UserNotificationsService(unitOfWorkMock.Object, new EmailValidator());
         }

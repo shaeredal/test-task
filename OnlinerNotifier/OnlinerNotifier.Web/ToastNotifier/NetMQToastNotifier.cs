@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Net.Http;
-using System.Text;
 using NetMQ;
 using NetMQ.WebSockets;
 

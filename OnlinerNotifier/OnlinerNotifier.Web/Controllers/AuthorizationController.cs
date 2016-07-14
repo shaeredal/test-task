@@ -30,18 +30,17 @@ namespace OnlinerNotifier.Controllers
         public ActionResult Auth(string providerName)
         {
             UserInfo userInfo;
-            string key;
             var client = GetClient(providerName);
             try
             {
                 userInfo = client.GetUserInfo(Request.QueryString);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return Redirect("/auth");
             }
             var userId = userService.GetOrCreate(userInfo);
-            key = GetKey(providerName, client);
+            var key = GetKey(providerName, client);
             SetAuthParameters(userId.ToString(), key);
             return Redirect("/home");
         }

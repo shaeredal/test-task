@@ -13,7 +13,7 @@ namespace OnlinerNotifier.BLL_Tests.Services.UserServiceTests
         private IUserManageService userManageService;
 
         [SetUp]
-        public void Setup()
+        public new void Setup()
         {
             userManageService = new UserManageService(unitOfWorkMock.Object, new UserMapper(new UserProductsMapper(new ProductMapper())));
         }
