@@ -7,8 +7,8 @@ namespace OnlinerNotifier.BLL.Services.Implementations.UserServices
 {
     public class UserNotificationsService : IUserNotificationsService
     {
-        private IUnitOfWork unitOfWork;
-        private IEmailValidator emailValidator;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IEmailValidator emailValidator;
 
         public UserNotificationsService(IUnitOfWork unitOfWork, IEmailValidator emailValidator)
         {

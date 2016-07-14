@@ -8,11 +8,11 @@ namespace OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices
 {
     public class PricesChangesInfoService : IPricesChangesInfoService
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        private IOnlinerSearchService onlinerSearchService;
+        private readonly IOnlinerSearchService onlinerSearchService;
 
-        private IPriceChangesService priceChangesService;
+        private readonly IPriceChangesService priceChangesService;
 
         public PricesChangesInfoService(IUnitOfWork unitOfWork, IOnlinerSearchService onlinerSearchService, IPriceChangesService priceChangesService)
         {

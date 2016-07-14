@@ -7,8 +7,8 @@ namespace OnlinerNotifier.BLL.Services.Implementations
 {
     public class RedisEmailService : IRedisEmailPublisher, IRedisEmailGetter
     {
-        private IDatabase redis;
-        private ISubscriber sub;
+        private readonly IDatabase redis;
+        private readonly ISubscriber sub;
 
         public RedisEmailService()
         {

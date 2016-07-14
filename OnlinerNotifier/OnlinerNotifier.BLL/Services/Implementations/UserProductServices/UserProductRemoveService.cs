@@ -7,7 +7,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations.UserProductServices
 {
     public class UserProductRemoveService : IUserProductRemoveService
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
         public UserProductRemoveService(IUnitOfWork unitOfWork)
         {

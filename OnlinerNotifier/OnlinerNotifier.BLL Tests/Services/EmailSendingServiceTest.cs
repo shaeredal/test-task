@@ -2,10 +2,8 @@
 using System.Net.Mail;
 using Moq;
 using NUnit.Framework;
-using OnlinerNotifier.BLL.Mappers;
 using OnlinerNotifier.BLL.Mappers.Implementations;
 using OnlinerNotifier.BLL.Models.NotificationModels;
-using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Services.Implementations.EmailServices;
 using OnlinerNotifier.BLL.Services.Interfaces.EmailServices;

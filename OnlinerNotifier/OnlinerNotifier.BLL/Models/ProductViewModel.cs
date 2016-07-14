@@ -1,5 +1,4 @@
-﻿
-namespace OnlinerNotifier.BLL.Models
+﻿namespace OnlinerNotifier.BLL.Models
 {
     public class ProductViewModel
     {

@@ -4,7 +4,7 @@ namespace OnlinerNotifier.BLL.SmtpClients
 {
     public class SmtpClientWrapper : ISmtpClient
     {
-        private SmtpClient smtpClient;
+        private readonly SmtpClient smtpClient;
 
         public SmtpClientWrapper()
         {

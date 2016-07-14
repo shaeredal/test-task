@@ -8,7 +8,7 @@ namespace OnlinerNotifier.Controllers
     [Authentication]
     public class NotificationController : ApiControllerBase
     {
-        private IUserNotificationsService notificationsService;
+        private readonly IUserNotificationsService notificationsService;
 
         public NotificationController(IUserNotificationsService notificationsService)
         {

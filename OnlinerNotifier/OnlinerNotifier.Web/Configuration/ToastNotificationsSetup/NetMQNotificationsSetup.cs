@@ -1,8 +1,8 @@
 ﻿using System.Web.Http;
 using Autofac;
+using Autofac.Integration.WebApi;
 using NetMQ;
 using NetMQ.WebSockets;
-using OnlinerNotifier.NetMQSockets;
 using OnlinerNotifier.ToastNotifier;
 using Owin;
 
@@ -22,7 +22,8 @@ namespace OnlinerNotifier.Configuration.ToastNotificationsSetup
 
         public void StartupConfiguration(IAppBuilder app)
         {
-            ToastSocket.Bind(GlobalConfiguration.Configuration);
+            GlobalConfiguration.Configuration.DependencyResolver
+                .GetRootLifetimeScope().Resolve<WSPublisher>().Bind("ws://localhost:81");
         }
     }
 }

@@ -9,9 +9,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices
 {
     public class NotifiableUsersService : INotifiableUsersProvider
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        private IEmailValidator emailValidator;
+        private readonly IEmailValidator emailValidator;
 
         public NotifiableUsersService(IUnitOfWork unitOfWork, IEmailValidator emailValidator)
         {

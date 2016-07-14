@@ -9,9 +9,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations.UserProductServices
 {
     public class UserProductGetService : IUserProductGetService
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        private IProductMapper productMapper;
+        private readonly IProductMapper productMapper;
 
         public UserProductGetService(IUnitOfWork unitOfWork, IProductMapper productMapper)
         {

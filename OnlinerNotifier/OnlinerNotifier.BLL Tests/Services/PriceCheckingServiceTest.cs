@@ -14,7 +14,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
     public class PriceCheckingServiceTest
     {
         private Mock<IUnitOfWork> unitOfWorkMock;
-        private IPricesChangesInfoService _pricesChangesObserverService;
+        private IPricesChangesInfoService pricesChangesObserverService;
 
         [SetUp]
         public void Setup()
@@ -24,7 +24,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
             var onlinerSearchServiceMock = mockStorage.OnlinerSearchServiceMock;
             unitOfWorkMock.Setup(m => m.PriceCanges.Create(It.IsAny<ProductPriceChange>()));
 
-            _pricesChangesObserverService = new PricesChangesInfoService(unitOfWorkMock.Object, onlinerSearchServiceMock.Object,
+            pricesChangesObserverService = new PricesChangesInfoService(unitOfWorkMock.Object, onlinerSearchServiceMock.Object,
                 new PriceChangesService(unitOfWorkMock.Object, new PriceChangesMapper()));
         }
 
@@ -33,7 +33,7 @@ namespace OnlinerNotifier.BLL_Tests.Services
         {
             var testProduct = unitOfWorkMock.Object.Products.GetAll().FirstOrDefault(p => p.OnlinerId == 12345);
 
-            _pricesChangesObserverService.Update();
+            pricesChangesObserverService.Update();
 
             unitOfWorkMock.Verify(m => m.PriceCanges.Create(It.IsAny<ProductPriceChange>()), Times.Once);
             Assert.AreEqual(70000, testProduct.MaxPrice);

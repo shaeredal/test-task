@@ -6,7 +6,7 @@ namespace OnlinerNotifier
 {
     public class ToastNotificationsConfig
     {
-        public static IToastNotificationsSetup Setup { get; set; }
+        public static IToastNotificationsSetup Setup { get; private set; }
 
         public static void SetProviderSetup()
         {

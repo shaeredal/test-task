@@ -6,7 +6,7 @@ namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
     public class UserProductsMapper : IUserProductsMapper
     {
-        private IProductMapper productMapper;
+        private readonly IProductMapper productMapper;
 
         public UserProductsMapper(IProductMapper productMapper)
         {

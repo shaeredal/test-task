@@ -9,9 +9,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations.EmailServices
 {
     public class EmailBuildingService : IEmailBuildingService
     {
-        private IEmailMapper emailMapper;
+        private readonly IEmailMapper emailMapper;
 
-        private IPriceChangesEmailBuilder priceChangesEmailBuilder;
+        private readonly IPriceChangesEmailBuilder priceChangesEmailBuilder;
 
         public EmailBuildingService(IEmailMapper emailMapper, IPriceChangesEmailBuilder priceChangesEmailBuilder)
         {

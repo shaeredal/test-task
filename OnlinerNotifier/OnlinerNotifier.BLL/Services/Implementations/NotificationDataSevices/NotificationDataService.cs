@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using OnlinerNotifier.BLL.Mappers.Interfaces;
 using OnlinerNotifier.BLL.Models.NotificationModels;
-using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL.Services.Interfaces.NotificationDataSevices;
 using OnlinerNotifier.DAL.Models;
 
@@ -11,11 +10,11 @@ namespace OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices
 {
     public class NotificationDataDataService : INotificationDataService
     {
-        private INotifiableUsersProvider notifiableUsersProvider;
+        private readonly INotifiableUsersProvider notifiableUsersProvider;
 
-        private IUserProductChangesService userProductChangesService;
+        private readonly IUserProductChangesService userProductChangesService;
 
-        private INotificationDataModelMapper notificationDataModelMapper;
+        private readonly INotificationDataModelMapper notificationDataModelMapper;
 
         public NotificationDataDataService(INotifiableUsersProvider notifiableUsersProvider,
             IUserProductChangesService userProductChangesService,
@@ -29,16 +28,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations.NotificationDataSevices
         public List<NotificationDataModel> CollectNotificationData(TimeSpan period)
         {
             var users = notifiableUsersProvider.GetNotifiableUsers();
-            var result = new List<NotificationDataModel>();
-            foreach (var user in users)
-            {
-                var userData = GetUserNotifications(user, period);
-                if (userData.Products.Any())
-                {
-                    result.Add(userData);
-                }
-            }
-            return result;
+            return users.Select(user => GetUserNotifications(user, period)).Where(userData => userData.Products.Any()).ToList();
         }
 
         private NotificationDataModel GetUserNotifications(User user, TimeSpan period)

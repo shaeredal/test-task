@@ -8,8 +8,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations.UserServices
 {
     public class UserManageService : IUserManageService
     {
-        private IUnitOfWork unitOfWork;
-        private IUserMapper userMapper;
+        private readonly IUnitOfWork unitOfWork;
+
+        private readonly IUserMapper userMapper;
 
         public UserManageService(IUnitOfWork unitOfWork, IUserMapper userMapper)
         {

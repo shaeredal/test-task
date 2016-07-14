@@ -111,6 +111,7 @@ namespace OnlinerNotifier.BLL_Tests.Moq
             ProductRepositoryMock.Setup(pr => pr.Get(1)).Returns(() => ProductMock.Object);
             var productList = GenerateProductList();
             ProductRepositoryMock.Setup(pr => pr.GetAll()).Returns(() => productList);
+            ProductRepositoryMock.Setup(pr => pr.Get(100)).Returns(() => productList[0]);
             ProductRepositoryMock.Setup(pr => pr.Create(It.IsAny<Product>()));
         }
 

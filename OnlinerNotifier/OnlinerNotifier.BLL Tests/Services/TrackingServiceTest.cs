@@ -1,11 +1,9 @@
 ﻿using Moq;
 using NUnit.Framework;
 using OnlinerNotifier.BLL.Models.TrackingModels;
-using OnlinerNotifier.BLL.Services;
 using OnlinerNotifier.BLL.Services.Implementations;
 using OnlinerNotifier.BLL.Services.Interfaces;
 using OnlinerNotifier.BLL_Tests.Moq;
-using OnlinerNotifier.DAL;
 using OnlinerNotifier.DAL.Models;
 
 namespace OnlinerNotifier.BLL_Tests.Services

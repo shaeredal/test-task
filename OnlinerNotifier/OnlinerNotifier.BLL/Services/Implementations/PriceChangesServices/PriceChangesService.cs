@@ -8,9 +8,9 @@ namespace OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices
 {
     public class PriceChangesService : IPriceChangesService
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        private IPriceChangesMapper priceChangesMapper;
+        private readonly IPriceChangesMapper priceChangesMapper;
 
         public PriceChangesService(IUnitOfWork unitOfWork, IPriceChangesMapper priceChangesMapper)
         {
@@ -36,11 +36,7 @@ namespace OnlinerNotifier.BLL.Services.Implementations.PriceChangesServices
         {
             if (newPrice == null)
             {
-                if (product.MaxPrice != 0 || product.MinPrice != 0)
-                {
-                    return true;
-                }
-                return false;
+                return product.MaxPrice != 0 || product.MinPrice != 0;
             }
             return newPrice.Min != product.MinPrice || newPrice.Max != product.MaxPrice;
         }

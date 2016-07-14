@@ -7,7 +7,7 @@ namespace OnlinerNotifier.BLL.Mappers.Implementations
 {
     public class EmailMapper : IEmailMapper
     {
-        private ITimeCalculationService timeCalculationService;
+        private readonly ITimeCalculationService timeCalculationService;
 
         public EmailMapper(ITimeCalculationService timeCalculationService)
         {

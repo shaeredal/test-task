@@ -9,11 +9,11 @@ namespace OnlinerNotifier.BLL.Services.Implementations.UserProductServices
 {
     public class UserProductAddService : IUserProductAddService
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        private IProductMapper productMapper;
+        private readonly IProductMapper productMapper;
 
-        private IUserProductsMapper userProductsMapper;
+        private readonly IUserProductsMapper userProductsMapper;
 
         public UserProductAddService(IUnitOfWork unitOfWork, IProductMapper productMapper, IUserProductsMapper userProductsMapper)
         {

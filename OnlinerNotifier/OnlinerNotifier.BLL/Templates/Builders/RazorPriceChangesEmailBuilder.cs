@@ -8,7 +8,7 @@ namespace OnlinerNotifier.BLL.Templates.Builders
 {
     public class RazorPriceChangesEmailBuilder : IPriceChangesEmailBuilder
     {
-        private ITemplatePathProvider templatePathProvider;
+        private readonly ITemplatePathProvider templatePathProvider;
 
         public RazorPriceChangesEmailBuilder(ITemplatePathProvider templatePathProvider)
         {
