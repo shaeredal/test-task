@@ -13,53 +13,14 @@ namespace OnlinerNotifier.DAL
         private ProductPriceChangeRepository productPriceChangeRepository;
         private UserProductRepository userProductRepository;
 
-        public IUserRepository Users
-        {
-            get
-            {
-                if (userRepository == null)
-                {
-                    userRepository = new UserRepository(db);
-                }
-                return userRepository;
-            }
-        }
+        public IUserRepository Users => userRepository ?? (userRepository = new UserRepository(db));
 
-        public IRepository<Product> Products
-        {
-            get
-            {
-                if (productRepository == null)
-                {
-                    productRepository = new ProductRepository(db);
-                }
-                return productRepository;
-            }
-        }
+        public IRepository<Product> Products => productRepository ?? (productRepository = new ProductRepository(db));
 
-        public IRepository<ProductPriceChange> PriceCanges
-        {
-            get
-            {
-                if (productPriceChangeRepository == null)
-                {
-                    productPriceChangeRepository = new ProductPriceChangeRepository(db);
-                }
-                return productPriceChangeRepository;
-            }
-        }
+        public IRepository<ProductPriceChange> PriceCanges => productPriceChangeRepository ??
+                                                              (productPriceChangeRepository = new ProductPriceChangeRepository(db));
 
-        public IRepository<UserProduct> UserProducts
-        {
-            get
-            {
-                if (userProductRepository == null)
-                {
-                    userProductRepository = new UserProductRepository(db);
-                }
-                return userProductRepository;
-            }
-        }
+        public IRepository<UserProduct> UserProducts => userProductRepository ?? (userProductRepository = new UserProductRepository(db));
 
         public void Save()
         {
