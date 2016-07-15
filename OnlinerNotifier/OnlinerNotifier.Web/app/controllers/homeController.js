@@ -7,7 +7,10 @@ home.controller('homeController', function ($scope, $http, $cookies, $location, 
             $http.get('api/Account/' + userId)
                 .then(function (response) {
                     var user = response.data;
-                    $scope.name = user.FirstName + ' ' + user.LastName;
+                    $scope.name = user.FirstName;
+                    if (user.LastName != null) {
+                        $scope.name += ' ' + user.LastName;
+                    }
                     if (user.AvatarUri != null && user.AvatarUri.indexOf("http://") != -1) {
                         $scope.avatarUri = user.AvatarUri.replace("http://", "https://");
                     }
